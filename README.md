@@ -20,7 +20,7 @@
 | Branch    | Função                                                   |
 |-----------|----------------------------------------------------------|
 | `main`    | Recebe atualizações apenas em **lançamento** de versões. |
-| `develop` | Ambiente de integração e testes. Recebe novas features.  |
+| `develop` | Ambiente de integração e testes. Recebe novas features. É a padrão do repositório. |
 | `backup`  | Cópia de segurança da `main`. Usada em caso de perdas, atualizada em lançamento de versões da `main`.   |
 
 ---

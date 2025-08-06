@@ -54,8 +54,6 @@ git push origin backup
 ```bash
 git checkout main
 git merge backup
-<<<<<<< Updated upstream
-=======
 ```
 
 ---
@@ -64,5 +62,4 @@ git merge backup
 ```
 npm i 
 npm run dev
->>>>>>> Stashed changes
 ```

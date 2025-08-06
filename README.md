@@ -55,3 +55,11 @@ git push origin backup
 git checkout main
 git merge backup
 ```
+
+---
+
+### ⚙️ Comandos para build
+```
+npm i 
+npm run dev
+```

@@ -54,4 +54,15 @@ git push origin backup
 ```bash
 git checkout main
 git merge backup
+<<<<<<< Updated upstream
+=======
+```
+
+---
+
+### ⚙️ Comandos para build
+```
+npm i 
+npm run dev
+>>>>>>> Stashed changes
 ```

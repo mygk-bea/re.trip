@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from './Tag.module.scss';
 
 interface TagProps {
     text: string;
@@ -46,7 +47,7 @@ const Tag: React.FC<TagProps> = ({
                 <button
                     type="button"
                     onClick={handleDismiss}
-                    className="rounded-full flex"
+                    className={`${styles.button__remove} rounded-full flex`}
                     style={!isTailwindClass ? { backgroundColor: bgColor, color: textColor } : {}}
                 >
                     <svg
@@ -68,5 +69,8 @@ const Tag: React.FC<TagProps> = ({
         </span>
     );
 };
+
+    //   <Tag text="Rota Turística" bgColor="#f9efe6" textColor="#cb802c" borderColor="#c77c25" dismissible />
+
 
 export default Tag;

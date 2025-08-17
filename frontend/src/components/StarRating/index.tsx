@@ -39,7 +39,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     return (
         <div className="flex items-center gap-x-2 w-fit">
 
-            <div className={`${styles.conteiner__stars} flex gap-x-4 rounded-full border border-orange-400 px-3 py-1 w-fit`}>
+            <div className={`${styles.container__stars} flex gap-x-4 rounded-full border border-orange-400 px-3 py-1 w-fit`}>
                 {[...Array(5)].map((_, index) => {
                     const value = index + 1;
 

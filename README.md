@@ -63,3 +63,10 @@ git merge backup
 npm i 
 npm run dev
 ```
+
+---
+
+### ⚙️ Libs para instalar
+```
+npm install @fortawesome/fontawesome-free
+```

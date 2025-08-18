@@ -1,0 +1,43 @@
+.stepper {
+  width: 360px;
+  height: 66px;
+  overflow: auto;
+
+  .step {
+    border-color: #FF7022;
+    color: #FF7022;
+    font-weight: 500;
+    height: 40px;
+    min-width: 40px;
+  
+    .icon {
+      & > svg {
+        scale: .6;
+        & > path {
+          fill: #FF7022;
+        }
+      }
+    
+      &.pin {
+        fill: #FF7022;
+      }
+    }
+
+    .completed {
+      color: #FFF;
+
+      &.icon {
+        & > svg {
+          & > path {
+            fill: #FFF;
+          }
+        }
+      }
+    }
+  }
+  
+  .line {
+    margin: 0 5px;
+    border-top: 2px dotted #FF7022;
+  }
+}

@@ -1,0 +1,19 @@
+.icon {
+  &.fill {
+    path {fill: rgba(204, 204, 204);}
+  }
+  &.stroke {
+    path {stroke: rgba(204, 204, 204);}
+  }
+}
+
+.fillActive {
+  .icon {
+    &.fill {
+      path {fill: rgb(255, 112, 34);}
+    }
+    &.stroke {
+      path {stroke: rgb(255, 112, 34);}
+    }
+  }
+}

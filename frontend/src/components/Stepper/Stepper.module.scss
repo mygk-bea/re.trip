@@ -12,13 +12,14 @@
   
     .icon {
       & > svg {
-        scale: .6;
         & > path {
           fill: #FF7022;
         }
       }
     
       &.pin {
+        width: 24px;
+        height: 24px;
         fill: #FF7022;
       }
     }

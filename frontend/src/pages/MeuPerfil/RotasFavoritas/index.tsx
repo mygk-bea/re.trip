@@ -6,7 +6,7 @@ const RotasFavoritas: React.FC = () => {
         <>
             <div>
                 <div className="flex flex-col items-center">
-                    <div className="text-[#FF7022] text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
+                    <div className="text-[#FF7022] font-madimi text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
                         Rotas Favoritas
                     </div>
 

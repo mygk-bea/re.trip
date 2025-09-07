@@ -17,7 +17,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
         <>
             <div>
                 <div className="flex flex-col items-center">
-                    <div className="text-[#FF7022] text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
+                    <div className="text-[#FF7022] font-madimi text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
                         {call}
                     </div>
 
@@ -26,7 +26,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     </div>
                 </div>
 
-                <div className="text-[#FF7022] text-center font-bold text-[32px]">{username}</div>
+                <div className="text-[#FF7022] text-center font-bold text-[32px] font-madimi">{username}</div>
                 <div className='text-[20px] mb-5'>{type}</div>
             </div>
 

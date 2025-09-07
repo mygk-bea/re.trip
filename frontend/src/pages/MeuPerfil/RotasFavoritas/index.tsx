@@ -1,12 +1,13 @@
 import React from "react";
 import Menu from "../../../components/Menu";
+import styles from './RotasFavoritas.module.scss';
 
 const RotasFavoritas: React.FC = () => {
     return (
         <>
             <div>
                 <div className="flex flex-col items-center">
-                    <div className="text-[#FF7022] font-madimi text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
+                    <div className={`text-[#FF7022] text-center font-bold text-[32px] mb-6 fixed top-0 p-8 ${styles.text__custom}`}>
                         Rotas Favoritas
                     </div>
 

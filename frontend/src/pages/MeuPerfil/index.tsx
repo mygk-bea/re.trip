@@ -17,7 +17,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
         <>
             <div>
                 <div className="flex flex-col items-center">
-                    <div className="text-[#FF7022] font-madimi text-center font-bold text-[32px] mb-6 fixed top-0 p-8">
+                    <div className="text-[#FF7022] font-madimi text-center font-bold text-[32px] mb-6 fixed top-0 p-8 lg:p-40">
                         {call}
                     </div>
 
@@ -30,7 +30,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <div className='text-[20px] mb-5'>{type}</div>
             </div>
 
-            <div className="w-[80vw] flex flex-col gap-8" >
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8" >
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
@@ -79,5 +79,8 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
     );
 };
+
+        //   <MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />
+
 
 export default MeuPerfil;

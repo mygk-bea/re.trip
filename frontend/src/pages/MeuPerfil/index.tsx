@@ -41,7 +41,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
     return (
         <>
-            <div>
+            <div className="relative">
                 <div className="flex flex-col items-center">
                     <div className={`text-[#FF7022] text-center font-bold text-[32px] mb-6 fixed top-0 p-8 lg:p-40 ${styles.text__custom}`}>
                         {call}

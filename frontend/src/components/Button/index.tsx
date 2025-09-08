@@ -13,10 +13,13 @@ interface ButtonProps {
     isAdm: boolean;
     tittle: string;
     nameClass?: string; //para a manipulação dos svg caso necessário
+    fontZise?: string;
+    fontFamily?: string;
+    fontWeight?: string | number;
     onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({nameClass, colorText, colorSombra, icon: IconComponent, isAdm, positionItens, colorIcon, backgrandColor, height, width, tittle, onClick }) => {
+const Button: React.FC<ButtonProps> = ({fontZise, fontWeight, fontFamily, nameClass, colorText, colorSombra, icon: IconComponent, isAdm, positionItens, colorIcon, backgrandColor, height, width, tittle, onClick }) => {
     const buttonStyle = {
         '--color-icon': colorIcon,
         '--color-text': colorText,
@@ -24,7 +27,10 @@ const Button: React.FC<ButtonProps> = ({nameClass, colorText, colorSombra, icon:
         '--height': height,
         '--width': width,
         '--position-text': positionItens,
-        '--color-sombra': colorSombra
+        '--color-sombra': colorSombra,
+        '--font-size': fontZise,
+        '--font-weight': fontWeight, 
+        '--font-family': fontFamily
     } as React.CSSProperties;
     
     return (

@@ -89,13 +89,13 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    tittle="Minhas Rotas"
-                    positionItens="start"
+                    title="Minhas Rotas"
+                    positionItems="start"
                     icon={IconRouteMap}
                     fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
@@ -104,13 +104,13 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    tittle="Rotas Favoritas"
-                    positionItens="start"
+                    title="Rotas Favoritas"
+                    positionItems="start"
                     icon={IconHeart}
                     fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/rotas-favoritas")}
@@ -119,13 +119,13 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    tittle="Sair"
-                    positionItens="start"
+                    title="Sair"
+                    positionItems="start"
                     fontWeight='normal'
                     icon={IconLogout}
                 // onClick={() => navigate("/user/meu-perfil/sair")}

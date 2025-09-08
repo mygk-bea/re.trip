@@ -3,31 +3,33 @@ import styles from './Button.module.scss';
 
 interface ButtonProps {
     icon?: React.ComponentType<any>;
-    positionItens?: string;
+    positionItems?: string;
     colorIcon?: string;
     colorText?: string;
-    backgrandColor?: string;
-    colorSombra?: string;
+    backgroundColor?: string;
+    colorShadow?: string;
     height: string;
     width: string;
     isAdm: boolean;
-    tittle: string;
-    nameClass?: string; //para a manipulação dos svg caso necessário
-    fontZise?: string;
+    title: string;
+    svgClass?: string; //para a manipulação dos svg caso necessário
+    fontSize?: string;
     fontFamily?: string;
+    fontWeight?: string | number;
     onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({fontZise, fontFamily, nameClass, colorText, colorSombra, icon: IconComponent, isAdm, positionItens, colorIcon, backgrandColor, height, width, tittle, onClick }) => {
+const Button: React.FC<ButtonProps> = ({fontSize, fontWeight, fontFamily, svgClass, colorText, colorShadow, icon: IconComponent, isAdm, positionItems, colorIcon, backgroundColor, height, width, title, onClick }) => {
     const buttonStyle = {
         '--color-icon': colorIcon,
         '--color-text': colorText,
-        '--bg-color': backgrandColor,
+        '--bg-color': backgroundColor,
         '--height': height,
         '--width': width,
-        '--position-text': positionItens,
-        '--color-sombra': colorSombra,
-        '--font-size': fontZise,
+        '--position-text': positionItems,
+        '--color-shadow': colorShadow,
+        '--font-size': fontSize,
+        '--font-weight': fontWeight, 
         '--font-family': fontFamily
     } as React.CSSProperties;
     
@@ -36,10 +38,10 @@ const Button: React.FC<ButtonProps> = ({fontZise, fontFamily, nameClass, colorTe
         <button style={buttonStyle} className={isAdm ? `${styles.button} ${styles.button__adm}` : `${styles.button} ${styles.button__user_comum}`} onClick={onClick}>
         {IconComponent ? (
             <div className={styles.button__icon}> 
-                <IconComponent class={nameClass}/>
+                <IconComponent class={svgClass}/>
             </div>
         ) : null}
-            <div className={styles.button__title}>{tittle}</div>
+            <div className={styles.button__title}>{title}</div>
         </button>
         </>
     )
@@ -51,13 +53,13 @@ export default Button;
 //     <Button
 //     // colorIcon="#229CFF"
 //     colorText="#FFFFFF"
-//     backgrandColor='#229CFF'
-//     colorSombra='#0073D2'
+//     backgroundColor='#229CFF'
+//     colorShadow='#0073D2'
 //     height="40px"
 //     width="400px"
 //     isAdm={true}
-//     tittle="Minhas rotas"
-//     // positionItens="center"
+//     title="Minhas rotas"
+//     // positionItems="center"
 //     // icon={IconRoute}
 // />
 

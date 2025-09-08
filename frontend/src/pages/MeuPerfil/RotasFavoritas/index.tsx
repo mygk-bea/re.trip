@@ -1,6 +1,5 @@
 import React from "react";
 import Menu from "../../../components/Menu";
-import styles from './RotasFavoritas.module.scss';
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 
@@ -16,10 +15,10 @@ const RotasFavoritas: React.FC = () => {
                 </div>
 
                 <div className="flex-1 flex justify-center">
-                    <div className={`text-[#FF7022] font-bold text-[32px] ${styles.text__custom}`}>
+                    <div className={`text-[#FF7022] font-bold text-[32px] `} style={{ fontFamily: "'Madimi One', sans-serif" }}>
                         Rotas Favoritas
                     </div>
-                </div>
+                </div> 
 
                 <div className="w-6"></div>
             </div>

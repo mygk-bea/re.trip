@@ -18,27 +18,27 @@ const Inicio: React.FC<InicioProps> = () => {
             <div className={`${styled.content} w-[90.1vw] flex flex-col items-center gap-[4.2vh]`}>
                 <Button
                     colorText="#fff9f6"
-                    backgrandColor="#ff7022"
-                    colorSombra="#dd3603"
+                    backgroundColor="#ff7022"
+                    colorShadow="#dd3603"
                     height="60px"
                     width="100%"
                     isAdm={false}
-                    tittle="Cadastre-se"
-                    positionItens="center"
-                    fontZise="1.75rem"
+                    title="Cadastre-se"
+                    positionItems="center"
+                    fontSize="1.75rem"
                     fontFamily="'Madimi One', sans-serif"
                     onClick={() => navigate("/cadastro")}
                 />
                 <Button
                     colorText="#ff7022"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="60px"
                     width="100%"
                     isAdm={false}
-                    tittle="Entrar"
-                    positionItens="center"
-                    fontZise="1.75rem"
+                    title="Entrar"
+                    positionItems="center"
+                    fontSize="1.75rem"
                     fontFamily="'Madimi One', sans-serif"
                     onClick={() => navigate("/login")}
                 />

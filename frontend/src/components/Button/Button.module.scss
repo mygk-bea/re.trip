@@ -2,10 +2,11 @@
     height: var(--height);
     width: var(--width);
     border-radius: 100px;
-    font-weight: 500;
+    font-weight: var(--font-weight, 500);;
     display: flex;
     justify-content: var(--position-text, center);
     align-items: center;
+    cursor: pointer;
 
     .button__icon{
         margin-left: 20px;

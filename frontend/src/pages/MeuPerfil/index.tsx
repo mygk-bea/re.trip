@@ -5,8 +5,8 @@ import IconLogout from "../../assets/icons/icon-exit";
 import Menu from "../../components/Menu";
 import Button from "../../components/Button";
 import IconAvatar from "../../assets/icons/icon-avatar";
-import styles from './MeuPerfil.module.scss'
 import { useNavigate } from "react-router-dom";
+import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
 
 interface MeuPerfilProps {
     type: string;
@@ -42,13 +42,26 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
     return (
         <>
             <div className="relative">
-                <div className="flex flex-col items-center">
-                    <div className={`text-[#FF7022] text-center font-bold text-[32px] mb-6 fixed top-0 p-8 lg:p-40 ${styles.text__custom}`}>
-                        {call}
+                <div className="fixed top-0 left-0 w-full p-6 flex items-center z-50 lg:p-10">
+                    <div className="cursor-pointer" onClick={() => navigate(-1)}>
+                        <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
                     </div>
 
+                    <div className="flex-1 flex justify-center">
+                        <div
+                            className="text-[#FF7022] font-bold text-[32px]"
+                            style={{ fontFamily: "'Madimi One', sans-serif" }}
+                        >
+                            {call}
+                        </div>
+                    </div>
+
+                    <div className="w-10 h-10"></div>
+                </div>
+
+                <div className="flex flex-col items-center">
                     <div
-                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-6 flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-6 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
                         onClick={handleClick}
                     >
                         {image ? (
@@ -68,11 +81,11 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     />
                 </div>
 
-                <div className={`text-[#FF7022] text-center font-bold text-[32px] ${styles.text__custom}`}>{username}</div>
-                <div className='text-[20px] mb-5'>{type}</div>
+                <div className={`text-[#FF7022] text-center font-bold text-[32px]`} style={{ fontFamily: "'Madimi One', sans-serif" }}>{username}</div>
+                <div className='text-[20px] mb-5 lg:mb-10'>{type}</div>
             </div>
 
-            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8" >
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
@@ -84,6 +97,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     tittle="Minhas Rotas"
                     positionItens="start"
                     icon={IconRouteMap}
+                    fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
                 />
 
@@ -98,6 +112,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     tittle="Rotas Favoritas"
                     positionItens="start"
                     icon={IconHeart}
+                    fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/rotas-favoritas")}
                 />
 
@@ -111,8 +126,9 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     isAdm={false}
                     tittle="Sair"
                     positionItens="start"
+                    fontWeight='normal'
                     icon={IconLogout}
-                    // onClick={() => navigate("/user/meu-perfil/sair")}
+                // onClick={() => navigate("/user/meu-perfil/sair")}
                 />
             </div>
 

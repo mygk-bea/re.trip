@@ -1,33 +1,32 @@
 .container {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
     .backgroundTitle{
-        height: 63vh;
-        width: 900px;
-        overflow: hidden;
-
-        border-radius: 0 0 500px 500px;
         background-image: url('../../assets/images/city/img_bg_tatui.png');
         background-size: auto 115%;
-        background-position: center;
-        background-repeat: no-repeat;
 
         .overlay{
-            height: 100%;
-            width: 100%;
             padding: 6.3vh 0;
-            background-color: rgba(179, 179, 179, 0.2);
-            display: flex;
-            justify-content: center;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.2);
+//   backdrop-filter: blur(10px);
+
+  // pseudo-elemento com gradiente
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(10px);
+
+    // aplica gradiente como máscara → blur progressivo
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+    mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+    mask-repeat: no-repeat;
+    mask-size: cover;
+    pointer-events: none;
+  }
 
             .title{
-                font-family: 'Madimi One', sans-serif;
-                font-weight: 700;
                 font-size: 5rem;
                 color: #fff;
             }
@@ -35,11 +34,6 @@
     }
 
     .content {
-        width: 90.1vw;
         margin: 5.2vh 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4.2vh;
     }
 }

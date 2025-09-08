@@ -9,13 +9,13 @@ const Inicio: React.FC<InicioProps> = () => {
     const navigate = useNavigate();
 
     return (
-        <div className={`${styled.container}`}>
-            <div className={`${styled.backgroundTitle}`}>
-                <div className={`${styled.overlay}`}>
-                    <h1 className={styled.title}>Re.Trip</h1>
+        <div className={`${styled.container} h-screen w-screen overflow-hidden flex flex-col items-center`}>
+            <div className={`${styled.backgroundTitle} h-[63vh] w-[900px] overflow-hidden rounded-b-[500px] bg-center bg-no-repeat`}>
+                <div className={`${styled.overlay} h-full w-full flex justify-center`}>
+                    <h1 className={`${styled.title} font-[Madimi_One]`}>Re.Trip</h1>
                 </div>
             </div>
-            <div className={`${styled.content}`}>
+            <div className={`${styled.content} w-[90.1vw] flex flex-col items-center gap-[4.2vh]`}>
                 <Button
                     colorText="#fff9f6"
                     backgrandColor="#ff7022"
@@ -25,6 +25,8 @@ const Inicio: React.FC<InicioProps> = () => {
                     isAdm={false}
                     tittle="Cadastre-se"
                     positionItens="center"
+                    fontZise="1.75rem"
+                    fontFamily="'Madimi One', sans-serif"
                     onClick={() => navigate("/cadastro")}
                 />
                 <Button
@@ -36,6 +38,8 @@ const Inicio: React.FC<InicioProps> = () => {
                     isAdm={false}
                     tittle="Entrar"
                     positionItens="center"
+                    fontZise="1.75rem"
+                    fontFamily="'Madimi One', sans-serif"
                     onClick={() => navigate("/login")}
                 />
             </div>

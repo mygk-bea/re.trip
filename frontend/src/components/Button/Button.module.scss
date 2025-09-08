@@ -25,12 +25,12 @@
     background-color: var(--bg-color, #229CFF);
     color: var(--color-icon);
     outline: 2px solid #229CFF;
-    box-shadow: 0 6px 0 var(--color-sombra, #0073D2), 0 0 0 2px var(--bg-color, #229CFF);
+    box-shadow: 0 6px 0 var(--color-shadow, #0073D2), 0 0 0 2px var(--bg-color, #229CFF);
 }
 
 .button__user_comum{
     background-color: var(--bg-color, #FF7022);
     color: var(--color-icon, #FFFFFF);
     outline: 2px solid #FF7022;
-    box-shadow: 0 6px 0 var(--color-sombra, #EE5313), 0 0 0 2px var(--bg-color, #FF7022);
+    box-shadow: 0 6px 0 var(--color-shadow, #EE5313), 0 0 0 2px var(--bg-color, #FF7022);
 }

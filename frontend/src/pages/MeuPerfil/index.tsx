@@ -89,7 +89,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
+                    backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"
                     width="100%"

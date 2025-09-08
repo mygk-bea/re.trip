@@ -23,7 +23,7 @@ const Inicio: React.FC<InicioProps> = () => {
                     lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]`}
                 >
                     <div className={`${styled.overlay} h-full w-full flex justify-center`}>
-                        <h1 className={`${styled.title} font-[Madimi_One] lg:hidden text-[#FFF]`}>Re.Trip</h1>
+                        <h1 className={`${styled.title} font-[Madimi_One] lg:hidden text-[#FFF] z-[2]`}>Re.Trip</h1>
                     </div>
                 </div>
             </div>

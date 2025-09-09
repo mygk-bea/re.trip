@@ -1,1 +1,63 @@
-.container__filtros{}
+:root{
+    font-family: 'Madimi One';
+}
+
+.container__filtros{
+    margin-top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.filtros__cabecalho{
+    display: flex;
+    flex-direction: column;
+    
+    .cabecalho__icon_titulo{
+        display: flex;
+        align-items: start;
+        margin-bottom: 50px;
+    }
+
+    h1{
+        font-size: 40px;
+        margin-left: 20px;
+    }
+}
+
+.icon__arrow{
+    height: 50px;
+    rotate: 90deg;
+    stroke: black;
+}
+
+.cabecalho__divisor{
+    background-color: #FF7022;
+    min-width: 400px;
+    height: 5px;
+}
+
+.filtros__conteudos{
+    margin-top: 50px;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+}
+
+.atracoes__titulo, .localizacao__titulo, .acessibilidade__titulo{
+    font-size: 24px;
+    text-align: start;
+    margin-bottom: 10px;
+}
+
+.filtros__atracoes, .filtros__localizacao{
+    margin-bottom: 20px;
+}
+
+.atracoes__conteudo, .localizacao__conteudo, .acessibilidade__conteudo{
+    min-width: 360px;
+    max-height: 190px;
+    display: flex;
+    align-items: start;
+}

@@ -1,4 +1,4 @@
-import styles from './Filtros.moule.scss'
+import styles from './Filtros.module.scss'
 import Tag from '../../components/Tag';
 import Menu from '../../components/Menu';
 import IconArrowChevron from '../../assets/icons/icon-arrow-chevron';
@@ -47,12 +47,15 @@ const Filtros: React.FC = () => {
         <>
             <div className={styles.container__filtros}>
                 <div className={styles.filtros__cabecalho}>
-                    <IconArrowChevron class={styles.icon__arrow}/>
-                    <h1>Filtros</h1>
+                    <div className={styles.cabecalho__icon_titulo}>
+                        <IconArrowChevron class={styles.icon__arrow}/>
+                        <h1>Filtros</h1>
+                    </div>
                     <div className={styles.cabecalho__divisor}></div>
                 </div>
 
-            <div className={styles.filtros__atracoes}>
+                <div className={styles.filtros__conteudos}>
+                    <div className={styles.filtros__atracoes}>
                 <div className={styles.atracoes__titulo}><h2>Atrações</h2></div>
                 <div className={styles.atracoes__conteudo}>
                     {tagsAtracoes.map((tag, index) => (
@@ -65,19 +68,36 @@ const Filtros: React.FC = () => {
                         />
                     ))}
                 </div>
-            </div>
-
-                <div className={styles.filtros__localizacao}>
+                    </div>
+                    
+                    <div className={styles.filtros__localizacao}>
                     <div className={styles.localizacao__titulo}><h2>Localização</h2></div>
                     <div className={styles.localizacao__conteudo}>
-
+                        {tagsLocalizacao.map((tag, index) => (
+                            <Tag
+                                key={index}
+                                text={tag.text}
+                                bgColor={tag.bgColor}
+                                borderColor={tag.borderColor}
+                                textColor={tag.textColor}
+                            />
+                        ))}
                     </div>
-                </div>
-
-                <div className={styles.filtros__acessibilidade_inclusao}>
+                    </div>
+                        
+                    <div className={styles.filtros__acessibilidade_inclusao}>
                     <div className={styles.acessibilidade__titulo}><h2>Acessibilidade e Inclusão</h2></div>
                     <div className={styles.acessibilidade__conteudo}>
-
+                        {tagsAceInc.map((tag, index) => (
+                            <Tag
+                                key={index}
+                                text={tag.text}
+                                bgColor={tag.bgColor}
+                                borderColor={tag.borderColor}
+                                textColor={tag.textColor}
+                            />
+                        ))}
+                    </div>
                     </div>
                 </div>
 

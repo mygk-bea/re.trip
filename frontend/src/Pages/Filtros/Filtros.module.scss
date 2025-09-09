@@ -1,63 +1,65 @@
-:root{
-    font-family: 'Madimi One';
+:root {
+  font-family: 'Madimi One';
 }
 
-.container__filtros{
-    margin-top: 0;
-    height: 100%;
+.container__filtros {
+  display: flex;
+  flex-direction: column;
+  padding: 0 16px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filtros__cabecalho {
+  top: 0;
+  padding: 0px 0 10px;
+  
+  .cabecalho__icon_titulo {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 32px;
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
 }
 
-.filtros__cabecalho{
-    display: flex;
-    flex-direction: column;
-    
-    .cabecalho__icon_titulo{
-        display: flex;
-        align-items: start;
-        margin-bottom: 50px;
-    }
-
-    h1{
-        font-size: 40px;
-        margin-left: 20px;
-    }
+.icon__arrow {
+  height: 40px;
+  rotate: 90deg;
+  stroke: black;
 }
 
-.icon__arrow{
-    height: 50px;
-    rotate: 90deg;
-    stroke: black;
+.cabecalho__divisor {
+  background-color: #FF7022;
+  width: 100%;
+  height: 3px;
+  margin-bottom: 15px;
 }
 
-.cabecalho__divisor{
-    background-color: #FF7022;
-    min-width: 400px;
-    height: 5px;
+.filtros__conteudos {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.filtros__conteudos{
-    margin-top: 50px;
-    min-width: 400px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
+.atracoes__titulo,
+.localizacao__titulo,
+.acessibilidade__titulo {
+  font-size: 22px;
+  text-align: start;
+  margin-bottom: 15px;
 }
 
-.atracoes__titulo, .localizacao__titulo, .acessibilidade__titulo{
-    font-size: 24px;
-    text-align: start;
-    margin-bottom: 10px;
+.atracoes__conteudo,
+.localizacao__conteudo,
+.acessibilidade__conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-.filtros__atracoes, .filtros__localizacao{
-    margin-bottom: 20px;
-}
-
-.atracoes__conteudo, .localizacao__conteudo, .acessibilidade__conteudo{
-    min-width: 360px;
-    max-height: 190px;
-    display: flex;
-    align-items: start;
-}

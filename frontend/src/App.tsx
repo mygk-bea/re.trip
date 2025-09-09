@@ -5,6 +5,9 @@ import MeuPerfil from './pages/MeuPerfil'
 import MinhasRotas from './pages/MeuPerfil/MinhasRotas'
 import RotasFavoritas from './pages/MeuPerfil/RotasFavoritas'
 import Inicio from './pages/Inicio';
+import Cadastro from './pages/Inicio/Cadastro';
+import Login from './pages/Inicio/Login';
+import Filtros from './pages/Filtros';
 
 function App() {
 

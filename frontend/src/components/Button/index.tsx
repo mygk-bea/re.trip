@@ -16,10 +16,11 @@ interface ButtonProps {
     fontSize?: string;
     fontFamily?: string;
     fontWeight?: string | number;
+    buttonType?: 'button' | 'submit' | 'reset';
     onClick?: () => void;
 }
 
-const Button: React.FC<ButtonProps> = ({fontSize, fontWeight, fontFamily, svgClass, colorText, colorShadow, icon: IconComponent, isAdm, positionItems, colorIcon, backgroundColor, height, width, title, onClick }) => {
+const Button: React.FC<ButtonProps> = ({buttonType, fontSize, fontWeight, fontFamily, svgClass, colorText, colorShadow, icon: IconComponent, isAdm, positionItems, colorIcon, backgroundColor, height, width, title, onClick }) => {
     const buttonStyle = {
         '--color-icon': colorIcon,
         '--color-text': colorText,
@@ -35,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({fontSize, fontWeight, fontFamily, svgCla
     
     return (
         <>
-        <button style={buttonStyle} className={isAdm ? `${styles.button} ${styles.button__adm}` : `${styles.button} ${styles.button__user_comum}`} onClick={onClick}>
+        <button type={buttonType} style={buttonStyle} className={isAdm ? `${styles.button} ${styles.button__adm}` : `${styles.button} ${styles.button__user_comum}`} onClick={onClick}>
         {IconComponent ? (
             <div className={styles.button__icon}> 
                 <IconComponent class={svgClass}/>

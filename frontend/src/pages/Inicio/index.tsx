@@ -41,7 +41,7 @@ const Inicio: React.FC<InicioProps> = () => {
                     positionItems="center"
                     fontSize="1.75rem"
                     fontFamily="'Madimi One', sans-serif"
-                    onClick={() => navigate("/cadastro")}
+                    onClick={() => navigate("/criar-conta")}
                 />
                 <Button
                     colorText="#ff7022"

@@ -39,19 +39,36 @@ export default function ModalForm({fields = []}: ModalFormProps) {
             />
         ))}
 
-        <Button
-            colorText="#ff7022ff"
-            backgroundColor="#fff9f6"
-            colorShadow="#ff7022ff"
-            height="50px"
-            width="200px"
-            isAdm={false}
-            title="Salvar"
-            positionItems="center"
-            fontSize="1.25rem"
-            fontFamily="'Madimi One', sans-serif"
-            onClick={() => navigate("/")}
-        />
+        <div className="w-full flex justify-center gap-4 mt-4 mb-2 items-center">
+            <Button
+                colorText="#ff7022ff"
+                backgroundColor="#fff9f6"
+                colorShadow="#ff7022ff"
+                height="50px"
+                width="200px"
+                isAdm={false}
+                title="Voltar"
+                positionItems="center"
+                fontSize="1.25rem"
+                fontFamily="'Madimi One', sans-serif"
+                onClick={() => navigate("/inicio")}
+            />
+
+            <Button
+                colorText="#fff9f6"
+                backgroundColor="#ff7022ff"
+                colorShadow="#dd3603"
+                height="50px"
+                width="200px"
+                isAdm={false}
+                title="Salvar"
+                positionItems="center"
+                fontSize="1.25rem"
+                fontFamily="'Madimi One', sans-serif"
+                onClick={() => navigate("/")}
+            />
+        </div>
+
         </form>
     );
 }

@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ label, type, placeholder }) => {
                 name={label}
                 type={type}
                 placeholder={placeholder}
-                className="border-b border-gray-400 focus:outline-none focus:border-orange-500 pb-4 pl-3 mb-6 mt-4 text-black placeholder-gray-400"
+                className="w-[100%] border-b border-gray-400 focus:outline-none focus:border-orange-500 pb-4 pl-3 mb-6 mt-4 text-black placeholder-gray-400"
             />
         </div>
     );

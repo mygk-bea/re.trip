@@ -26,10 +26,14 @@ const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, on
     );
 };
 
-//   <Input
-//     label="Digite seu nome"
-//     type="text"
-//     placeholder="Seu nome..."
-//   />
+// Exemplo de uso
+// <Input
+//   label="Digite seu nome"
+//   type="text"
+//   placeholder="Seu nome..."
+//   name="nome"
+//   value={form.nome}
+//   onChange={handleChange}
+// />
 
 export default Input;

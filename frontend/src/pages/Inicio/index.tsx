@@ -17,25 +17,25 @@ const Inicio: React.FC<InicioProps> = () => {
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    tittle="Cadastre-se"
-                    positionItens="start"
+                    title="Cadastre-se"
+                    positionItems="start"
                     onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
                 />
                 <Button
                     colorIcon="#ee8047"
                     colorText="#363837"
-                    backgrandColor="#FFFFFF"
-                    colorSombra="#ee8047"
+                    backgroundColor="#FFFFFF"
+                    colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    tittle="Entrar"
-                    positionItens="start"
+                    title="Entrar"
+                    positionItems="start"
                     onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
                 />
             </div>

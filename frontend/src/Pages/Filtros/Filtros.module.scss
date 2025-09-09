@@ -5,19 +5,21 @@
 .container__filtros {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
-  max-width: 600px;
-  margin: 0 auto;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
 }
 
 .filtros__cabecalho {
   top: 0;
-  padding: 0px 0 10px;
+  left: 0;
+  padding: 10px 0;
+  width: 100%;
   
   .cabecalho__icon_titulo {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
 
   h1 {
@@ -27,10 +29,15 @@
   }
 }
 
+.icon__btn{
+  cursor: pointer;
+}
+
 .icon__arrow {
   height: 40px;
   rotate: 90deg;
   stroke: black;
+  flex-shrink: 0;
 }
 
 .cabecalho__divisor {
@@ -44,6 +51,13 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
+  width: 100%;
+}
+
+.filtros__atracoes,
+.filtros__localizacao,
+.filtros__acessibilidade_inclusao {
+  width: 100%;
 }
 
 .atracoes__titulo,
@@ -52,6 +66,7 @@
   font-size: 22px;
   text-align: start;
   margin-bottom: 15px;
+  width: 100%;
 }
 
 .atracoes__conteudo,
@@ -61,5 +76,5 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
+  width: 100%;
 }
-

@@ -2,8 +2,11 @@ import styles from './Filtros.module.scss'
 import Tag from '../../components/Tag';
 import Menu from '../../components/Menu';
 import IconArrowChevron from '../../assets/icons/icon-arrow-chevron';
+import { useNavigate } from "react-router-dom";
 
 const Filtros: React.FC = () => {
+    const navigate = useNavigate();
+
     const tagsAtracoes = [{text: "Local Turístico", bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600"},
         {text: "Rota Turística", bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600"},
         {text: "Gastronônimica", bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600"},
@@ -19,7 +22,7 @@ const Filtros: React.FC = () => {
         {text: "Bofete", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
         {text: "Boituva", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
         {text: "Botucatu", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
-        {text: "essário Lange", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
+        {text: "Cesário Lange", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
         {text: "Cerquilho", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
         {text: "Itapetininga", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
         {text: "Tatuí", bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575"},
@@ -47,8 +50,10 @@ const Filtros: React.FC = () => {
         <>
             <div className={styles.container__filtros}>
                 <div className={styles.filtros__cabecalho}>
-                    <div className={styles.cabecalho__icon_titulo}>
-                        <IconArrowChevron class={styles.icon__arrow}/>
+                    <div className={styles.cabecalho__icon_titulo} >
+                        <button className={styles.icon__btn} onClick={() => navigate(-1)}>
+                            <IconArrowChevron class={styles.icon__arrow}/>
+                        </button>
                         <h1>Filtros</h1>
                     </div>
                     <div className={styles.cabecalho__divisor}></div>
@@ -104,6 +109,7 @@ const Filtros: React.FC = () => {
                 <div className={styles.menu}>
                     <Menu />
                 </div>
+
             </div>
         </>
     );

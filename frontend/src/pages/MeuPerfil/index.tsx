@@ -128,7 +128,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     positionItems="start"
                     fontWeight='normal'
                     icon={IconLogout}
-                // onClick={() => navigate("/user/meu-perfil/sair")}
+                    onClick={() => navigate("/inicio")}
                 />
             </div>
 

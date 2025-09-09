@@ -1,8 +1,8 @@
 import React from "react";
 import styled from '../Inicio.module.scss';
-import styled_page from './Cadastro.module.scss';
+import styled_page from '../Forms/Form.module.scss';
 import type { Field } from "../../../types/field";
-import ModalForm from "../modalForm";
+import ModalForm from "../Forms/modalForm";
 
 interface CadastroProps {}
 
@@ -47,15 +47,14 @@ const fields: Field[] = [
 const Cadastro: React.FC<CadastroProps> = () => {
     const modalForm = (
         <div className={`${styled_page.modal} 
-            p-[20px_25px_30px]
-            w-[90vw] lg:w-[40vw] max-h-[85vh]
+            p-[3.2vh_25px]
+            w-[90vw] lg:w-[40vw] 
             flex flex-col justify-center align-center gap-[2vh]
             mx-auto
-            bg-[#FFF]
-            rounded-[50px]`}
+            `}
         >
             <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Cadastre-se</h1>
-            <ModalForm fields={fields} />
+            <ModalForm fields={fields} type="cadastro"/>
         </div>
     )
 
@@ -75,7 +74,7 @@ const Cadastro: React.FC<CadastroProps> = () => {
                 >
                     <div className={`${styled.overlay} h-full w-full flex flex-col justify-center align-center lg:justify-start`}>
                         <h1 className={`${styled.title} ${styled_page.logo} font-[Madimi_One] text-[#FFF] z-[2] lg:pt-[10vh]`}>Re.Trip</h1>
-                        <div className="block lg:hidden z-[2]">{modalForm}</div>
+                        <div className="block lg:hidden z-[2] max-h-[80vh] overflow-y-auto bg-[#FFF] rounded-[50px] mx-auto">{modalForm}</div>
                     </div>
 
                 </div>

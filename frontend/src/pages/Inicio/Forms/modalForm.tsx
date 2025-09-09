@@ -1,14 +1,15 @@
 import { useState } from "react";
-import Input from "../../components/Input";
-import type { Field } from "../../types/field";
-import Button from "../../components/Button";
 import { useNavigate } from "react-router-dom";
+import type { Field } from "../../../types/field";
+import Input from "../../../components/Input";
+import Button from "../../../components/Button";
 
 interface ModalFormProps {
     fields?: Field[];
+    type?: 'login' | 'cadastro';
 }
 
-export default function ModalForm({fields = []}: ModalFormProps) {
+export default function ModalForm({fields = [], type}: ModalFormProps) {
     const [formData, setFormData] = useState<Record<string, string>>({});
     const navigate = useNavigate();
 
@@ -61,7 +62,7 @@ export default function ModalForm({fields = []}: ModalFormProps) {
                 height="50px"
                 width="200px"
                 isAdm={false}
-                title="Salvar"
+                title={type === 'cadastro' ? "Salvar" : "Entrar"}
                 positionItems="center"
                 fontSize="1.25rem"
                 fontFamily="'Madimi One', sans-serif"
@@ -72,16 +73,3 @@ export default function ModalForm({fields = []}: ModalFormProps) {
         </form>
     );
 }
-
-/*
-<Input
-    label="Confirme sua senha"
-    type="password"
-    placeholder="Confirme sua senha..."
-    name="confirmarSenha"
-    value={formData.confirmarSenha}
-    onChange={handleChange}
-/>
-
-button type submit
-*/

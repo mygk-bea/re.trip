@@ -8,7 +8,6 @@ import Inicio from './pages/Inicio';
 import Cadastro from './pages/Inicio/Cadastro';
 import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
-import Menu from './components/Menu';
 
 function App() {
 

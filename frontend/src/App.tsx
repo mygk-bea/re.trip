@@ -8,20 +8,21 @@ import Inicio from './pages/Inicio';
 import Cadastro from './pages/Inicio/Cadastro';
 import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
+import Menu from './components/Menu';
 
 function App() {
 
   return (
     <>
-        <Routes>
-          <Route path="/inicio" element={<Inicio />} />
-          <Route path="/criar-conta" element={<Cadastro />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/user/meu-perfil" element={<MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />} />
-          <Route path="/user/meu-perfil/minhas-rotas" element={<MinhasRotas />} />
-          <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
-          <Route path="/user/pesquisar/filtros" element={<Filtros />} />
-        </Routes>
+      <Routes>
+        <Route path="/inicio" element={<Inicio />} />
+        <Route path="/criar-conta" element={<Cadastro />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/user/meu-perfil" element={<MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />} />
+        <Route path="/user/meu-perfil/minhas-rotas" element={<MinhasRotas />} />
+        <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
+        <Route path="/user/pesquisar/filtros" element={<Filtros />} />
+      </Routes>
     </>
   )
 }

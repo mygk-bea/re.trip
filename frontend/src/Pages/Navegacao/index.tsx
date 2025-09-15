@@ -90,7 +90,7 @@ const SimpleCarousel: React.FC = () => {
 const Navegacao: React.FC<NavegacaoProps> = ({ call, username }) => {
     return (
         <div className="relative pt-20 pb-25">
-            <div className="-mt-12 mb-10 mx-auto sm:w-[70%]">
+            <div className="-mt-12 mb-10 mx-auto w-70 lg:w-[70%]">
                 <Geolocation
                     cities={[
                         { city: "Tatuí", uf: "SP" },

@@ -23,10 +23,10 @@ div {
       inset: 0;
       backdrop-filter: blur(4px);
 
-      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 50%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 75%);
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-size: cover;
-      mask-image: linear-gradient(to top, black 0%, transparent 50%);
+      mask-image: linear-gradient(to top, black 0%, transparent 75%);
       mask-repeat: no-repeat;
       mask-size: cover;
       pointer-events: none;
@@ -46,11 +46,31 @@ div {
 
     .bottom {
       .warningVerification {
-        font-size: 1rem;
-        font-family: 'Rubik', sans-serif;
+        .text {
+          font-size: 1rem;
+          font-family: 'Rubik', sans-serif;
+        }
+
+        .verify{
+          width: 30px;
+          height: 30px;
+          path{
+            stroke: #47E417;
+          }
+        }
       }
       .title {
         font-size: 2.5rem;
+      }
+      .heart{
+        width: 40px;
+        height: 40px;
+        &.fill{
+          fill: #ff7518;
+          path{
+            stroke: #ff7518;
+          }
+        }
       }
     }
   }

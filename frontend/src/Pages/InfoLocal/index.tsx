@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import IconArrowChevron from '../../assets/icons/icon-arrow-chevron';
 import IconExpand from '../../assets/icons/icon-expand';
 import IconHeart from '../../assets/icons/icon-heart';
@@ -6,12 +7,17 @@ import Menu from '../../components/Menu';
 import StarRating from '../../components/StarRating';
 import Tag from '../../components/Tag';
 import styled from './InfoLocal.module.scss';
+import type { Place } from '../../types/place';
 
 interface InfoLocalProps {
   name: string;
+  favorited?: boolean;
+  infos: Place[];
 }
 
-const InfoLocal: React.FC<InfoLocalProps> = (props) => {
+const InfoLocal: React.FC<InfoLocalProps> = ({ name, favorited = false }) => {
+  const [isFavorited, setIsFavorited] = useState(favorited);
+  
   return (
     <>
       <div className={`${styled.container} h-full w-screen text-start pb-[10vh]`}>
@@ -19,7 +25,7 @@ const InfoLocal: React.FC<InfoLocalProps> = (props) => {
         bg-center bg-no-repeat bg-[auto_115%] rounded-b-[50px]
         `}>
           <div className={`${styled.overlay} 
-          flex flex-col justify-between h-[52vh] w-full p-[40px]`}>
+          flex flex-col justify-between h-[52vh] w-full p-[9vw]`}>
             <div className={`${styled.top} flex justify-between items-center z-[2]`}>
               <button onClick={() => window.history.back()}>
                 <IconArrowChevron class={`${styled.icon} ${styled.arrow}`}/>
@@ -28,16 +34,18 @@ const InfoLocal: React.FC<InfoLocalProps> = (props) => {
                 <IconExpand class={`${styled.icon} ${styled.expand}`}/>
               </button>
             </div>
-            <div className={`${styled.bottom} flex justify-between items-center z-[2]`}>
+            <div className={`${styled.bottom} flex justify-between items-end z-[2]`}>
               <div>
-                <p className={`${styled.warningVerification} flex text-[#47E417]`}>
-                  <IconVerify/>
-                  aaaaaaaaaaaaa
-                </p>
-                <h1 className={`${styled.title} text-[#FFFFFF] `}>{props.name}</h1>
+                <div className={`${styled.warningVerification} flex items-center`}>
+                  <IconVerify class={`${styled.verify}`}/>
+                  <p className={`${styled.text} text-[#47E417]`}>Verificado por moderadores</p>
+                </div>
+                <h1 className={`${styled.title} text-[#FFFFFF] `}>{name}</h1>
               </div>
-              <button onClick={() => {}}>
-                <IconHeart class={`${styled.icon}`}/>
+              <button onClick={() => {
+                setIsFavorited(!isFavorited);
+              }} className='py-[10px]'>
+                <IconHeart class={`${styled.icon} ${styled.heart} ${isFavorited ? styled.fill: ''}`}/>
               </button>
             </div>
           </div>

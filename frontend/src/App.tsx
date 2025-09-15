@@ -22,7 +22,7 @@ function App() {
         <Route path="/user/meu-perfil/minhas-rotas" element={<MinhasRotas />} />
         <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
-        <Route path="/user/local/info" element={<InfoLocal name="aaaaaa" />} />
+        <Route path="/user/local/info" element={<InfoLocal name="Sítio do Carroção" />} />
       </Routes>
     </>
   )

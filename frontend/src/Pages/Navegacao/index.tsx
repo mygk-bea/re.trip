@@ -47,7 +47,7 @@ const SimpleCarousel: React.FC = () => {
     }
 
     return (
-        <div className="w-full max-w-4xl mx-auto mt-6">
+        <div className="w-[95%] mx-auto mt-6">
             <div className="relative flex items-center w-[95%] mx-auto">
                 <button
                     onClick={prev}
@@ -63,10 +63,10 @@ const SimpleCarousel: React.FC = () => {
                             <img
                                 src={img.src}
                                 alt={img.name}
-                                className="w-full lg:w-50 lg:h-40 h-25 rounded object-cover"
+                                className="w-full lg:w-50 lg:h-40 h-20 rounded-3xl object-cover"
                             />
                             <p
-                                className="text-center mt-2 text-[16px]"
+                                className="text-center mt-2 text-[13px] lg-text-[16px]"
                                 style={{ fontFamily: "'Rubrik', sans-serif" }}
                             >
                                 {img.name}

@@ -8,6 +8,7 @@ import Inicio from './pages/Inicio';
 import Cadastro from './pages/Inicio/Cadastro';
 import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
+import InfoLocal from './pages/InfoLocal';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/user/meu-perfil/minhas-rotas" element={<MinhasRotas />} />
         <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
+        <Route path="/user/local/info" element={<InfoLocal name="aaaaaa" />} />
       </Routes>
     </>
   )

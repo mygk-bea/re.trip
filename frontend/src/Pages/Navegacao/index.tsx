@@ -8,47 +8,110 @@ import imgGastronomy from '../../assets/images/category/img_bg_gastronomy.png';
 import imgNature from '../../assets/images/category/img_bg_nature.png';
 import imgHotel from '../../assets/images/category/img_bg_hotel.png';
 
+import imagemMuseu from "../../assets/images/category/img_bg_adventure.png"; // substitua pelo seu caminho real
+import Card from "../../components/Card";
+
 interface NavegacaoProps {
     call: string;
     username: string;
 }
 
-const images = [
+// --- Arrays de cards ---
+const cardsArray1 = [
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imagemMuseu}
+        title="Sítio - Museu"
+        isOpacity
+        isRating
+        numberRating={4.1}
+        positionText="center"
+    />,
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imagemMuseu}
+        title="Outro Museu"
+        isOpacity
+        isRating
+        numberRating={3.8}
+        positionText="center"
+    />,
+];
+
+const cardsArray2 = [
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imagemMuseu}
+        title="Sítio Museu"
+        isOpacity
+        positionText="center"
+        widthText="70px"
+    />,
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imagemMuseu}
+        title="Museu Histórico"
+        isOpacity
+        positionText="center"
+        widthText="70px"
+    />,
+];
+
+// --- Carousel de imagens ---
+interface ImageItem {
+    src: string;
+    name: string;
+}
+
+const images: ImageItem[] = [
     { src: imgGastronomy, name: "Gastronomia" },
     { src: imgNature, name: "Natureza e Ecoturismo" },
     { src: imgHotel, name: "Hospedagem" },
     { src: imgAdventure, name: "Aventura e Diversão" },
 ];
 
-const SimpleCarousel: React.FC = () => {
-    const [startIndex, setStartIndex] = useState(0);
-    const visibleCount = 3;
-    const total = images.length;
+interface SimpleCarouselProps {
+    items: React.ReactNode[];
+    visibleCount?: number;
+    widthContainer?: string;
+    autoPlay?: boolean; // nova prop
+}
 
-    // Autoplay: avança automaticamente a cada 3 segundos
+const SimpleCarousel: React.FC<SimpleCarouselProps> = ({
+    items,
+    visibleCount = 3,
+    widthContainer = "95%",
+    autoPlay = false, // padrão false
+}) => {
+    const [startIndex, setStartIndex] = useState(0);
+    const total = items.length;
+
+    // autoplay só se autoPlay for true
     useEffect(() => {
+        if (!autoPlay) return;
+
         const interval = setInterval(() => {
             setStartIndex((prev) => (prev + 1) % total);
         }, 3000);
+
         return () => clearInterval(interval);
-    }, [total]);
+    }, [total, autoPlay]);
 
-    function next() {
-        setStartIndex((prev) => (prev + 1) % total);
-    }
+    const next = () => setStartIndex((prev) => (prev + 1) % total);
+    const prev = () => setStartIndex((prev) => (prev - 1 + total) % total);
 
-    function prev() {
-        setStartIndex((prev) => (prev - 1 + total) % total);
-    }
-
-    const visibleImages = [];
+    const visibleItems = [];
     for (let i = 0; i < visibleCount; i++) {
-        visibleImages.push(images[(startIndex + i) % total]);
+        visibleItems.push(items[(startIndex + i) % total]);
     }
 
     return (
-        <div className="w-[95%] mx-auto mt-6">
-            <div className="relative flex items-center w-[95%] mx-auto">
+        <div className={`mx-auto mt-6`} style={{ width: widthContainer }}>
+            <div className="relative flex items-center w-full mx-auto">
                 <button
                     onClick={prev}
                     className="bg-white bg-opacity-70 rounded-full p-2 hover:bg-opacity-100"
@@ -58,19 +121,9 @@ const SimpleCarousel: React.FC = () => {
                 </button>
 
                 <div className="flex flex-grow gap-4 mx-4 overflow-hidden">
-                    {visibleImages.map((img, idx) => (
-                        <div key={idx} className="flex-shrink-0 w-1/3">
-                            <img
-                                src={img.src}
-                                alt={img.name}
-                                className="w-full lg:w-50 lg:h-40 h-20 rounded-3xl object-cover"
-                            />
-                            <p
-                                className="text-center mt-2 text-[13px] lg-text-[16px]"
-                                style={{ fontFamily: "'Rubrik', sans-serif" }}
-                            >
-                                {img.name}
-                            </p>
+                    {visibleItems.map((item, idx) => (
+                        <div key={idx} className={`flex-shrink-0`} style={{ width: `${100 / visibleCount}%` }}>
+                            {item}
                         </div>
                     ))}
                 </div>
@@ -107,37 +160,45 @@ const Navegacao: React.FC<NavegacaoProps> = ({ call, username }) => {
                 <span className="text-[#FF7022]">{username}</span>!
             </div>
 
+            {/* Carousel de imagens */}
             <div>
-                <SimpleCarousel />
+                <SimpleCarousel
+                    items={images.map((img, idx) => (
+                        <div key={idx} className="rounded-3xl overflow-hidden">
+                            <img
+                                src={img.src}
+                                alt={img.name}
+                                className="w-70 h-20 object-cover"
+                            />
+                            <p className="text-center mt-2 text-[13px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
+                                {img.name}
+                            </p>
+                        </div>
+                    ))}
+                    visibleCount={3}
+                    widthContainer="90%"
+                    autoPlay={true}
+                />
             </div>
 
-
-            <div>
+            {/* Carousel de cards - dois por vez */}
+            <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-10 mt-3 -mb-4">
                     <span>Locais para</span>
                     <span className="text-[#FF7022]"> Explorar</span> perto de você:
                 </div>
-                <SimpleCarousel />
+                <SimpleCarousel items={cardsArray1} visibleCount={2} widthContainer="80%" />
             </div>
 
-
-            <div>
+            <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-10 mt-3 -mb-4">
                     <span>Cidades da</span>
                     <span className="text-[#FF7022]"> Região</span>:
                 </div>
-                <SimpleCarousel />
+                <SimpleCarousel items={cardsArray2} visibleCount={2} widthContainer="80%" />
             </div>
 
-            <div>
-                <div className="font-bold text-[20px] text-left mx-10 mt-3 -mb-4">
-                    <span>Rotas</span>
-                    <span className="text-[#FF7022]"> Compartilhadas</span>:
-                </div>
-                <SimpleCarousel />
-            </div>
-
-            <div>
+            <div className="mt-6">
                 <Menu />
             </div>
         </div>

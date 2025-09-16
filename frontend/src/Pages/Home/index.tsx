@@ -8,13 +8,22 @@ import imgGastronomy from "../../assets/images/category/img_bg_gastronomy.png";
 import imgNature from "../../assets/images/category/img_bg_nature.png";
 import imgHotel from "../../assets/images/category/img_bg_hotel.png";
 
-import imagemMuseu from "../../assets/images/category/img_bg_adventure.png";
+import imgBgMuseu1 from "../../assets/images/places/img_bg_museu-paulo-setubal-1.png";
+import imgBgSitioCarrocao from "../../assets/images/places/img_bg_sitio-carrocao.png";
+import imgBgParqueMariaTuca from "../../assets/images/places/img_bg_parque-maria-tuca.png";
+
+import imgBoituva from "../../assets/images/city/img_bg_boituva.png";
+import imgTatui from "../../assets/images/city/img_bg_tatui.png";
+import imgLaranjal from "../../assets/images/city/img_bg_laranjal-paulista.png";
+import imgBofete from "../../assets/images/city/img_bg_bofete.png";
+
+import imgRota from '../../assets/images/printscreen/img_bg_maps-rota-1.png';
+
 import Card from "../../components/Card";
 import { Box, Button } from "@mui/material";
 
-// npm install @mui/material @emotion/react @emotion/styled
 
-interface NavegacaoProps {
+interface HomeProps {
     call: string;
     username: string;
 }
@@ -24,8 +33,8 @@ const cardsArray1 = [
     <Card
         height="100px"
         width="150px"
-        nameBackground={imagemMuseu}
-        title="Sítio Museu"
+        nameBackground={imgBgSitioCarrocao}
+        title="Sítio do Carroção"
         isOpacity
         positionText="center"
         widthText="70px"
@@ -33,8 +42,17 @@ const cardsArray1 = [
     <Card
         height="100px"
         width="150px"
-        nameBackground={imagemMuseu}
-        title="Museu Histórico"
+        nameBackground={imgBgParqueMariaTuca}
+        title="Parque Maria Tuca"
+        isOpacity
+        positionText="center"
+        widthText="70px"
+    />,
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imgBgMuseu1}
+        title="Museu Paulo Setúbal"
         isOpacity
         positionText="center"
         widthText="70px"
@@ -45,21 +63,46 @@ const cardsArray2 = [
     <Card
         height="100px"
         width="150px"
-        nameBackground={imagemMuseu}
-        title="Sítio - Museu"
+        nameBackground={imgBoituva}
+        title="Boituva"
         isOpacity
-        isRating
-        numberRating={4.1}
         positionText="center"
     />,
     <Card
         height="100px"
         width="150px"
-        nameBackground={imagemMuseu}
-        title="Outro Museu"
+        nameBackground={imgTatui}
+        title="Tatuí"
+        isOpacity
+        positionText="center"
+    />,
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imgBofete}
+        title="Bofete"
+        isOpacity
+        positionText="center"
+    />,
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imgLaranjal}
+        title="Laranjal Paulista"
+        isOpacity
+        positionText="center"
+    />,
+];
+
+const cardsArray3 = [
+    <Card
+        height="100px"
+        width="150px"
+        nameBackground={imgRota}
+        title="Sítio - Museu"
         isOpacity
         isRating
-        numberRating={3.8}
+        numberRating={4.1}
         positionText="center"
     />,
 ];
@@ -96,8 +139,12 @@ const Carousel: React.FC<CarouselProps> = ({
 
     const visibleItems = [];
     for (let i = 0; i < visibleCount; i++) {
-        visibleItems.push(items[(startIndex + i) % total]);
+        const index = startIndex + i;
+        if (index < total) {
+            visibleItems.push(items[index]);
+        }
     }
+
 
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', overflow: 'hidden' }}>
@@ -126,10 +173,10 @@ const Carousel: React.FC<CarouselProps> = ({
     );
 };
 
-const Navegacao: React.FC<NavegacaoProps> = ({ call, username }) => {
+const Home: React.FC<HomeProps> = ({ call, username }) => {
     return (
         <div className="relative pt-20 pb-25 w-full ">
-            <div className="-mt-12 mb-5 mx-auto w-60 lg:w-[70%]">
+            <div className="-mt-15 mb-5 mx-auto w-60 lg:w-[100%]">
                 <Geolocation
                     cities={[
                         { city: "Tatuí", uf: "SP" },
@@ -166,7 +213,7 @@ const Navegacao: React.FC<NavegacaoProps> = ({ call, username }) => {
                         </p>
                     </div>
                 ))}
-                visibleCount={3}
+                visibleCount={2}
                 widthContainer="80%"
             />
 
@@ -188,10 +235,18 @@ const Navegacao: React.FC<NavegacaoProps> = ({ call, username }) => {
             </div>
 
             <div className="mt-6">
+                <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
+                    <span>Rotas</span>
+                    <span className="text-[#FF7022]"> Compartilhadas</span>:
+                </div>
+                <Carousel items={cardsArray3} visibleCount={2} widthContainer="80%" />
+            </div>
+
+            <div className="mt-6">
                 <Menu />
             </div>
         </div>
     );
 };
 
-export default Navegacao;
+export default Home;

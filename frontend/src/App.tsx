@@ -10,7 +10,7 @@ import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
 import InfoLocal from './pages/InfoLocal';
 import type { Place } from './types/place';
-import Navegacao from './pages/Navegacao';
+import Navegacao from './pages/Home';
 
 function App() {
 
@@ -39,7 +39,7 @@ function App() {
         <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
         <Route path="/user/local/info" element={<InfoLocal place={meuLugar} />} />
-        <Route path="/user/pesquisar" element={<Navegacao username='Username' call='aventureiro(a)'/>} />
+        <Route path="/user/home" element={<Navegacao username='Username' call='aventureiro(a)'/>} />
       </Routes>
     </>
   )

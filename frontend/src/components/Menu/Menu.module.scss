@@ -7,13 +7,16 @@
   }
 }
 
-.fillActive {
+[data-admin="false"] .fillActive {
   .icon {
-    &.fill {
-      path {fill: rgb(255, 112, 34);}
-    }
-    &.stroke {
-      path {stroke: rgb(255, 112, 34);}
-    }
+    &.fill { path { fill: rgb(255, 112, 34); } }
+    &.stroke { path { stroke: rgb(255, 112, 34); } }
+  }
+}
+
+[data-admin="true"] .fillActive {
+  .icon {
+    &.fill { path { fill: rgb(34, 156, 255); } } // cor alternativa
+    &.stroke { path { stroke: rgb(34, 156, 255); } }
   }
 }

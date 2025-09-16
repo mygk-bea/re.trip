@@ -1,0 +1,94 @@
+div {
+  p {
+    span {
+      color: #FF7022;
+      font-weight: bold;
+    }
+  }
+}
+
+.header{
+  box-shadow: 0 3px 3px rgb(0, 0, 0, 0.25);
+
+  overflow: hidden;
+  .overlay {
+    position: relative;
+    background-color: rgb(0, 0, 0, 0.25);
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      backdrop-filter: blur(4px);
+
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 75%);
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: cover;
+      mask-image: linear-gradient(to top, black 0%, transparent 75%);
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      pointer-events: none;
+    }
+    .top{
+      .arrow{
+        transform: rotate(90deg);
+        width: 40px;
+        height: 40px;
+      }
+
+      .expand{
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    .bottom {
+      .warningVerification {
+        .text {
+          font-size: 1rem;
+          font-family: 'Rubik', sans-serif;
+          font-weight: bold;
+        }
+
+        .verify{
+          width: 30px;
+          height: 30px;
+          path{
+            stroke: #47E417;
+          }
+        }
+      }
+      .title {
+        font-size: 2.5rem;
+      }
+      .heart{
+        width: 40px;
+        height: 40px;
+        &.fill{
+          fill: #ff7518;
+          path{
+            stroke: #ff7518;
+          }
+        }
+      }
+    }
+  }
+
+  .icon {
+    path {
+      stroke: #FFFFFF;
+    }
+  }
+}
+
+.content{
+  font-family: 'Rubik', sans-serif;
+
+  .contact {
+    .chat {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

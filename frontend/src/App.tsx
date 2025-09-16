@@ -13,7 +13,7 @@ import type { Place } from './types/place';
 
 function App() {
 
-    const meuLugar: Place = {
+  const meuLugar: Place = {
     name: "Sítio do Carroção",
     favorited: true,
     verified: true,

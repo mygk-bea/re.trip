@@ -81,8 +81,8 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     />
                 </div>
 
-                <div className={`text-[#FF7022] text-center font-bold text-[32px]`} style={{ fontFamily: "'Madimi One', sans-serif" }}>{username}</div>
-                <div className='text-[20px] mb-5 lg:mb-10'>{type}</div>
+                <div className={`text-[#FF7022] text-center font-bold text-[32px]`}>{username}</div>
+                <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
             </div>
 
             <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
@@ -96,6 +96,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     isAdm={false}
                     title="Minhas Rotas"
                     positionItems="start"
+                    fontFamily="Rubik"
                     icon={IconRouteMap}
                     fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
@@ -111,6 +112,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     isAdm={false}
                     title="Rotas Favoritas"
                     positionItems="start"
+                    fontFamily="Rubik"
                     icon={IconHeart}
                     fontWeight='normal'
                     onClick={() => navigate("/user/meu-perfil/rotas-favoritas")}
@@ -125,6 +127,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     width="100%"
                     isAdm={false}
                     title="Sair"
+                    fontFamily="Rubik"
                     positionItems="start"
                     fontWeight='normal'
                     icon={IconLogout}

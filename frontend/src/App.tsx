@@ -15,6 +15,7 @@ import RotaInfo from './pages/Rotas/RotaInfo';
 
 import type { Place } from './types/place';
 import type { RouteInfo } from './types/route';
+import RotaEmAndamento from './pages/Rotas/RotaEmAndamento';
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
         <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
         <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
         <Route path="/user/rota/info" element={<RotaInfo route={minhaRota} />} />
+        <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
       </Routes>
     </>
   )

@@ -10,6 +10,7 @@ import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
 import InfoLocal from './pages/InfoLocal';
 import type { Place } from './types/place';
+import RotaTerminada from './pages/Rotas/RotaTerminada';
 
 function App() {
 
@@ -38,6 +39,7 @@ function App() {
         <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
         <Route path="/user/local/info" element={<InfoLocal place={meuLugar} />} />
+        <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
       </Routes>
     </>
   )

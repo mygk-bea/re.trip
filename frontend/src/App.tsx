@@ -9,13 +9,17 @@ import Cadastro from './pages/Inicio/Cadastro';
 import Login from './pages/Inicio/Login';
 import Filtros from './pages/Filtros';
 import InfoLocal from './pages/InfoLocal';
-import type { Place } from './types/place';
 import RotaTerminada from './pages/Rotas/RotaTerminada';
 import RotaCadastro from './pages/Rotas/RotaCadastro';
+import RotaInfo from './pages/Rotas/RotaInfo';
+
+import type { Place } from './types/place';
+import type { RouteInfo } from './types/route';
 
 function App() {
 
   const meuLugar: Place = {
+    id: "1",
     name: "Sítio do Carroção",
     favorited: true,
     verified: true,
@@ -27,6 +31,18 @@ function App() {
     images: ["/images/places/img_bg_sitio-carrocao.png"],
     routes: ["Trilha da Cachoeira", "Passeio a cavalo"],
     events: ["Festa Junina (Junho)", "Acampamento de Férias (Julho)"],
+  };
+
+  const minhaRota: RouteInfo = {
+    name: "Aventura no Carroção",
+    author: "Mey Bea",
+    favorited: true,
+    starRating: 5,
+    tags: ["Família", "Natureza"],
+    comment: "Uma rota perfeita para aproveitar o Sítio do Carroção em todas as suas atividades.",
+    routeLength: "1 dia",
+    locals: [meuLugar],
+    images: ["/images/routes/img_bg_rota-carrocao.png"],
   };
 
   return (
@@ -42,6 +58,7 @@ function App() {
         <Route path="/user/local/info" element={<InfoLocal place={meuLugar} />} />
         <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
         <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
+        <Route path="/user/rota/info" element={<RotaInfo route={minhaRota} />} />
       </Routes>
     </>
   )

@@ -5,7 +5,7 @@ import iconStar from '../../assets/icons/star.svg'
 interface CardProps {
   height: string;
   width: string;
-  nameBackground?: string;
+  nameBackground: string;
   title?: string;
   isTags?: boolean;
   tags?: string[];

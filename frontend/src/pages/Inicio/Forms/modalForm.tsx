@@ -31,45 +31,47 @@ export default function ModalForm({fields = [], type}: ModalFormProps) {
             className="w-[100%] mx-auto flex flex-col items-center justify-center"
         >
 
-        {fields.map((field) => (
-            <Input
-                key={field.name}
-                label={field.label}
-                type={field.type}
-                placeholder={field.placeholder}
-            />
-        ))}
+            {fields.map((field) => (
+                <Input
+                    key={field.name}
+                    label={field.label}
+                    type={field.type}
+                    placeholder={field.placeholder}
+                    name={field.name}
+                    value={formData[field.name] || ""}
+                    onChange={handleChange}
+                />
+            ))}
 
-        <div className="w-full flex justify-center gap-4 mt-4 mb-2 items-center">
-            <Button
-                colorText="#ff7022ff"
-                backgroundColor="#fff9f6"
-                colorShadow="#ff7022ff"
-                height="50px"
-                width="200px"
-                isAdm={false}
-                title="Voltar"
-                positionItems="center"
-                fontSize="1.25rem"
-                fontFamily="'Madimi One', sans-serif"
-                onClick={() => navigate("/inicio")}
-            />
+            <div className="w-full flex justify-center gap-4 mt-4 mb-2 items-center">
+                <Button
+                    colorText="#ff7022ff"
+                    backgroundColor="#fff9f6"
+                    colorShadow="#ff7022ff"
+                    height="50px"
+                    width="200px"
+                    isAdm={false}
+                    title="Voltar"
+                    positionItems="center"
+                    fontSize="1.25rem"
+                    fontFamily="'Madimi One', sans-serif"
+                    onClick={() => navigate("/inicio")}
+                />
 
-            <Button
-                colorText="#fff9f6"
-                backgroundColor="#ff7022ff"
-                colorShadow="#dd3603"
-                height="50px"
-                width="200px"
-                isAdm={false}
-                title={type === 'cadastro' ? "Salvar" : "Entrar"}
-                positionItems="center"
-                fontSize="1.25rem"
-                fontFamily="'Madimi One', sans-serif"
-                onClick={() => navigate("/")}
-            />
-        </div>
-
+                <Button
+                    colorText="#fff9f6"
+                    backgroundColor="#ff7022ff"
+                    colorShadow="#dd3603"
+                    height="50px"
+                    width="200px"
+                    isAdm={false}
+                    title={type === 'cadastro' ? "Salvar" : "Entrar"}
+                    positionItems="center"
+                    fontSize="1.25rem"
+                    fontFamily="'Madimi One', sans-serif"
+                    onClick={() => navigate("/")}
+                />
+            </div>
         </form>
     );
 }

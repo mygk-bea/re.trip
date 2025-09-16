@@ -14,7 +14,7 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ isAdmin = false }) => {
   return (
-    <div data-admin={isAdmin} className={`${styled.menu} fixed mx-[4.54vw] bottom-0 left-0 right-0 border-t-3 border-black/20 bg-[#FFF]`}>
+    <div data-admin={isAdmin} className={`${styled.menu} fixed mx-[4.54vw] bottom-0 left-0 right-0 border-t-3 border-black/20 bg-[#FFF] z-[2]`}>
       <div className="flex justify-between items-center h-[8.3vh] p-[20px]">
         
         <NavLink

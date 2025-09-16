@@ -11,6 +11,7 @@ import Filtros from './pages/Filtros';
 import InfoLocal from './pages/InfoLocal';
 import type { Place } from './types/place';
 import RotaTerminada from './pages/Rotas/RotaTerminada';
+import RotaCadastro from './pages/Rotas/RotaCadastro';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
         <Route path="/user/local/info" element={<InfoLocal place={meuLugar} />} />
         <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
+        <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
       </Routes>
     </>
   )

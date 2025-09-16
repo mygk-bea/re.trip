@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Menu from "../../components/Menu";
 import Geolocation from "../../components/Geolocation";
 import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
@@ -22,7 +22,6 @@ import imgRota from '../../assets/images/printscreen/img_bg_maps-rota-1.png';
 import Card from "../../components/Card";
 import { Box, Button } from "@mui/material";
 
-
 interface HomeProps {
     call: string;
     username: string;
@@ -30,84 +29,22 @@ interface HomeProps {
 
 // --- Arrays de cards ---
 const cardsArray1 = [
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgBgSitioCarrocao}
-        title="Sítio do Carroção"
-        isOpacity
-        positionText="center"
-        widthText="70px"
-    />,
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgBgParqueMariaTuca}
-        title="Parque Maria Tuca"
-        isOpacity
-        positionText="center"
-        widthText="70px"
-    />,
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgBgMuseu1}
-        title="Museu Paulo Setúbal"
-        isOpacity
-        positionText="center"
-        widthText="70px"
-    />,
+    <Card height="100px" width="150px" nameBackground={imgBgSitioCarrocao} title="Sítio do Carroção" isOpacity positionText="center" widthText="70px"/>,
+    <Card height="100px" width="150px" nameBackground={imgBgParqueMariaTuca} title="Parque Maria Tuca" isOpacity positionText="center" widthText="70px"/>,
+    <Card height="100px" width="150px" nameBackground={imgBgMuseu1} title="Museu Paulo Setúbal" isOpacity positionText="center" widthText="70px"/>,
 ];
 
 const cardsArray2 = [
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgBoituva}
-        title="Boituva"
-        isOpacity
-        positionText="center"
-    />,
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgTatui}
-        title="Tatuí"
-        isOpacity
-        positionText="center"
-    />,
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgBofete}
-        title="Bofete"
-        isOpacity
-        positionText="center"
-    />,
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgLaranjal}
-        title="Laranjal Paulista"
-        isOpacity
-        positionText="center"
-    />,
+    <Card height="100px" width="150px" nameBackground={imgBoituva} title="Boituva" isOpacity positionText="center" />,
+    <Card height="100px" width="150px" nameBackground={imgTatui} title="Tatuí" isOpacity positionText="center" />,
+    <Card height="100px" width="150px" nameBackground={imgBofete} title="Bofete" isOpacity positionText="center" />,
+    <Card height="100px" width="150px" nameBackground={imgLaranjal} title="Laranjal Paulista" isOpacity positionText="center" />,
 ];
 
 const cardsArray3 = [
-    <Card
-        height="100px"
-        width="150px"
-        nameBackground={imgRota}
-        title="Sítio - Museu"
-        isOpacity
-        isRating
-        numberRating={4.1}
-        positionText="center"
-    />,
+    <Card height="100px" width="150px" nameBackground={imgRota} title="Sítio - Museu" isOpacity isRating numberRating={4.1} positionText="center"/>,
 ];
 
-// --- Carousel de imagens ---
 interface ImageItem {
     src: string;
     name: string;
@@ -123,38 +60,43 @@ const images: ImageItem[] = [
 interface CarouselProps {
     items: React.ReactNode[];
     visibleCount?: number;
-    widthContainer?: string;
+    autoplay?: boolean;
+    autoplayInterval?: number;
 }
 
 const Carousel: React.FC<CarouselProps> = ({
     items,
     visibleCount = 1,
+    autoplay = false,
+    autoplayInterval = 3000,
 }) => {
     const [startIndex, setStartIndex] = useState(0);
     const total = items.length;
 
     const next = () => setStartIndex((prev) => (prev + visibleCount) % total);
-    const prev = () =>
-        setStartIndex((prev) => (prev - visibleCount + total) % total);
+    const prev = () => setStartIndex((prev) => (prev - visibleCount + total) % total);
+
+    useEffect(() => {
+        if (!autoplay) return;
+        const interval = setInterval(next, autoplayInterval);
+        return () => clearInterval(interval);
+    }, [startIndex, autoplay, autoplayInterval]);
 
     const visibleItems = [];
     for (let i = 0; i < visibleCount; i++) {
         const index = startIndex + i;
-        if (index < total) {
+        if (index < total) { 
             visibleItems.push(items[index]);
         }
     }
 
-
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', overflow: 'hidden' }}>
-
             {total > visibleCount && (
                 <Button onClick={prev} sx={{ minWidth: '30px', height: '30px', zIndex: 1 }}>
                     <IconArrowChevron class="w-5 h-5 stroke-[#333] transform rotate-90" />
                 </Button>
             )}
-
             <Box sx={{ display: 'flex', gap: 1, overflow: 'hidden', flexGrow: 1, justifyContent: 'center' }}>
                 {visibleItems.map((item, idx) => (
                     <Box key={idx} sx={{ flexShrink: 0 }}>
@@ -162,14 +104,12 @@ const Carousel: React.FC<CarouselProps> = ({
                     </Box>
                 ))}
             </Box>
-
             {total > visibleCount && (
                 <Button onClick={next} sx={{ minWidth: '30px', height: '30px', zIndex: 1 }}>
                     <IconArrowChevron class="w-5 h-5 stroke-[#333] transform -rotate-90" />
                 </Button>
             )}
         </Box>
-
     );
 };
 
@@ -193,37 +133,26 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                 <span className="text-[#FF7022]">{username}</span>!
             </div>
 
-            {/* Carousel de imagens */}
             <Carousel
                 items={images.map((img, idx) => (
-                    <div
-                        key={idx}
-                        className=" overflow-hidden flex flex-col items-center"
-                    >
-                        <img
-                            src={img.src}
-                            alt={img.name}
-                            className="w-30 h-25 rounded-3xl object-cover"
-                        />
-                        <p
-                            className="text-center mt-2 text-[13px]"
-                            style={{ fontFamily: "'Rubrik', sans-serif" }}
-                        >
+                    <div key={idx} className="overflow-hidden flex flex-col items-center">
+                        <img src={img.src} alt={img.name} className="w-30 h-25 rounded-3xl object-cover" />
+                        <p className="text-center mt-2 text-[13px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
                             {img.name}
                         </p>
                     </div>
                 ))}
                 visibleCount={2}
-                widthContainer="80%"
+                autoplay={true}
+                autoplayInterval={4000}
             />
 
-            {/* Carousel de cards */}
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Locais para</span>
                     <span className="text-[#FF7022]"> Explorar</span> perto de você:
                 </div>
-                <Carousel items={cardsArray1} visibleCount={2} widthContainer="80%" />
+                <Carousel items={cardsArray1} visibleCount={2} />
             </div>
 
             <div className="mt-6">
@@ -231,7 +160,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Cidades da</span>
                     <span className="text-[#FF7022]"> Região</span>:
                 </div>
-                <Carousel items={cardsArray2} visibleCount={2} widthContainer="80%" />
+                <Carousel items={cardsArray2} visibleCount={2} />
             </div>
 
             <div className="mt-6">
@@ -239,7 +168,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Rotas</span>
                     <span className="text-[#FF7022]"> Compartilhadas</span>:
                 </div>
-                <Carousel items={cardsArray3} visibleCount={2} widthContainer="80%" />
+                <Carousel items={cardsArray3} visibleCount={2} />
             </div>
 
             <div className="mt-6">

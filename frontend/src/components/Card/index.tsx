@@ -52,13 +52,9 @@ const Card: React.FC<CardProps> = ({
 
       {(isRating || isTags) && (
         <div className={styles.footer}>
-          {isTags && tags && (
+          {isTags && tags && tags.length > 0 && (
             <div className={styles.tags}>
-              {tags.map((tag, index) => (
-                <span key={index} className={styles.tag}>
-                  {tag}
-                </span>
-              ))}
+              <span className={styles.tag}>{tags[0]}</span>
             </div>
           )}
           {isRating && (

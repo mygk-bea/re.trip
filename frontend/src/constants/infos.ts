@@ -24,7 +24,6 @@ import imgRota from '../assets/images/printscreen/img_bg_maps-rota-1.png';
 
 export const sharedRoutes = [
     { id: 1, title: "Sítio - Museu", image: imgRota, rating: 4.1 },
-    { id: 2, title: "Museu - Sítio", image: imgRota, rating: 4.3 },
 ];
 
 import imgGastronomy from "../assets/images/category/img_bg_gastronomy.png";

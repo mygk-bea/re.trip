@@ -3,7 +3,7 @@ import Menu from "../../components/Menu";
 import Geolocation from "../../components/Geolocation";
 import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
 
-import {categories, regionCities, localPlaces, sharedRoutes} from '../../constants/infos'
+import { categories, regionCities, localPlaces, sharedRoutes } from '../../constants/infos'
 
 import Card from "../../components/Card";
 import { Box, Button } from "@mui/material";
@@ -54,7 +54,9 @@ const Carousel: React.FC<CarouselProps> = ({
                     <IconArrowChevron class="w-5 h-5 stroke-[#333] transform rotate-90" />
                 </Button>
             )}
-            <Box sx={{ display: 'flex', gap: 1, overflow: 'hidden', flexGrow: 1, justifyContent: 'center' }}>
+            <Box className={`flex gap-2 lg:gap-4 overflow-hidden flex-grow justify-start w-[70vw] lg:w-[40vw] 
+            ${total <= visibleCount ? 'ml-9' : ''}`} >
+
                 {visibleItems.map((item, idx) => (
                     <Box key={idx} sx={{ flexShrink: 0 }}>
                         {item}
@@ -74,8 +76,8 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     // Map categorias
     const categoryItems = categories.map((cat) => (
         <div key={cat.id} className="overflow-hidden flex flex-col items-center">
-            <img src={cat.image} alt={cat.title} className="w-30 h-25 rounded-3xl object-cover" />
-            <p className="text-center mt-2 text-[13px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
+            <img src={cat.image} alt={cat.title} className="w-30 h-25 lg:w-[20vw] lg:h-[20vh] rounded-3xl object-cover" />
+            <p className="text-center mt-2 text-[13px] lg:text-[16px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
                 {cat.title}
             </p>
         </div>
@@ -85,7 +87,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const localPlaceItems = localPlaces.map((place) => (
         <Card
             key={place.id}
-            className="h-[100px] w-[150px]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
             nameBackground={place.image}
             title={place.title}
             isOpacity
@@ -98,7 +100,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const regionCityItems = regionCities.map((city) => (
         <Card
             key={city.id}
-            className="h-[100px] w-[150px]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
             nameBackground={city.image}
             title={city.title}
             isOpacity
@@ -110,7 +112,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const sharedRouteItems = sharedRoutes.map((route) => (
         <Card
             key={route.id}
-            className="h-[100px] w-[150px]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
             nameBackground={route.image}
             title={route.title}
             isOpacity
@@ -148,7 +150,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Locais para</span>
                     <span className="text-[#FF7022]"> Explorar</span> perto de você:
                 </div>
-                <Carousel items={localPlaceItems} visibleCount={2} />
+                <Carousel items={localPlaceItems} visibleCount={3} />
             </div>
 
             {/* Cidades */}
@@ -157,7 +159,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Cidades da</span>
                     <span className="text-[#FF7022]"> Região</span>:
                 </div>
-                <Carousel items={regionCityItems} visibleCount={2} />
+                <Carousel items={regionCityItems} visibleCount={3} />
             </div>
 
             {/* Rotas */}
@@ -166,7 +168,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Rotas</span>
                     <span className="text-[#FF7022]"> Compartilhadas</span>:
                 </div>
-                <Carousel items={sharedRouteItems} visibleCount={2} />
+                <Carousel items={sharedRouteItems} visibleCount={3} />
             </div>
 
             <div className="mt-6">

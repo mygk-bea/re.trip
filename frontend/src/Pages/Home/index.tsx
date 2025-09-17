@@ -6,7 +6,7 @@ import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
 import { categories, regionCities, localPlaces, sharedRoutes } from '../../constants/infos'
 
 import Card from "../../components/Card";
-import { Box, Button } from "@mui/material";
+import { Box, Button, useMediaQuery, useTheme } from "@mui/material";
 
 interface HomeProps {
     call: string;
@@ -73,10 +73,13 @@ const Carousel: React.FC<CarouselProps> = ({
 };
 
 const Home: React.FC<HomeProps> = ({ call, username }) => {
+    const theme = useTheme();
+    const isLg = useMediaQuery(theme.breakpoints.up('lg'));
+
     // Map categorias
     const categoryItems = categories.map((cat) => (
         <div key={cat.id} className="overflow-hidden flex flex-col items-center">
-            <img src={cat.image} alt={cat.title} className="w-30 h-25 lg:w-[20vw] lg:h-[20vh] rounded-3xl object-cover" />
+            <img src={cat.image} alt={cat.title} className="w-30 h-25 lg:w-[15vw] lg:h-[15vh] rounded-3xl object-cover" />
             <p className="text-center mt-2 text-[13px] lg:text-[16px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
                 {cat.title}
             </p>
@@ -142,7 +145,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             </div>
 
             {/* Categorias */}
-            <Carousel items={categoryItems} visibleCount={2} autoplay autoplayInterval={4000} />
+            <Carousel items={categoryItems} visibleCount={3} autoplay autoplayInterval={4000} />
 
             {/* Locais */}
             <div className="mt-6">
@@ -150,7 +153,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Locais para</span>
                     <span className="text-[#FF7022]"> Explorar</span> perto de você:
                 </div>
-                <Carousel items={localPlaceItems} visibleCount={3} />
+                <Carousel items={localPlaceItems} visibleCount={isLg ? 3 : 2} />
             </div>
 
             {/* Cidades */}
@@ -159,7 +162,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Cidades da</span>
                     <span className="text-[#FF7022]"> Região</span>:
                 </div>
-                <Carousel items={regionCityItems} visibleCount={3} />
+                <Carousel items={regionCityItems} visibleCount={isLg ? 3 : 2} />
             </div>
 
             {/* Rotas */}
@@ -168,7 +171,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                     <span>Rotas</span>
                     <span className="text-[#FF7022]"> Compartilhadas</span>:
                 </div>
-                <Carousel items={sharedRouteItems} visibleCount={3} />
+                <Carousel items={sharedRouteItems} visibleCount={isLg ? 3 : 2} />
             </div>
 
             <div className="mt-6">

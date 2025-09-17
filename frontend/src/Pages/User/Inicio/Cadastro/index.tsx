@@ -1,12 +1,35 @@
 import React from "react";
 import styled from '../Inicio.module.scss';
 import styled_page from '../Forms/Form.module.scss';
-import type { Field } from "../../../types/field";
+import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
 
-interface LoginProps {}
+interface CadastroProps {}
 
 const fields: Field[] = [
+    {
+        label: "Nome Completo",
+        type: "text",
+        placeholder: "Seu nome...",
+        name: "nome",
+    },
+    {
+        label: "Data de Nascimento",
+        type: "date",
+        placeholder: "dd/mm/aaaa",
+        name: "dataNascimento",
+    },
+    {
+        label: "Gênero",
+        type: "select",
+        placeholder: "Selecione...",
+        name: "genero",
+        options: [
+            { value: "masculino", label: "Masculino" },
+            { value: "feminino", label: "Feminino" },
+            { value: "outro", label: "Outro" },
+        ],
+    },
     {
         label: "E-mail",
         type: "email",
@@ -21,7 +44,7 @@ const fields: Field[] = [
     },
 ];
 
-const Login: React.FC<LoginProps> = () => {
+const Cadastro: React.FC<CadastroProps> = () => {
     const modalForm = (
         <div className={`${styled_page.modal} 
             p-[3.2vh_25px]
@@ -30,8 +53,8 @@ const Login: React.FC<LoginProps> = () => {
             mx-auto
             `}
         >
-            <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Bem-vindo!</h1>
-            <ModalForm fields={fields} />
+            <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Cadastre-se</h1>
+            <ModalForm fields={fields} type="cadastro"/>
         </div>
     )
 
@@ -49,12 +72,9 @@ const Login: React.FC<LoginProps> = () => {
                     bg-center bg-no-repeat bg-[auto_115%]
                     lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]`}
                 >
-                    <div className={`${styled.overlay} h-full w-full flex flex-col justify-center align-center lg:justify-start relative`}>
-                        <h1 className={`${styled.title} ${styled_page.logo} 
-                            font-[Madimi_One] text-[#FFF] 
-                            z-[2] absolute left-1/2 -translate-x-1/2 top-[5vh] 
-                            lg:pt-[10vh]`}>Re.Trip</h1>
-                        <div className="block lg:hidden z-[2] max-h-[80vh] mt-[5vh] lg:mt-0 overflow-y-auto bg-[#FFF] rounded-[50px] mx-auto">{modalForm}</div>
+                    <div className={`${styled.overlay} h-full w-full flex flex-col justify-center align-center lg:justify-start`}>
+                        <h1 className={`${styled.title} ${styled_page.logo} font-[Madimi_One] text-[#FFF] z-[2] lg:pt-[10vh]`}>Re.Trip</h1>
+                        <div className="block lg:hidden z-[2] max-h-[80vh] overflow-y-auto bg-[#FFF] rounded-[50px] mx-auto">{modalForm}</div>
                     </div>
 
                 </div>
@@ -66,4 +86,4 @@ const Login: React.FC<LoginProps> = () => {
     );
 };
 
-export default Login;
+export default Cadastro;

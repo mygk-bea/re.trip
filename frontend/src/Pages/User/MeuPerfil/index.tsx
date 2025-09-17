@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
-import IconRouteMap from "../../assets/icons/icon-route";
-import IconHeart from "../../assets/icons/icon-heart";
-import IconLogout from "../../assets/icons/icon-exit";
-import Menu from "../../components/Menu";
-import Button from "../../components/Button";
-import IconAvatar from "../../assets/icons/icon-avatar";
+import IconRouteMap from "../../../assets/icons/icon-route";
+import IconHeart from "../../../assets/icons/icon-heart";
+import IconLogout from "../../../assets/icons/icon-exit";
+import Menu from "../../../components/Menu";
+import Button from "../../../components/Button";
+import IconAvatar from "../../../assets/icons/icon-avatar";
 import { useNavigate } from "react-router-dom";
-import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
+import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 
 interface MeuPerfilProps {
     type: string;

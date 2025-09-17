@@ -1,24 +1,30 @@
 import React, { useState } from 'react';
 
-import { categories } from '../../constants/infos'
-import IconFilter from '../../assets/icons/icon-filter';
-import IconSearch from '../../assets/icons/icon-search';
-import Menu from '../../components/Menu';
-import Card from '../../components/Card';
+import { categories } from '../../../constants/infos'
+import IconFilter from '../../../assets/icons/icon-filter';
+import IconSearch from '../../../assets/icons/icon-search';
+import Menu from '../../../components/Menu';
+import Card from '../../../components/Card';
+import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
+import { useNavigate } from "react-router-dom";
 
 const Pesquisa: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
+    const navigate = useNavigate();
 
     return (
         <div>
             <div className="w-full">
                 <div className="relative w-[100vw] mx-auto h-[30vh] bg-[#FF8C3A] rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[30vh] shadow-md">
                     <div className="absolute -left-20 -top-40 w-[110vw] lg:-top-50 h-[60vh] lg:w-[55vw] lg:h-[60vh] bg-orange-500 rounded-full z-0"></div>
-                    <h2 className="text-2xl relative font-bold lg:mt-3 mt-2 z-10 text-white text-[30px] sm:text-[40px] text-left lg:ml-10">
-                        Bora se <br />aventurar?
+                    <div className="cursor-pointer" onClick={() => navigate(-1)}>
+                        <IconArrowChevron class="w-8 h-8 lg:w-8 lg:h-8 stroke-[#fff] transform rotate-90" />
+                    </div>
+                    <h2 className="text-2xl  relative font-bold lg:mt-10 mt-4 lg:mb-10 mb-2 z-10 text-white text-[30px] lg:text-[40px] text-left lg:ml-10 ">
+                        Bora se aventurar?
                     </h2>
 
-                    <div className="relative lg:mt-8 mt-3 lg:mb-6 mb-3 flex justify-center">
+                    <div className="relative lg:mt-3 lg:mb-6 mb-3 flex justify-center">
                         <div className="flex items-center border-b border-white px-4 py-1 w-[90vw] sm:w-[70vw] lg:w-[50vw]">
                             <IconSearch class="text-white mr-3 w-10 h-10 lg:w-12 lg:h-12 stroke-white fill-white" />
                             <input

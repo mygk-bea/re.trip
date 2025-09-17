@@ -1,7 +1,7 @@
 import styles from './Filtros.module.scss'
-import Tag from '../../components/Tag';
-import Menu from '../../components/Menu';
-import IconArrowChevron from '../../assets/icons/icon-arrow-chevron';
+import Tag from '../../../components/Tag';
+import Menu from '../../../components/Menu';
+import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
 import { useNavigate } from "react-router-dom";
 
 const Filtros: React.FC = () => {

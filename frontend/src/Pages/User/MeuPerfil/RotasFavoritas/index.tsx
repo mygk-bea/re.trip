@@ -1,6 +1,6 @@
 import React from "react";
-import Menu from "../../../components/Menu";
-import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
+import Menu from "../../../../components/Menu";
+import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 
 

@@ -3,21 +3,7 @@ import Menu from "../../components/Menu";
 import Geolocation from "../../components/Geolocation";
 import IconArrowChevron from "../../assets/icons/icon-arrow-chevron";
 
-import imgAdventure from "../../assets/images/category/img_bg_adventure.png";
-import imgGastronomy from "../../assets/images/category/img_bg_gastronomy.png";
-import imgNature from "../../assets/images/category/img_bg_nature.png";
-import imgHotel from "../../assets/images/category/img_bg_hotel.png";
-
-import imgBgMuseu1 from "../../assets/images/places/img_bg_museu-paulo-setubal-1.png";
-import imgBgSitioCarrocao from "../../assets/images/places/img_bg_sitio-carrocao.png";
-import imgBgParqueMariaTuca from "../../assets/images/places/img_bg_parque-maria-tuca.png";
-
-import imgBoituva from "../../assets/images/city/img_bg_boituva.png";
-import imgTatui from "../../assets/images/city/img_bg_tatui.png";
-import imgLaranjal from "../../assets/images/city/img_bg_laranjal-paulista.png";
-import imgBofete from "../../assets/images/city/img_bg_bofete.png";
-
-import imgRota from '../../assets/images/printscreen/img_bg_maps-rota-1.png';
+import {categories, regionCities, localPlaces, sharedRoutes} from '../../constants/infos'
 
 import Card from "../../components/Card";
 import { Box, Button } from "@mui/material";
@@ -27,36 +13,7 @@ interface HomeProps {
     username: string;
 }
 
-// --- Arrays de cards ---
-const cardsArray1 = [
-    <Card height="100px" width="150px" nameBackground={imgBgSitioCarrocao} title="Sítio do Carroção" isOpacity positionText="center" widthText="70px"/>,
-    <Card height="100px" width="150px" nameBackground={imgBgParqueMariaTuca} title="Parque Maria Tuca" isOpacity positionText="center" widthText="70px"/>,
-    <Card height="100px" width="150px" nameBackground={imgBgMuseu1} title="Museu Paulo Setúbal" isOpacity positionText="center" widthText="70px"/>,
-];
-
-const cardsArray2 = [
-    <Card height="100px" width="150px" nameBackground={imgBoituva} title="Boituva" isOpacity positionText="center" />,
-    <Card height="100px" width="150px" nameBackground={imgTatui} title="Tatuí" isOpacity positionText="center" />,
-    <Card height="100px" width="150px" nameBackground={imgBofete} title="Bofete" isOpacity positionText="center" />,
-    <Card height="100px" width="150px" nameBackground={imgLaranjal} title="Laranjal Paulista" isOpacity positionText="center" />,
-];
-
-const cardsArray3 = [
-    <Card height="100px" width="150px" nameBackground={imgRota} title="Sítio - Museu" isOpacity isRating numberRating={4.1} positionText="center"/>,
-];
-
-interface ImageItem {
-    src: string;
-    name: string;
-}
-
-const images: ImageItem[] = [
-    { src: imgGastronomy, name: "Gastronomia" },
-    { src: imgNature, name: "Natureza e Ecoturismo" },
-    { src: imgHotel, name: "Hospedagem" },
-    { src: imgAdventure, name: "Aventura e Diversão" },
-];
-
+// --- Carousel ---
 interface CarouselProps {
     items: React.ReactNode[];
     visibleCount?: number;
@@ -85,7 +42,7 @@ const Carousel: React.FC<CarouselProps> = ({
     const visibleItems = [];
     for (let i = 0; i < visibleCount; i++) {
         const index = startIndex + i;
-        if (index < total) { 
+        if (index < total) {
             visibleItems.push(items[index]);
         }
     }
@@ -114,6 +71,58 @@ const Carousel: React.FC<CarouselProps> = ({
 };
 
 const Home: React.FC<HomeProps> = ({ call, username }) => {
+    // Map categorias
+    const categoryItems = categories.map((cat) => (
+        <div key={cat.id} className="overflow-hidden flex flex-col items-center">
+            <img src={cat.image} alt={cat.title} className="w-30 h-25 rounded-3xl object-cover" />
+            <p className="text-center mt-2 text-[13px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
+                {cat.title}
+            </p>
+        </div>
+    ));
+
+    // Map locais
+    const localPlaceItems = localPlaces.map((place) => (
+        <Card
+            key={place.id}
+            height="100px"
+            width="150px"
+            nameBackground={place.image}
+            title={place.title}
+            isOpacity
+            positionText="center"
+            widthText="70px"
+        />
+    ));
+
+    // Map cidades
+    const regionCityItems = regionCities.map((city) => (
+        <Card
+            key={city.id}
+            height="100px"
+            width="150px"
+            nameBackground={city.image}
+            title={city.title}
+            isOpacity
+            positionText="center"
+        />
+    ));
+
+    // Map rotas
+    const sharedRouteItems = sharedRoutes.map((route) => (
+        <Card
+            key={route.id}
+            height="100px"
+            width="150px"
+            nameBackground={route.image}
+            title={route.title}
+            isOpacity
+            isRating
+            numberRating={route.rating}
+            positionText="center"
+        />
+    ));
+
     return (
         <div className="relative pt-20 pb-25 w-full ">
             <div className="-mt-15 mb-5 mx-auto w-60 lg:w-[100%]">
@@ -133,42 +142,34 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
                 <span className="text-[#FF7022]">{username}</span>!
             </div>
 
-            <Carousel
-                items={images.map((img, idx) => (
-                    <div key={idx} className="overflow-hidden flex flex-col items-center">
-                        <img src={img.src} alt={img.name} className="w-30 h-25 rounded-3xl object-cover" />
-                        <p className="text-center mt-2 text-[13px]" style={{ fontFamily: "'Rubrik', sans-serif" }}>
-                            {img.name}
-                        </p>
-                    </div>
-                ))}
-                visibleCount={2}
-                autoplay={true}
-                autoplayInterval={4000}
-            />
+            {/* Categorias */}
+            <Carousel items={categoryItems} visibleCount={2} autoplay autoplayInterval={4000} />
 
+            {/* Locais */}
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Locais para</span>
                     <span className="text-[#FF7022]"> Explorar</span> perto de você:
                 </div>
-                <Carousel items={cardsArray1} visibleCount={2} />
+                <Carousel items={localPlaceItems} visibleCount={2} />
             </div>
 
+            {/* Cidades */}
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Cidades da</span>
                     <span className="text-[#FF7022]"> Região</span>:
                 </div>
-                <Carousel items={cardsArray2} visibleCount={2} />
+                <Carousel items={regionCityItems} visibleCount={2} />
             </div>
 
+            {/* Rotas */}
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Rotas</span>
                     <span className="text-[#FF7022]"> Compartilhadas</span>:
                 </div>
-                <Carousel items={cardsArray3} visibleCount={2} />
+                <Carousel items={sharedRouteItems} visibleCount={2} />
             </div>
 
             <div className="mt-6">

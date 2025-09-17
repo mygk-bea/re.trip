@@ -39,16 +39,15 @@ const Pesquisa: React.FC = () => {
             </div>
 
             <div className="px-6 py-5 pt-[3vh]">
-                <h2 className="text-2xl text-left text-[24px] font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl text-left text-[24px] lg:text-[30px] font-bold text-gray-900 mb-6 lg:mb-8">
                     Descubra
                 </h2>
 
-                <div className="space-y-4 gap-2 flex flex-col items-center z-0 pb-20">
+                <div className="space-y-4 gap-2 lg:gap-4 flex flex-col items-center z-0 pb-20 lg:pb-30">
                     {categories.map((category) => (
                         <Card
                             key={category.id}
-                            height="15vh"
-                            width="80vw"
+                            className="h-[15vh] w-[80vw] lg:h-[20vh] lg:w-[50vw]"
                             nameBackground={category.image}
                             title={category.title}
                             positionText="center"

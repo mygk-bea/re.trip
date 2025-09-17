@@ -85,8 +85,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const localPlaceItems = localPlaces.map((place) => (
         <Card
             key={place.id}
-            height="100px"
-            width="150px"
+            className="h-[100px] w-[150px]"
             nameBackground={place.image}
             title={place.title}
             isOpacity
@@ -99,8 +98,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const regionCityItems = regionCities.map((city) => (
         <Card
             key={city.id}
-            height="100px"
-            width="150px"
+            className="h-[100px] w-[150px]"
             nameBackground={city.image}
             title={city.title}
             isOpacity
@@ -112,8 +110,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const sharedRouteItems = sharedRoutes.map((route) => (
         <Card
             key={route.id}
-            height="100px"
-            width="150px"
+            className="h-[100px] w-[150px]"
             nameBackground={route.image}
             title={route.title}
             isOpacity

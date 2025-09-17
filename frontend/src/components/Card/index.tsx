@@ -3,8 +3,6 @@ import styles from "./Card.module.scss";
 import iconStar from '../../assets/icons/star.svg'
 
 interface CardProps {
-  height: string;
-  width: string;
   nameBackground: string;
   title?: string;
   isTags?: boolean;
@@ -15,13 +13,12 @@ interface CardProps {
   isOpacity?: boolean;
   positionText?: "top" | "center" | "bottom";
   widthText?: string;
+  className?: string;
 }
 
 const Card: React.FC<CardProps> = ({
   widthText,
   nameBackground,
-  height,
-  width,
   title,
   isTags,
   tags,
@@ -29,18 +26,17 @@ const Card: React.FC<CardProps> = ({
   numberRating,
   isBlur,
   positionText = "bottom",
-  isOpacity
+  isOpacity,
+  className = ""
 }) => {
   const CardStyle = {
-    "--height": height,
-    "--width": width,
     backgroundImage: `url(${nameBackground})`,
     "--width-text": widthText,
     "--position-text": positionText
   } as React.CSSProperties;
 
   return (
-    <div className={styles.card} style={CardStyle}>
+    <div className={`${styles.card} ${className}`} style={CardStyle}>
 
       {isBlur && <div className={styles.blur__overlay}></div>}
 
@@ -59,8 +55,8 @@ const Card: React.FC<CardProps> = ({
           )}
           {isRating && (
             <div className={styles.rating}>
-                <img className={styles.icon__star} src={iconStar} alt="" />
-                {numberRating?.toFixed(1)}</div>
+              <img className={styles.icon__star} src={iconStar} alt="" />
+              {numberRating?.toFixed(1)}</div>
           )}
         </div>
       )}

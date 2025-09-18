@@ -6,15 +6,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
   position: relative;
+  padding-bottom: 30%;
 }
 
 .filtros__cabecalho {
   top: 0;
   left: 0;
-  padding: 10px 0;
-  width: 100%;
+  padding: 20px 0;
+  width: 95%;
   
   .cabecalho__icon_titulo {
     display: flex;
@@ -51,13 +51,13 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-  width: 100%;
+  width: 95%;
 }
 
 .filtros__atracoes,
 .filtros__localizacao,
 .filtros__acessibilidade_inclusao {
-  width: 100%;
+  width: 95%;
 }
 
 .atracoes__titulo,
@@ -76,5 +76,5 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
-  width: 100%;
+  width: 95%;
 }

@@ -11,7 +11,7 @@ import Filtros from './pages/User/Filtros';
 import InfoLocal from './pages/User/InfoLocal';
 import type { Place } from './types/place';
 import Home from './pages/User/Home';
-import Pesquisa from './pages/User/Pesquisa';
+import Pesquisar from './pages/User/Pesquisar';
 
 function App() {
 
@@ -41,7 +41,7 @@ function App() {
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
         <Route path="/user/local/info" element={<InfoLocal place={meuLugar} />} />
         <Route path="/user/home" element={<Home username='Username' call='aventureiro(a)'/>} />
-        <Route path="/user/pesquisar" element={<Pesquisa />} />
+        <Route path="/user/pesquisar" element={<Pesquisar />} />
         
       </Routes>
     </>

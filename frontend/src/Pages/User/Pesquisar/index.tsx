@@ -84,7 +84,7 @@ const Pesquisar: React.FC = () => {
                     Descubra
                 </h2>
 
-                <div className="space-y-4 gap-2 lg:gap-4 flex flex-col items-center z-0 pb-30 lg:pb-35">
+                <div className="space-y-4 gap-2 lg:gap-4 flex flex-col items-center z-0 pb-25 lg:pb-30">
                     {categories.map((category) => (
                         <Card
                             key={category.id}

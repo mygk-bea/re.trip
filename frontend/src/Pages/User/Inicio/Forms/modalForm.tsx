@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { Field } from "../../../types/field";
-import Input from "../../../components/Input";
-import Button from "../../../components/Button";
+import type { Field } from "../../../../types/field";
+import Input from "../../../../components/Input";
+import Button from "../../../../components/Button";
 
 interface ModalFormProps {
     fields?: Field[];

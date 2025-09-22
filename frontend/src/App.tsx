@@ -1,21 +1,26 @@
 
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
-import MeuPerfil from './pages/MeuPerfil'
-import MinhasRotas from './pages/MeuPerfil/MinhasRotas'
-import RotasFavoritas from './pages/MeuPerfil/RotasFavoritas'
-import Inicio from './pages/Inicio';
-import Cadastro from './pages/Inicio/Cadastro';
-import Login from './pages/Inicio/Login';
-import Filtros from './pages/Filtros';
-import InfoLocal from './pages/InfoLocal';
+
 import RotaTerminada from './pages/Rotas/RotaTerminada';
 import RotaCadastro from './pages/Rotas/RotaCadastro';
 import RotaInfo from './pages/Rotas/RotaInfo';
+import RotaEmAndamento from './pages/Rotas/RotaEmAndamento';
+
+import MeuPerfil from './pages/User/MeuPerfil'
+import MinhasRotas from './pages/User/MeuPerfil/MinhasRotas'
+import RotasFavoritas from './pages/User/MeuPerfil/RotasFavoritas'
+import Inicio from './pages/User/Inicio';
+import Cadastro from './pages/User/Inicio/Cadastro';
+import Login from './pages/User/Inicio/Login';
+import Filtros from './pages/User/Filtros';
+import InfoLocal from './pages/User/InfoLocal';
+
+import Home from './pages/User/Home';
+import Pesquisar from './pages/User/Pesquisar';
 
 import type { Place } from './types/place';
 import type { RouteInfo } from './types/route';
-import RotaEmAndamento from './pages/Rotas/RotaEmAndamento';
 
 function App() {
 
@@ -61,6 +66,9 @@ function App() {
         <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
         <Route path="/user/rota/info" element={<RotaInfo route={minhaRota} />} />
         <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
+        <Route path="/user/home" element={<Home username='Username' call='aventureiro(a)'/>} />
+        <Route path="/user/pesquisar" element={<Pesquisar />} />
+        
       </Routes>
     </>
   )

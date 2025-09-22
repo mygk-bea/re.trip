@@ -4,12 +4,13 @@ interface InputProps {
     label: string;
     type: string;
     placeholder: string;
-    name: string;
-    value: any;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
+    value?: any;
+    key:string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, onChange }) => {
+const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, onChange, key }) => {
     return (
         <div className='w-full'>
             <label className="block font-semibold mb-1 text-black text-left">{label}</label>
@@ -17,6 +18,7 @@ const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, on
                 id={name}
                 name={name}
                 type={type}
+                key={key}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}

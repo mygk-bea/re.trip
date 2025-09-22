@@ -1,6 +1,6 @@
 import React from "react";
 import styled from './Inicio.module.scss';
-import Button from "../../components/Button";
+import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 
 interface InicioProps {}

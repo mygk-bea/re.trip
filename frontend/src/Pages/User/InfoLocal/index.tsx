@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import IconArrowChevron from '../../assets/icons/icon-arrow-chevron';
-import IconExpand from '../../assets/icons/icon-expand';
-import IconHeart from '../../assets/icons/icon-heart';
-import IconVerify from '../../assets/icons/icon-verify';
-import Menu from '../../components/Menu';
-import StarRating from '../../components/StarRating';
-import Tag from '../../components/Tag';
+import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
+import IconExpand from '../../../assets/icons/icon-expand';
+import IconHeart from '../../../assets/icons/icon-heart';
+import IconVerify from '../../../assets/icons/icon-verify';
+import Menu from '../../../components/Menu';
+import StarRating from '../../../components/StarRating';
+import Tag from '../../../components/Tag';
 import styled from './InfoLocal.module.scss';
-import type { Place } from '../../types/place';
-import IconChat from '../../assets/icons/icon-chat';
+import type { Place } from '../../../types/place';
+import IconChat from '../../../assets/icons/icon-chat';
 
 interface InfoLocalProps {
   place: Place;

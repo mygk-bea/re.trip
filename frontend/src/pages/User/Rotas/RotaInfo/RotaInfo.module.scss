@@ -13,7 +13,6 @@ div {
   overflow: hidden;
   .overlay {
     position: relative;
-    background-color: rgb(0, 0, 0, 0.25);
 
     &::before {
       content: "";
@@ -22,10 +21,10 @@ div {
       inset: 0;
       backdrop-filter: blur(4px);
 
-      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 75%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 25%);
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-size: cover;
-      mask-image: linear-gradient(to top, black 0%, transparent 75%);
+      mask-image: linear-gradient(to top, black 0%, transparent 25%);
       mask-repeat: no-repeat;
       mask-size: cover;
       pointer-events: none;
@@ -40,6 +39,10 @@ div {
       .pin{
         width: 35px;
         height: 35px;
+        path{
+          fill:none;
+          stroke-width: 3px;
+        }
       }
     }
 
@@ -89,6 +92,40 @@ div {
     .chat {
       width: 24px;
       height: 24px;
+    }
+  }
+
+  .item {
+    .number{ 
+      border-radius: 100%;
+      font-size: 1rem;
+      font-weight: 500;
+      color:#FF7022;
+      background-color: #FFF;
+      border: 1px solid #FF7022;
+  
+      &::before {
+        content: "";
+        display: block;
+        border: 1px dashed #FF7022;
+        position: absolute;
+        top: 140%;
+        height: 55px;
+      }
+  
+    }
+
+    &:first-child {
+      .number {
+        color:#FFF;
+        background-color: #FF7022;
+      }
+    }
+
+    &:last-child {
+      .number {
+        &::before {display: none;}
+      }
     }
   }
 }

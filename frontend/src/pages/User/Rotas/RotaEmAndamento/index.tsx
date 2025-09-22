@@ -1,11 +1,11 @@
 import React from 'react';
 
 import styled from './RotaEmAndamento.module.scss';
-import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
-import Menu from '../../../components/Menu';
-import Stepper from '../../../components/Stepper';
-import Button from '../../../components/Button';
-import IconHome from '../../../assets/icons/icon-home';
+import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
+import Menu from '../../../../components/Menu';
+import Stepper from '../../../../components/Stepper';
+import Button from '../../../../components/Button';
+import IconHome from '../../../../assets/icons/icon-home';
 
 interface RotaEmAndamentoProps {}
 

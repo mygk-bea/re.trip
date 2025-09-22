@@ -8,20 +8,11 @@ import StarRating from '../../../components/StarRating';
 import Tag from '../../../components/Tag';
 import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
-import IconChat from '../../../assets/icons/icon-chat';
+import IconChat from '../../../assets/icons/icon-chat';4
 
 interface InfoLocalProps {
   place: Place;
 }
-
-const tagStyles: { [key: string]: { bgColor: string; textColor: string; borderColor: string } } = {
-  "Natureza e Ecoturismo": { bgColor: "rgba(52, 181, 5, .1)", textColor: "#34B505", borderColor: "#34B505" },
-  "Pet Friendly": { bgColor: "rgba(0, 29, 215, .1)", textColor: "#001DD7", borderColor: "#001DD7" },
-  "Aventura e Diversão": { bgColor: "rgba(143, 0, 191, .1)", textColor: "#8F00BF", borderColor: "#8F00BF" },
-};
-
-const defaultTagStyle = { bgColor: "rgba(128, 128, 128, .1)", textColor: "#808080", borderColor: "#808080" };
-
 
 const InfoLocal: React.FC<InfoLocalProps> = ({ place }) => {
   const [isFavorited, setIsFavorited] = useState(place.favorited);
@@ -59,19 +50,18 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place }) => {
           </div>
         </div>
 
-        <div className={`${styled.content} p-[4.5vw]`}>
+        <div className={`${styled.content} p-[3.5vw]`}>
           <StarRating rating={place.starRating} showNumber={true}/>
 
           <div className={`${styled.tags} flex flex-wrap gap-2 mt-4`}>
-            {place.tags.map(tagText => {
-              const style = tagStyles[tagText] || defaultTagStyle;
+            {place.tags.map(tag => {
               return (
                 <Tag
-                  key={tagText}
-                  text={tagText}
-                  bgColor={style.bgColor}
-                  textColor={style.textColor}
-                  borderColor={style.borderColor}
+                  key={tag.text}
+                  text={tag.text}
+                  bgColor={tag.style.bgColor}
+                  textColor={tag.style.textColor}
+                  borderColor={tag.style.borderColor}
                 />
               );
             })}

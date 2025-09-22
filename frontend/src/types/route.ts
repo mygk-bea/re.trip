@@ -5,7 +5,6 @@ export type RouteInfo = {
   author: string;
   favorited: boolean;
   starRating: number;
-  tags: string[];
   comment: string;
   routeLength: string;
   locals: Place[];

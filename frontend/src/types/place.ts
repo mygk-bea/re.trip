@@ -1,10 +1,12 @@
+import type { Tag } from "./tag";
+
 export type Place = {
   id: string;
   name: string;
   favorited: boolean;
   verified: boolean;
   starRating: number;
-  tags: string[];
+  tags: Tag[];
   description: string;
   contactInfo: string;
   address: string;

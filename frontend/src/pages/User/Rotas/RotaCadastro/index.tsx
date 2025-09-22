@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 import styled from './RotaCadastro.module.scss';
-import Menu from '../../../components/Menu';
-import Button from '../../../components/Button';
+import Menu from '../../../../components/Menu';
+import Button from '../../../../components/Button';
 import { useNavigate } from 'react-router-dom';
-import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
-import IconPinSharp from '../../../assets/icons/icon-pin-sharp';
-import Input from '../../../components/Input';
-import Card from '../../../components/Card';
-import IconGrab from '../../../assets/icons/icon-grab';
+import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
+import IconPinSharp from '../../../../assets/icons/icon-pin-sharp';
+import Input from '../../../../components/Input';
+import Card from '../../../../components/Card';
+import IconGrab from '../../../../assets/icons/icon-grab';
 
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';

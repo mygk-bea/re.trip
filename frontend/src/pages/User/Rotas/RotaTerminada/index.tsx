@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from './RotaTerminada.module.scss';
-import IconVerify from '../../../assets/icons/icon-verify';
-import StarRating from '../../../components/StarRating';
-import Button from '../../../components/Button';
+import IconVerify from '../../../../assets/icons/icon-verify';
+import StarRating from '../../../../components/StarRating';
+import Button from '../../../../components/Button';
 import { useNavigate } from 'react-router-dom';
 
 interface RotaTerminadaProps {

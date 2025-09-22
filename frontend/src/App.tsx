@@ -17,7 +17,8 @@ import RotaEmAndamento from './pages/User/Rotas/RotaEmAndamento';
 import Home from './pages/User/Home';
 import Pesquisar from './pages/User/Pesquisar';
 
-import { rotaSitioMuseu, sitioCarrocao } from './constants/pagesInfos';
+import { sitioCarrocao } from './constants/infosPlaces';
+import { rotaSitioMuseu } from './constants/infosRoutes';
 
 function App() {
   return (

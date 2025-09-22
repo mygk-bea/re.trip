@@ -125,8 +125,7 @@ const RotaCadastro: React.FC<RotaCadastroProps> = () => {
                         <div key={location.id} className="flex items-center gap-2">
                             <IconGrab/>
                             <Card
-                                height="80px"
-                                width="75vw"
+                                className='h-[80px] w-[75vw]'
                                 nameBackground={location.image}
                                 title={location.name}
                                 isTags={location.tags.length > 0}

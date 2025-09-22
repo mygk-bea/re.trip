@@ -8,7 +8,8 @@ import StarRating from '../../../components/StarRating';
 import Tag from '../../../components/Tag';
 import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
-import IconChat from '../../../assets/icons/icon-chat';4
+import IconChat from '../../../assets/icons/icon-chat';import Card from '../../../components/Card';
+4
 
 interface InfoLocalProps {
   place: Place;
@@ -95,20 +96,32 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place }) => {
           {place.routes && place.routes.length > 0 && (
             <div className={`${styled.rotas} mt-4`}>
               <p><span>Rotas:</span></p>
-              <ul className="list-disc list-inside ml-2">
-                {place.routes.map((route, index) => <li key={index}>{route}</li>)}
-              </ul>
+              {place.routes.map((route) => (
+              <div key={route.id} className="flex items-center gap-2">
+                <Card
+                  className='h-[80px] w-[85vw] mx-auto cursor-pointer'
+                  nameBackground={route.images[0]}
+                  title={route.name}
+                  isTags={route.locals.some(local => local.tags.length > 0)}
+                  tags={route.locals[0].tags.map(tag => tag.text)}
+                  isBlur={true}
+                  isOpacity={false}
+                  positionText="top"
+                  widthText="100%"
+                />
+              </div>
+              ))}
             </div>
           )}
 
-          {place.events && place.events.length > 0 && (
+          {/* {place.events && place.events.length > 0 && (
             <div className={`${styled.eventos} mt-4`}>
               <p><span>Eventos:</span></p>
               <ul className="list-disc list-inside ml-2">
                 {place.events.map((event, index) => <li key={index}>{event}</li>)}
               </ul>
             </div>
-          )}
+          )} */}
         </div>
       </div>
       <Menu />

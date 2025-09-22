@@ -1,6 +1,7 @@
 import type { Place } from "./place";
 
 export type RouteInfo = {
+  id: string;
   name: string;
   author: string;
   favorited: boolean;

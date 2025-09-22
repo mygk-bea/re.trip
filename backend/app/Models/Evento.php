@@ -16,6 +16,7 @@ class Evento extends Model
         'id_autor',
         'descricao',
         'endereco',
-        'cidade'
+        'cidade',
+        'imagem'
     ];
 }

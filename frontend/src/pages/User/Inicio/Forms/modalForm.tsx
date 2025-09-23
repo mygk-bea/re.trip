@@ -38,7 +38,7 @@ export default function ModalForm({ fields = [], type, isAdmin = false }: ModalF
                     type={field.type}
                     placeholder={field.placeholder}
                     onChange={handleChange}
-                    focusColor={isAdmin ? "blue" : undefined}
+                    isAdmin={isAdmin} 
                 />
             ))}
 

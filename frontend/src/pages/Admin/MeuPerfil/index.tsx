@@ -5,7 +5,7 @@ import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import IconPin from "../../../assets/icons/icon-pin";
-// import logoAdmin from '../../../assets/images/logo/logo_admin.png';
+import logoAdmin from '../../../assets/images/logo/logo_admin.png';
 
 // import IconEvent from "../../../assets/icons/icon-event";
 // import IconPark from "../../../assets/icons/icon-park";
@@ -41,12 +41,12 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     <div className="w-10 h-10"></div>
                 </div>
 
-                <div className="flex flex-col items-center mb-5 lg:mb-5 mt-5 lg:mt-20">
-                    {/* <img
+                <div className="flex flex-col items-center mb-5 lg:mb-10 mt-3 lg:mt-30">
+                    <img
                         src={logoAdmin}
                         alt="Logo Admin"
                         className="w-65 h-30 justify-center object-cover"
-                    /> */}
+                    />
                 </div>
 
 

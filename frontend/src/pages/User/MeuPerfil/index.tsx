@@ -59,15 +59,15 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     <div className="w-10 h-10"></div>
                 </div>
 
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center pt-1 lg:pt-30">
                     <div
-                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-6 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-3 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
                         onClick={handleClick}
                     >
                         {image ? (
                             <img src={image} alt="Avatar" className="w-full h-full object-cover" />
                         ) : (
-                            <IconAvatar class="w-[5rem] h-[5rem] ml-4 fill-white opacity-70" />
+                            <IconAvatar class="w-[5rem] h-[5rem] ml-[13px] fill-white opacity-70" />
                         )}
                     </div>
 

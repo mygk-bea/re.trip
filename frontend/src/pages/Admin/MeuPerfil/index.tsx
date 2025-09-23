@@ -4,9 +4,13 @@ import Menu from "../../../components/Menu";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
-import logoAdmin from '../../../assets/images/logo/logo_admin.png';
-import IconEvent from "../../../assets/icons/icon-event";
-import IconPark from "../../../assets/icons/icon-park";
+import IconPin from "../../../assets/icons/icon-pin";
+// import logoAdmin from '../../../assets/images/logo/logo_admin.png';
+
+// import IconEvent from "../../../assets/icons/icon-event";
+// import IconPark from "../../../assets/icons/icon-park";
+
+import styled from './MeuPerfil.module.scss';
 
 interface MeuPerfilProps {
     type: string;
@@ -38,11 +42,11 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                 </div>
 
                 <div className="flex flex-col items-center mb-5 lg:mb-5 mt-5 lg:mt-20">
-                    <img
+                    {/* <img
                         src={logoAdmin}
                         alt="Logo Admin"
                         className="w-65 h-30 justify-center object-cover"
-                    />
+                    /> */}
                 </div>
 
 
@@ -62,7 +66,8 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     title="Meus Locais"
                     positionItems="start"
                     fontFamily="Rubik"
-                    icon={IconPark}
+                    icon={IconPin}
+                    svgClass={styled.icon}
                     fontWeight='normal'
                     onClick={() => navigate("/admin/meu-perfil/meus-locais")}
                 />
@@ -78,7 +83,7 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     title="Meus Eventos"
                     positionItems="start"
                     fontFamily="Rubik"
-                    icon={IconEvent}
+                    icon={IconPin}
                     fontWeight='normal'
                     onClick={() => navigate("/admin/meu-perfil/meus-eventos")}
                 />

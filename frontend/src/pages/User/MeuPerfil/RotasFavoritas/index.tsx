@@ -11,11 +11,11 @@ const RotasFavoritas: React.FC = () => {
         <div className="relative">
             <div className="fixed top-0 left-0 w-full p-6 flex items-center">
                 <div className="cursor-pointer" onClick={() => navigate(-1)}>
-                    <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
+                    <IconArrowChevron class="w-10 h-10 stroke-[var(--color-primary-user)] transform rotate-90" />
                 </div>
 
                 <div className="flex-1 flex justify-center">
-                    <div className={`text-[#FF7022] font-bold text-[32px] `} style={{ fontFamily: "'Madimi One', sans-serif" }}>
+                    <div className={`text-[var(--color-primary-user)] font-bold text-[32px] `} style={{ fontFamily: "'Madimi One', sans-serif" }}>
                         Rotas Favoritas
                     </div>
                 </div> 

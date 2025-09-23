@@ -4,8 +4,8 @@
   overflow: auto;
 
   .step {
-    border-color: #FF7022;
-    color: #FF7022;
+    border-color: var(--color-primary-user);
+    color: var(--color-primary-user);
     font-weight: 500;
     height: 40px;
     min-width: 40px;
@@ -13,24 +13,24 @@
     .icon {
       & > svg {
         & > path {
-          fill: #FF7022;
+          fill: var(--color-primary-user);
         }
       }
     
       &.pin {
         width: 24px;
         height: 24px;
-        fill: #FF7022;
+        fill: var(--color-primary-user);
       }
     }
 
     .completed {
-      color: #FFF;
+      color: var(--color-light);
 
       &.icon {
         & > svg {
           & > path {
-            fill: #FFF;
+            fill: var(--color-light);
           }
         }
       }
@@ -39,6 +39,6 @@
   
   .line {
     margin: 0 5px;
-    border-top: 2px dotted #FF7022;
+    border-top: 2px dotted var(--color-primary-user);
   }
 }

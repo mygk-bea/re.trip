@@ -44,12 +44,12 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
             <div className="relative">
                 <div className="fixed top-0 left-0 w-full p-6 flex items-center z-50 lg:p-10">
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
-                        <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
+                        <IconArrowChevron class="w-10 h-10 stroke-[var(--color-primary-user)] transform rotate-90" />
                     </div>
 
                     <div className="flex-1 flex justify-center">
                         <div
-                            className="text-[#FF7022] font-bold text-[32px]"
+                            className="text-[var(--color-primary-user)] font-bold text-[32px]"
                             style={{ fontFamily: "'Madimi One', sans-serif" }}
                         >
                             {call}
@@ -61,7 +61,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
                 <div className="flex flex-col items-center">
                     <div
-                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-6 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="w-30 h-30 bg-[var(--color-primary-user)] rounded-full mb-6 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
                         onClick={handleClick}
                     >
                         {image ? (
@@ -81,16 +81,16 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     />
                 </div>
 
-                <div className={`text-[#FF7022] text-center font-bold text-[32px]`}>{username}</div>
+                <div className={`text-[var(--color-primary-user)] text-center font-bold text-[32px]`}>{username}</div>
                 <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
             </div>
 
             <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
                 <Button
-                    colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorIcon="var(--color-primary-user)"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
+                    colorShadow="var(--color-primary-user)"
                     height="50px"
                     width="100%"
                     isAdm={false}
@@ -103,10 +103,10 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 />
 
                 <Button
-                    colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorIcon="var(--color-primary-user)"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
+                    colorShadow="var(--color-primary-user)"
                     height="50px"
                     width="100%"
                     isAdm={false}
@@ -119,10 +119,10 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 />
 
                 <Button
-                    colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorIcon="var(--color-primary-user)"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
+                    colorShadow="var(--color-primary-user)"
                     height="50px"
                     width="100%"
                     isAdm={false}

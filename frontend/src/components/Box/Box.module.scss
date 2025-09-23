@@ -3,10 +3,10 @@
     border: 1px solid #FFEE71;
     text-align: left;
     .label{
-        color: #FF7022;
+        color: var(--color-primary-user);
         font-weight: 600;
     }
     .text{
-        color: black;
+        color: var(--color-dark);
     }
 }

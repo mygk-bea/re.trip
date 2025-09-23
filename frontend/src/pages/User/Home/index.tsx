@@ -82,7 +82,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             <div className="font-bold text-[32px] text-left mx-10 mb-6">
                 <span>Olá, {call} </span>
                 <br />
-                <span className="text-[#FF7022]">{username}</span>!
+                <span className="text-[var(--color-primary-user)]">{username}</span>!
             </div>
 
             {/* Categorias */}
@@ -92,7 +92,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Locais para</span>
-                    <span className="text-[#FF7022]"> Explorar</span> perto de você:
+                    <span className="text-[var(--color-primary-user)]"> Explorar</span> perto de você:
                 </div>
                 <Carousel items={localPlaceItems} visibleCount={isLg ? 3 : 2} />
             </div>
@@ -101,7 +101,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Cidades da</span>
-                    <span className="text-[#FF7022]"> Região</span>:
+                    <span className="text-[var(--color-primary-user)]"> Região</span>:
                 </div>
                 <Carousel items={regionCityItems} visibleCount={isLg ? 3 : 2} />
             </div>
@@ -110,7 +110,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             <div className="mt-6">
                 <div className="font-bold text-[20px] text-left mx-9 mt-3 mb-2">
                     <span>Rotas</span>
-                    <span className="text-[#FF7022]"> Compartilhadas</span>:
+                    <span className="text-[var(--color-primary-user)]"> Compartilhadas</span>:
                 </div>
                 <Carousel items={sharedRouteItems} visibleCount={isLg ? 3 : 2} />
             </div>

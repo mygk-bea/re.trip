@@ -45,7 +45,7 @@ const Stepper: React.FC<StepperProps> = ({ steps, currentStep, startIcon }) => {
             <div
               ref={(el) => { stepRefs.current[index] = el; }}
               className={`${styled.step} relative flex items-center justify-center w-[40px] h-[40px] rounded-full border-1 snap-center`}
-              style={{ backgroundColor: isCompleted ? '#FF7022' : '#FFF' }}
+              style={{ backgroundColor: isCompleted ? 'var(--color-primary-user)' : '#FFF' }}
             >
               {index === 0 && startIcon ? (
                 <span className={`${isCompleted ? styled.completed : ''} ${styled.icon}`}>

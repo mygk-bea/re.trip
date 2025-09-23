@@ -28,12 +28,12 @@ const Inicio: React.FC<InicioProps> = () => {
                 </div>
             </div>
             <div className={`${styled.content} w-[90.1vw] lg:w-[35vw] flex flex-col items-center gap-[4.2vh]`}>
-                <h1 className={`${styled.title} font-[Madimi_One] text-[#ff7022ff] hidden lg:block`}>Re.Trip</h1>
+                <h1 className={`${styled.title} font-[Madimi_One] text-[var(--color-primary-user)] hidden lg:block`}>Re.Trip</h1>
 
                 <Button
-                    colorText="#fff9f6"
-                    backgroundColor="#ff7022ff"
-                    colorShadow="#dd3603"
+                    colorText="var(--color-light)"
+                    backgroundColor="var(--color-primary-user)"
+                    colorShadow="var(--color-shadow-user)"
                     height="60px"
                     width="100%"
                     isAdm={false}
@@ -44,9 +44,9 @@ const Inicio: React.FC<InicioProps> = () => {
                     onClick={() => navigate("/criar-conta")}
                 />
                 <Button
-                    colorText="#ff7022"
+                    colorText="var(--color-primary-user)"
                     backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
+                    colorShadow="var(--color-primary-user)"
                     height="60px"
                     width="100%"
                     isAdm={false}

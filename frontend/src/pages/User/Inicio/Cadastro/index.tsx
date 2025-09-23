@@ -53,7 +53,7 @@ const Cadastro: React.FC<CadastroProps> = () => {
             mx-auto
             `}
         >
-            <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Cadastre-se</h1>
+            <h1 className={`${styled_page.title} font-[Madimi_One] text-[var(--color-primary-user)]`}>Cadastre-se</h1>
             <ModalForm fields={fields} type="cadastro"/>
         </div>
     )

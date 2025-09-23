@@ -30,7 +30,7 @@ const Login: React.FC<LoginProps> = () => {
             mx-auto
             `}
         >
-            <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Bem-vindo!</h1>
+            <h1 className={`${styled_page.title} font-[Madimi_One] text-[var(--color-primary-user)]`}>Bem-vindo!</h1>
             <ModalForm fields={fields} />
         </div>
     )

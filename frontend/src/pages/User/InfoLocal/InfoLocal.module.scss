@@ -1,7 +1,7 @@
 div {
   p {
     span {
-      color: #FF7022;
+      color: var(--color-primary-user);
       font-weight: bold;
     }
   }
@@ -66,9 +66,9 @@ div {
         width: 40px;
         height: 40px;
         &.fill{
-          fill: #ff7518;
+          fill: var(--color-primary-user);
           path{
-            stroke: #ff7518;
+            stroke: var(--color-primary-user);
           }
         }
       }

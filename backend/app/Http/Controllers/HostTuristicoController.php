@@ -9,9 +9,9 @@ use App\Models\HostTuristico;
 class HostTuristicoController extends Controller
 {
     public function store(Request $request){
-        $usuario = new HostTurisco();
+        $usuario = new HostTuristico();
         $usuario->nome = $request->input('nome');
-        $usuario->genero = $request->input('cpf');
+        $usuario->cpf = $request->input('cpf');
         $usuario->dataNascimento = $request->input('dataNascimento');
         $usuario->email = $request->input('email');
         $usuario->senha = $request->input('senha');

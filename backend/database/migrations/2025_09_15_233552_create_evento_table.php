@@ -15,10 +15,13 @@ class CreateEventoTable extends Migration
     {
         Schema::create('evento', function (Blueprint $table) {
             $table->id('codEvento');
-            $table->dateTime('data_hora');
+            $table->date('data');
+            $table->time('hora');
             $table->integer('id_autor');
             $table->string('descricao');
-            $table->boolean('endereco');
+            $table->string('logradouro');
+            $table->string('bairro');
+            $table->string('numero');
             $table->string('cidade');
             $table->string('imagem');
             $table->timestamps();

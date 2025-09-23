@@ -13,6 +13,13 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+
+// Rotas de cadastro
+$router->post('/cadastro-usuario-comum', 'UsuarioComumController@store');
+$router->post('/cadastro-administrador', 'AdministradorController@store');
+$router->post('/cadastro-host-turistico', 'HostTuristicoController@store');
+$router->post('/cadastro-promotor-turistico', 'PromotorTuristicoController@store');
+$router->post('/cadastro-evento', 'EventoController@store');

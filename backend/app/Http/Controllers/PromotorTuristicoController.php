@@ -11,7 +11,7 @@ class PromotorTuristicoController extends Controller
     public function store(Request $request){
         $usuario = new PromotorTuristico();
         $usuario->nome = $request->input('nome');
-        $usuario->genero = $request->input('cpf');
+        $usuario->cpf = $request->input('cpf');
         $usuario->dataNascimento = $request->input('dataNascimento');
         $usuario->email = $request->input('email');
         $usuario->senha = $request->input('senha');

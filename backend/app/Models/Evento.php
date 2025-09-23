@@ -12,10 +12,13 @@ class Evento extends Model
 
     protected $fillable = [
         'codEvento',
-        'data_hora',
+        'data',
+        'hora',
         'id_autor',
         'descricao',
-        'endereco',
+        'logradouro',
+        'bairro',
+        'numero',
         'cidade',
         'imagem'
     ];

@@ -16,7 +16,9 @@ class CreateLocalTable extends Migration
         Schema::create('local', function (Blueprint $table) {
             $table->id('codLocal');
             $table->string('nome');
-            $table->string('endereco');
+            $table->string('logradouro');
+            $table->string('bairro');
+            $table->string('numero');
             $table->string('telefone');
             $table->string('imagem');
             $table->string('cidade');

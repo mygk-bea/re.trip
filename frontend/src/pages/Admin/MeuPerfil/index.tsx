@@ -3,12 +3,12 @@ import IconLogout from "../../../assets/icons/icon-exit";
 import Menu from "../../../components/Menu";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import IconPin from "../../../assets/icons/icon-pin";
-import logoAdmin from '../../../assets/images/logo/logo_admin.png';
+import IconEvent from "../../../assets/icons/icon-event";
 
-// import IconEvent from "../../../assets/icons/icon-event";
-// import IconPark from "../../../assets/icons/icon-park";
+import logoAdmin from '../../../assets/images/logo/logo_admin.png';
 
 import styled from './MeuPerfil.module.scss';
 
@@ -67,7 +67,7 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     positionItems="start"
                     fontFamily="Rubik"
                     icon={IconPin}
-                    svgClass={styled.icon}
+                    svgClass={styled.icon__pin}
                     fontWeight='normal'
                     onClick={() => navigate("/admin/meu-perfil/meus-locais")}
                 />
@@ -83,7 +83,8 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     title="Meus Eventos"
                     positionItems="start"
                     fontFamily="Rubik"
-                    icon={IconPin}
+                    icon={IconEvent}
+                    svgClass={styled.icon__event}
                     fontWeight='normal'
                     onClick={() => navigate("/admin/meu-perfil/meus-eventos")}
                 />

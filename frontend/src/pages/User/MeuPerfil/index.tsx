@@ -88,7 +88,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
             <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"
@@ -104,23 +104,23 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    title="Rotas Favoritas"
+                    title="Favoritos"
                     positionItems="start"
                     fontFamily="Rubik"
                     icon={IconHeart}
                     fontWeight='normal'
-                    onClick={() => navigate("/user/meu-perfil/rotas-favoritas")}
+                    onClick={() => navigate("/user/meu-perfil/favoritos")}
                 />
 
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"

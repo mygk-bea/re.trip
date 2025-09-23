@@ -20,6 +20,7 @@ class CreateEventoTable extends Migration
             $table->string('descricao');
             $table->boolean('endereco');
             $table->string('cidade');
+            $table->string('imagem');
             $table->timestamps();
         });
     }

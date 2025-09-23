@@ -9,14 +9,23 @@
 
 [data-admin="false"] .fillActive {
   .icon {
-    &.fill { path { fill: rgb(255, 112, 34); } }
-    &.stroke { path { stroke: rgb(255, 112, 34); } }
+    &.fill { path { fill: var(--color-primary-user); } }
+    &.stroke { path { stroke: var(--color-primary-user); } }
   }
 }
 
 [data-admin="true"] .fillActive {
   .icon {
-    &.fill { path { fill: rgb(34, 156, 255); } } // cor alternativa
-    &.stroke { path { stroke: rgb(34, 156, 255); } }
+    &.fill { path { fill: var(--color-primary-admin); } }
+    &.stroke { path { stroke: var(--color-primary-admin); } }
+  }
+}
+
+.pin {
+  width: 35px;
+  height: 35px;
+  path {
+    stroke-width: 2.5;
+    fill: none;
   }
 }

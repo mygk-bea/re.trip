@@ -39,9 +39,10 @@
 .checkbox {
     label {
         font-weight: bold;
-        input {
+        input[type="checkbox"] { 
             width: 25px;
             height: 25px;
+            accent-color: #ff7022; 
         }
     }
 }

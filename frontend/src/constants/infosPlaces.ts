@@ -14,3 +14,5 @@ export const museuPauloSetubal: Place = {
   routes: [rotaSitioMuseu],
   events: [],
 };
+
+export const allPlaces: Place[] = [museuPauloSetubal, sitioCarrocao];

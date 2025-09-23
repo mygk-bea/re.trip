@@ -32,10 +32,10 @@ function App() {
         <Route path="/user/meu-perfil/rotas-favoritas" element={<RotasFavoritas />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
         <Route path="/user/local/info" element={<InfoLocal place={sitioCarrocao} />} />
-        <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
-        <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
+        <Route path="/user/rota/cadastro" element={<RotaCadastro  />} />
         <Route path="/user/rota/info" element={<RotaInfo route={rotaSitioMuseu} />} />
         <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
+        <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
         <Route path="/user/home" element={<Home username='Username' call='aventureiro(a)'/>} />
         <Route path="/user/pesquisar" element={<Pesquisar />} />
       </Routes>

@@ -4,7 +4,9 @@ import styled_page from '../Forms/Form.module.scss';
 import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
 
-interface LoginProps {}
+interface LoginProps {
+    isAdmin?: boolean;
+}
 
 const fields: Field[] = [
     {
@@ -21,7 +23,7 @@ const fields: Field[] = [
     },
 ];
 
-const Login: React.FC<LoginProps> = () => {
+const Login: React.FC<LoginProps> = ({ isAdmin }) => {
     const modalForm = (
         <div className={`${styled_page.modal} 
             p-[3.2vh_25px]
@@ -30,10 +32,20 @@ const Login: React.FC<LoginProps> = () => {
             mx-auto
             `}
         >
-            <h1 className={`${styled_page.title} font-[Madimi_One] text-[#ff7022ff]`}>Bem-vindo!</h1>
-            <ModalForm fields={fields} />
+            <h1 className={`
+                    ${styled_page.title} 
+                    font-[Madimi_One] 
+                    ${isAdmin ? "text-[#229CFF]" : "text-[#ff7022ff]"}
+                `}>
+                Bem-vindo!
+            </h1>
+            <ModalForm fields={fields} isAdmin={isAdmin} />
         </div>
-    )
+    );
+
+    const shadowColorClass = isAdmin
+        ? 'lg:shadow-[-10px_20px_0_20px_rgba(34,156,255,1)]'
+        : 'lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]';
 
     return (
         <div className={`${styled.container} 
@@ -43,22 +55,26 @@ const Login: React.FC<LoginProps> = () => {
         >
             <div className="lg:w-1/2 flex justify-center">
                 <div className={`${styled.backgroundTitle} 
-                    h-screen w-screen lg:w-[50vw]
-                    overflow-hidden 
-                    lg:rounded-b-[0] lg:rounded-br-[500px]
-                    bg-center bg-no-repeat bg-[auto_115%]
-                    lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]`}
+                h-[63vh] w-[900px] lg:w-[50vw] lg:h-[100vh] 
+                overflow-hidden 
+                rounded-b-[500px] lg:rounded-b-[0] lg:rounded-br-[500px]
+                bg-center bg-no-repeat bg-[auto_115%]
+                ${shadowColorClass}`}
                 >
                     <div className={`${styled.overlay} h-full w-full flex flex-col justify-center align-center lg:justify-start relative`}>
                         <h1 className={`${styled.title} ${styled_page.logo} 
                             font-[Madimi_One] text-[#FFF] 
                             z-[2] absolute left-1/2 -translate-x-1/2 top-[5vh] 
-                            lg:pt-[10vh]`}>Re.Trip</h1>
-                        <div className="block lg:hidden z-[2] max-h-[80vh] mt-[5vh] lg:mt-0 overflow-y-auto bg-[#FFF] rounded-[50px] mx-auto">{modalForm}</div>
+                            lg:pt-[10vh]`}>
+                            Re.Trip
+                        </h1>
+                        <div className="block lg:hidden z-[2] max-h-[80vh] mt-[5vh] lg:mt-0 overflow-y-auto bg-[#FFF] rounded-[50px] mx-auto">
+                            {modalForm}
+                        </div>
                     </div>
-
                 </div>
             </div>
+
             <div className={`${styled.content} w-[90.1vw] lg:w-[35vw] flex flex-col items-center gap-[4.2vh]`}>
                 <div className="hidden lg:block z-[2]">{modalForm}</div>
             </div>

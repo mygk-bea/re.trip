@@ -16,6 +16,7 @@ import Pesquisar from './pages/User/Pesquisar';
 import MeuPerfilAdmin from './pages/Admin/MeuPerfil';
 import MeusLocais from './pages/Admin/MeuPerfil/MeusLocais';
 import MeusEventos from './pages/Admin/MeuPerfil/MeusEventos';
+import CadastroLocalEvento from './pages/Admin/CadLocalEvento';
 
 function App() {
 
@@ -50,10 +51,11 @@ function App() {
         <Route path="/admin/inicio" element={<Inicio isAdmin={true} />} />
         <Route path="/admin/criar-conta" element={<Cadastro isAdmin={true} />} />
         <Route path="/admin/login" element={<Login isAdmin={true} />} />
-        <Route path="/admin/meu-perfil" element={<MeuPerfilAdmin type='Administrador' username='Username Admin'/>} />
-        <Route path="/admin/meu-perfil/meus-locais" element={<MeusLocais/>} />
-        <Route path="/admin/meu-perfil/meus-eventos" element={<MeusEventos/>} />
-
+        <Route path="/admin/meu-perfil" element={<MeuPerfilAdmin type='Administrador' username='Username Admin' />} />
+        <Route path="/admin/meu-perfil/meus-locais" element={<MeusLocais />} />
+        <Route path="/admin/meu-perfil/meus-eventos" element={<MeusEventos />} />
+        <Route path="/admin/cad-local" element={<CadastroLocalEvento tipo="local" isAdmin={true} />} />
+        <Route path="/admin/cad-evento" element={<CadastroLocalEvento tipo="evento" isAdmin={true} />} />
 
       </Routes>
     </>

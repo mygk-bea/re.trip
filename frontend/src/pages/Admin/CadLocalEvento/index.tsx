@@ -13,6 +13,7 @@ import IconUpload from "../../../assets/icons/icon-upload";
 
 // Constantes
 import { categories, localPlaces } from "../../../constants/infos";
+import MultiSelect from "./MultiSelect";
 
 interface CadastroProps {
   isAdmin?: boolean;
@@ -26,8 +27,8 @@ type FormData = {
   telefone: string;
   data: string;
   hora: string;
-  localId: string;
-  categoriaId: string;
+  localId: string[];
+  categoriaId: string[];
   cep: string;
   logradouro: string;
   numero: string;
@@ -74,8 +75,8 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
     telefone: "",
     data: "",
     hora: "",
-    localId: "",
-    categoriaId: "",
+    localId: [],
+    categoriaId: [],
     cep: "",
     logradouro: "",
     numero: "",
@@ -84,11 +85,19 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
   });
 
   // Função genérica para atualizar o estado do formulário com máscaras
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (e: { target: { name: string; value: any } }) => {
     const { name, value } = e.target;
+
+    // Aplica máscara apenas se for um campo que tem máscara definida
     const maskedValue = applyMask(name, value);
-    setFormData(prev => ({ ...prev, [name]: maskedValue }));
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: maskedValue,
+    }));
   };
+
+
 
   // Função para lidar com o upload de arquivos
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,20 +117,29 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
   const pageTitle = tipo === "local" ? "Novo Local" : "Novo Evento";
 
   return (
-    <div className="flex flex-col min-h-screen bg-white pb-24">
+    <div className="flex flex-col min-h-screen bg-white pb-24 ">
       <header className="relative flex flex-col items-center pt-8 pb-4">
-        <button onClick={handleBack} className="absolute top-8 left-4 text-gray-800">
-          <IconArrowChevron class="w-6 h-6" />
+        <button onClick={handleBack} className="absolute top-8 left-4 cursor-pointer">
+          <IconArrowChevron class="w-6 h-6 stroke-black transform rotate-90" />
         </button>
         <img src={logoAdmin} alt="Re.Trip Logo" className="h-20 w-auto" />
-        <h1 className="text-2xl font-bold text-blue-500 mt-2">{pageTitle}</h1>
+        <h1 className="text-2xl font-bold text-[#229CFF] mt-2">{pageTitle}</h1>
       </header>
 
       <main className="flex-grow px-6">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <h2 className="text-xl font-bold text-blue-500 mb-2">Informações Gerais</h2>
+        <form onSubmit={handleSubmit} className="mx-auto w-full max-w-5xl p-6 grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8"
+        >
 
-          <Input label="Nome" type="text" name="nome" value={formData.nome} onChange={handleChange} placeholder="Insira o nome..." isAdmin={isAdmin} />
+          <div className="col-span-1 lg:col-span-2">
+
+            <h2 className="text-xl font-bold text-[#229CFF] mb-2">Informações Gerais</h2>
+          </div>
+
+
+          <div className="col-span-1 lg:col-span-2">
+
+            <Input label="Nome" type="text" name="nome" value={formData.nome} onChange={handleChange} placeholder="Insira o nome..." isAdmin={isAdmin} />
+          </div>
 
           {tipo === "local" && (
             <>
@@ -131,7 +149,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
           )}
 
           {tipo === "evento" && (
-            <div className="flex gap-4">
+            <div className="flex gap-4 col-span-1 lg:col-span-2">
               <Input
                 label="Data"
                 type="date"
@@ -153,47 +171,57 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
             </div>
           )}
 
-          <Input label="Descrição" type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder="Fale sobre a rota" isAdmin={isAdmin} />
+          <div className="col-span-1 lg:col-span-2">
+
+            <Input label="Descrição" type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder="Fale sobre a rota" isAdmin={isAdmin} />
+          </div>
 
           {tipo === "evento" && (
             <div className="w-full">
               <label className="block font-semibold mb-1 text-black text-left">Local</label>
-              <select name="localId" value={formData.localId} onChange={handleChange} className="w-full border-b border-gray-400 focus:outline-none pb-2 pl-3 text-gray-500 bg-white">
-                <option value="">Selecione...</option>
-                {localPlaces.map(local => <option key={local.id} value={local.id}>{local.title}</option>)}
-              </select>
+              <MultiSelect
+                name="localId"
+                options={localPlaces}
+                selected={formData.localId ?? []}
+                onChange={handleChange}
+              />
             </div>
           )}
 
           <div className="w-full">
             <label className="block font-semibold mb-1 text-black text-left">Categorias</label>
-            <select name="categoriaId" value={formData.categoriaId} onChange={handleChange} className="w-full border-b border-gray-400 focus:outline-none pb-2 pl-3 text-gray-500 bg-white">
-              <option value="">Selecione...</option>
-              {categories.map(cat => <option key={cat.id} value={cat.id}>{cat.title}</option>)}
-            </select>
+            <MultiSelect
+              name="categoriaId"
+              options={categories}
+              selected={formData.categoriaId ?? []}
+              onChange={handleChange}
+            />
           </div>
 
           {tipo === "local" && (
             <>
-              <h2 className="text-xl font-bold text-blue-500 mt-4 mb-2">Endereço</h2>
-              <Input label="CEP" type="text" name="cep" value={formData.cep} onChange={handleChange} placeholder="00000-000" isAdmin={isAdmin} />
-              <Input label="Logradouro" type="text" name="logradouro" value={formData.logradouro} onChange={handleChange} placeholder="Rua, Av, Al..." isAdmin={isAdmin} />
-              <Input label="Número" type="text" name="numero" value={formData.numero} onChange={handleChange} placeholder="000" isAdmin={isAdmin} />
-              <Input label="Bairro" type="text" name="bairro" value={formData.bairro} onChange={handleChange} placeholder="Vila, Grupo..." isAdmin={isAdmin} />
+              <div className="col-span-1 lg:col-span-2">
+                <h2 className="text-xl font-bold text-[#229CFF] mt-4 mb-2">Endereço</h2>
+                <Input label="CEP" type="text" name="cep" value={formData.cep} onChange={handleChange} placeholder="00000-000" isAdmin={isAdmin} />
+                <Input label="Logradouro" type="text" name="logradouro" value={formData.logradouro} onChange={handleChange} placeholder="Rua, Av, Al..." isAdmin={isAdmin} />
+                <Input label="Número" type="text" name="numero" value={formData.numero} onChange={handleChange} placeholder="000" isAdmin={isAdmin} />
+                <Input label="Bairro" type="text" name="bairro" value={formData.bairro} onChange={handleChange} placeholder="Vila, Grupo..." isAdmin={isAdmin} />
+                <Input label="Cidade" type="text" name="cidade" value={formData.bairro} onChange={handleChange} placeholder="Tatuí, Bofete..." isAdmin={isAdmin} />
+              </div>
             </>
           )}
 
           <div className="mt-4">
             <label htmlFor="file-upload" className="flex items-center justify-between w-full cursor-pointer text-lg font-semibold text-black">
               {tipo === 'local' ? 'Anexar imagens do local' : 'Anexar imagens promocionais'}
-              <IconUpload class="w-6 h-6 fill-[--color-primary-admin]" />
+              <IconUpload class="w-6 h-6 fill-[#229CFF]" />
             </label>
             <input id="file-upload" name="imagens" type="file" multiple onChange={handleFileChange} className="sr-only" />
             {formData.imagens && formData.imagens.length > 0 && <p className="text-sm text-gray-600 mt-1">{formData.imagens.length} arquivo(s) selecionado(s)</p>}
           </div>
 
-          <div className="flex justify-center mt-6">
-            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="100%" height="50px" backgroundColor="#229CFF" colorText="#FFFFFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
+          <div className="mt-6 col-span-full">
+            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="100%" height="50px" backgroundColor="#fff" colorText="#229CFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
           </div>
         </form>
       </main>

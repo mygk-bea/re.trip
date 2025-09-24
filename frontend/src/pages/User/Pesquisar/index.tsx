@@ -22,7 +22,7 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
     return (
         <div>
             <div className="w-full">
-                <div className="relative w-[100vw] mx-auto h-fit bg-[#FF8C3A] rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[45vh] shadow-md">
+                <div className="relative w-[100vw] mx-auto h-fit bg-[#FF8C3A] rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[32vh] shadow-md">
                     <div className="absolute -left-20 -top-40 w-[110vw] lg:-top-30 h-[60vh] lg:w-[60vw] lg:h-[70vh] bg-orange-500 rounded-full z-0"></div>
 
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>

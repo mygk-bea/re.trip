@@ -89,8 +89,8 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
             </div>
 
             <div>
-                <div className="font-bold text-[20px] text-left mx-9 mt-5 mb-2">
-                    <span>Rota com Meu</span>
+                <div className="font-bold text-[20px] text-left mx-9 mt-8 mb-2">
+                    <span>Rota <span className="text-[#229CFF]">Mais Acessada</span> com Meu</span>
                     <span className="text-[#229CFF]"> Local</span>:
                 </div>
                 {sharedRoutes.length > 0 && (
@@ -110,7 +110,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                         className="underline text-right mr-9 mt-3 text-[#229CFF] cursor-pointer"
                         onClick={() => navigate("/admin/home/listagem")}
                     >
-                        Ver todas as Rotas
+                        Ver todas as Rotas com Meus Locais
                     </p>
                 </div>
             </div>

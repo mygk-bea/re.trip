@@ -45,7 +45,7 @@ const ListagemRotas: React.FC = () => {
             widthText="70px"
             isRating
             numberRating={4.1}
-            className="w-[80vw] h-[10vh] lg:w-[55vw] lg:h-[20vh]"
+            className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh]"
           />
         ))}
       </div>

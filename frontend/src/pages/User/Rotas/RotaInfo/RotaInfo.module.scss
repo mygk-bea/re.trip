@@ -1,7 +1,22 @@
+.userTheme {
+  --current-primary-color: var(--color-primary-user);
+  --current-shadow-color: var(--color-shadow-user);
+}
+
+.adminTheme {
+  --current-primary-color: var(--color-primary-admin);
+  --current-shadow-color: var(--color-secondary-admin);
+}
+
+.guiaTheme {
+  --current-primary-color: var(--color-primary-guia);
+  --current-shadow-color: var(--color-secondary-guia);
+}
+
 div {
   p {
     span {
-      color: #FF7022;
+      color: var(--current-primary-color);
       font-weight: bold;
     }
   }
@@ -21,10 +36,10 @@ div {
       inset: 0;
       backdrop-filter: blur(4px);
 
-      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 25%);
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 50%);
       -webkit-mask-repeat: no-repeat;
       -webkit-mask-size: cover;
-      mask-image: linear-gradient(to top, black 0%, transparent 25%);
+      mask-image: linear-gradient(to top, black 0%, transparent 50%);
       mask-repeat: no-repeat;
       mask-size: cover;
       pointer-events: none;
@@ -47,31 +62,17 @@ div {
     }
 
     .bottom {
-      .warningVerification {
-        .text {
-          font-size: 1rem;
-          font-family: 'Rubik', sans-serif;
-          font-weight: bold;
-        }
-
-        .verify{
-          width: 30px;
-          height: 30px;
-          path{
-            stroke: #47E417;
-          }
-        }
-      }
       .title {
         font-size: 2.5rem;
       }
+
       .heart{
         width: 40px;
         height: 40px;
         &.fill{
-          fill: #ff7518;
+          fill: var(--current-primary-color);
           path{
-            stroke: #ff7518;
+            stroke: var(--current-primary-color);
           }
         }
       }
@@ -80,7 +81,7 @@ div {
 
   .icon {
     path {
-      stroke: #FF7022;
+      stroke: var(--current-primary-color);
     }
   }
 }
@@ -88,26 +89,19 @@ div {
 .content{
   font-family: 'Rubik', sans-serif;
 
-  .contact {
-    .chat {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
   .item {
     .number{ 
       border-radius: 100%;
       font-size: 1rem;
       font-weight: 500;
-      color:#FF7022;
-      background-color: #FFF;
-      border: 1px solid #FF7022;
+      color:var(--current-primary-color);
+      background-color: var(--color-light);
+      border: 1px solid var(--current-primary-color);
   
       &::before {
         content: "";
         display: block;
-        border: 1px dashed #FF7022;
+        border: 1px dashed var(--current-primary-color);
         position: absolute;
         top: 140%;
         height: 55px;
@@ -117,8 +111,8 @@ div {
 
     &:first-child {
       .number {
-        color:#FFF;
-        background-color: #FF7022;
+        color:var(--color-light);
+        background-color: var(--current-primary-color);
       }
     }
 

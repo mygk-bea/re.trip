@@ -42,7 +42,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
     return (
         <>
             <div className="relative">
-                <div className="flex items-center mb-6 relative w-full mt-5 ">
+                <div className="flex items-center mb-6 relative w-full lg:-mt-50 -mt-20 mb-10 ">
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
                         <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
                     </div>

@@ -41,7 +41,7 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     <div className="w-10 h-10"></div>
                 </div>
 
-                <div className="flex flex-col items-center mb-5 lg:mb-10 mt-3 lg:mt-30">
+                <div className="flex flex-col items-center mb-5 lg:mb-10 mt-3">
                     <img
                         src={logoAdmin}
                         alt="Logo Admin"

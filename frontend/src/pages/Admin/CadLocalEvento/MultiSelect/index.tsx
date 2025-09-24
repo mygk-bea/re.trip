@@ -26,8 +26,8 @@ const MultiSelect = ({ options, name, selected, onChange }: MultiSelectProps) =>
         onChange({ target: { name, value: newSelected } });
     };
 
-    const clearAll = () => {
-        onChange({ target: { name, value: [] } });
+    const closeDropdown = () => {
+        setOpen(false);
     };
 
     return (
@@ -48,55 +48,34 @@ const MultiSelect = ({ options, name, selected, onChange }: MultiSelectProps) =>
 
                 {/* Ícone do lado direito */}
                 <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
-                    {open ? (
-                        selected.length >= 0 && (
-                            <button
-                                onClick={(e) => { e.stopPropagation(); clearAll(); }}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                                </svg>
-                            </button>
-                        )
-                    ) : (
-                        <IconArrowChevron class="w-5 h-5 stroke-black" />
-                    )}
+                    <IconArrowChevron class="w-5 h-5 stroke-black" />
                 </div>
             </div>
-
 
             {/* Dropdown */}
             {open && (
                 <div className="absolute left-0 w-full bg-white border rounded shadow max-h-48 overflow-y-auto z-10 flex flex-col">
-                    {/* X no dropdown */}
-                    {selected.length > 0 && (
-                        <div className="flex justify-end px-2 pt-2">
-                            <button
-                                type="button"
-                                onClick={clearAll}
-                                className="text-gray-400 hover:text-gray-600 text-sm"
-                            >
-                                {open
-                                    ? selected.length > 0 && (
-                                        <button onClick={(e) => { e.stopPropagation(); clearAll(); }}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
-                                            </svg>
-                                        </button>
-                                    )
-                                    : <IconArrowChevron class="w-5 h-5 stroke-black" />
-                                }
+                    {/* Topo do dropdown com X */}
+                    <div className="flex justify-end px-2 pt-2 gap-2">
+                        {/* Botão fechar */}
+                        <button
+                            type="button"
+                            onClick={(e) => { e.stopPropagation(); closeDropdown(); }}
+                            className="text-gray-400 hover:text-gray-600 text-sm"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 hover:text-gray-700" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                        </button>
+                    </div>
 
-                            </button>
-                        </div>
-                    )}
+                    {/* Opções */}
                     {options.map(option => {
                         const isSelected = selected.includes(option.id);
                         return (
                             <label
                                 key={option.id}
-                                className={`flex items-center px-3 py-2 cursor-pointer hover:bg-gray-100 ${isSelected ? 'bg-blue-50' : 'bg-white'
-                                    }`}
+                                className={`flex items-center px-3 py-2 cursor-pointer hover:bg-gray-100 ${isSelected ? 'bg-blue-50' : 'bg-white'}`}
                             >
                                 <div className="relative mr-2 w-5 h-5 border border-gray-400 rounded">
                                     <input
@@ -115,8 +94,6 @@ const MultiSelect = ({ options, name, selected, onChange }: MultiSelectProps) =>
                             </label>
                         );
                     })}
-
-
                 </div>
             )}
         </div>

@@ -42,7 +42,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
     return (
         <>
             <div className="relative">
-                <div className="fixed top-0 left-0 w-full p-6 flex items-center z-50 lg:p-10">
+                <div className="flex items-center mb-6 relative w-full mt-5 ">
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
                         <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
                     </div>
@@ -59,7 +59,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     <div className="w-10 h-10"></div>
                 </div>
 
-                <div className="flex flex-col items-center pt-1 lg:pt-30">
+                <div className="flex flex-col items-center">
                     <div
                         className="w-30 h-30 bg-[#FF7022] rounded-full mb-3 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
                         onClick={handleClick}
@@ -85,7 +85,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
             </div>
 
-            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-23" >
                 <Button
                     colorIcon="#ee8047"
                     colorText="#000"

@@ -17,6 +17,7 @@ import MeuPerfilAdmin from './pages/Admin/MeuPerfil';
 import MeusLocais from './pages/Admin/MeuPerfil/MeusLocais';
 import MeusEventos from './pages/Admin/MeuPerfil/MeusEventos';
 import CadastroLocalEvento from './pages/Admin/CadLocalEvento';
+import ListagemRotas from './pages/Admin/Home/ListagemRotas';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
         <Route path="/admin/cad-local" element={<CadastroLocalEvento tipo="local" isAdmin={true} />} />
         <Route path="/admin/cad-evento" element={<CadastroLocalEvento tipo="evento" isAdmin={true} />} />
         <Route path="/admin/local/info" element={<InfoLocal place={meuLugar} isAdmin/>} />
+        <Route path="/admin/home/listagem" element={<ListagemRotas/>} />
 
       </Routes>
     </>

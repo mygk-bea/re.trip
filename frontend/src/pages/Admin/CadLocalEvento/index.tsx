@@ -64,7 +64,6 @@ const applyMask = (name: string, value: string): string => {
   return value;
 };
 
-
 const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) => {
   const navigate = useNavigate();
 
@@ -96,8 +95,6 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
       [name]: maskedValue,
     }));
   };
-
-
 
   // Função para lidar com o upload de arquivos
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -171,7 +168,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
 
           <div className="col-span-1 lg:col-span-2">
 
-            <Input label="Descrição" type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder="Fale sobre a rota" isAdmin={isAdmin} />
+            <Input label="Descrição" type="text" name="descricao" value={formData.descricao} onChange={handleChange} placeholder="Fale sobre..." isAdmin={isAdmin} />
           </div>
 
           {tipo === "evento" && (
@@ -187,7 +184,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
           )}
 
           <div className="w-full">
-            <label className="block font-semibold mb-1 text-black text-left">Categorias</label>
+            <label className="block font-semibold mb- text-black text-left">Categorias</label>
             <MultiSelect
               name="categoriaId"
               options={categories}

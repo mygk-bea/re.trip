@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Componentes customizados
+// Componentes
 import Input from "../../../components/Input";
 import Button from "../../../components/Button";
 import Menu from "../../../components/Menu";
@@ -109,7 +109,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Formulário enviado:", formData);
-    // Aqui você faria a chamada para a API
+    // Aqui a chamada para a API
     navigate(isAdmin ? "/admin/home" : "/");
   };
 
@@ -120,10 +120,10 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
     <div className="flex flex-col min-h-screen bg-white pb-24 ">
       <header className="relative flex flex-col items-center pt-8 pb-4">
         <button onClick={handleBack} className="absolute top-8 left-4 cursor-pointer">
-          <IconArrowChevron class="w-6 h-6 stroke-black transform rotate-90" />
+          <IconArrowChevron class="w-10 h-10 stroke-black transform rotate-90" />
         </button>
-        <img src={logoAdmin} alt="Re.Trip Logo" className="h-20 w-auto" />
-        <h1 className="text-2xl font-bold text-[#229CFF] mt-2">{pageTitle}</h1>
+        <img src={logoAdmin} alt="Re.Trip Logo" className="h-20 w-auto mt-20" />
+        <h1 className="text-3xl mt-5 font-bold text-[#229CFF]">{pageTitle}</h1>
       </header>
 
       <main className="flex-grow px-6">
@@ -131,13 +131,11 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
         >
 
           <div className="col-span-1 lg:col-span-2">
-
-            <h2 className="text-xl font-bold text-[#229CFF] mb-2">Informações Gerais</h2>
+            <h2 className="text-2xl text-left font-bold text-[#229CFF]">Informações Gerais</h2>
           </div>
 
 
           <div className="col-span-1 lg:col-span-2">
-
             <Input label="Nome" type="text" name="nome" value={formData.nome} onChange={handleChange} placeholder="Insira o nome..." isAdmin={isAdmin} />
           </div>
 
@@ -201,7 +199,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
           {tipo === "local" && (
             <>
               <div className="col-span-1 lg:col-span-2">
-                <h2 className="text-xl font-bold text-[#229CFF] mt-4 mb-2">Endereço</h2>
+                <h2 className="text-2xl text-left font-bold text-[#229CFF] mb-8">Endereço</h2>
                 <Input label="CEP" type="text" name="cep" value={formData.cep} onChange={handleChange} placeholder="00000-000" isAdmin={isAdmin} />
                 <Input label="Logradouro" type="text" name="logradouro" value={formData.logradouro} onChange={handleChange} placeholder="Rua, Av, Al..." isAdmin={isAdmin} />
                 <Input label="Número" type="text" name="numero" value={formData.numero} onChange={handleChange} placeholder="000" isAdmin={isAdmin} />
@@ -211,17 +209,17 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
             </>
           )}
 
-          <div className="mt-4">
-            <label htmlFor="file-upload" className="flex items-center justify-between w-full cursor-pointer text-lg font-semibold text-black">
+          <div className="mt-2">
+            <label htmlFor="file-upload" className="flex items-center gap-3 cursor-pointer text-lg font-semibold text-black">
               {tipo === 'local' ? 'Anexar imagens do local' : 'Anexar imagens promocionais'}
               <IconUpload class="w-6 h-6 fill-[#229CFF]" />
             </label>
-            <input id="file-upload" name="imagens" type="file" multiple onChange={handleFileChange} className="sr-only" />
+            <input id="file-upload" name="imagens" type="file" multiple accept=".jpeg, .jpg, .png" onChange={handleFileChange} className="sr-only" />
             {formData.imagens && formData.imagens.length > 0 && <p className="text-sm text-gray-600 mt-1">{formData.imagens.length} arquivo(s) selecionado(s)</p>}
           </div>
 
-          <div className="mt-6 col-span-full">
-            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="100%" height="50px" backgroundColor="#fff" colorText="#229CFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
+          <div className="mt-3 col-span-full flex justify-center">
+            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="40%" height="50px" backgroundColor="#fff" colorText="#229CFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
           </div>
         </form>
       </main>

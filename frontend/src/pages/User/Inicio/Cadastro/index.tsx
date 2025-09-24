@@ -3,6 +3,8 @@ import styled from '../Inicio.module.scss';
 import styled_page from '../Forms/Form.module.scss';
 import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
+import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
+import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
 
 interface CadastroProps {
     isAdmin?: boolean;
@@ -71,8 +73,10 @@ const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false }) => {
     );
 
     const shadowColorClass = isAdmin
-    ? 'lg:shadow-[-10px_20px_0_20px_rgba(34,156,255,1)]'
-    : 'lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]';
+        ? 'lg:shadow-[-10px_20px_0_20px_rgba(34,156,255,1)]'
+        : 'lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]';
+
+    const backgroundImage = isAdmin ? bgAdmin : bgUser;
 
     return (
         <div
@@ -82,12 +86,13 @@ const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false }) => {
                 flex flex-col lg:flex-row items-center`}
         >
             <div className="lg:w-1/2 flex justify-center">
-            <div className={`${styled.backgroundTitle} 
+                <div className={`${styled.backgroundTitle} 
                 h-[63vh] w-[900px] lg:w-[50vw] lg:h-[100vh] 
                 overflow-hidden 
                 rounded-b-[500px] lg:rounded-b-[0] lg:rounded-br-[500px]
                 bg-center bg-no-repeat bg-[auto_115%]
                 ${shadowColorClass}`}
+                    style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}
                 >
                     <div
                         className={`${styled.overlay} 

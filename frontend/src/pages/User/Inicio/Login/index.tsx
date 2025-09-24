@@ -3,6 +3,8 @@ import styled from '../Inicio.module.scss';
 import styled_page from '../Forms/Form.module.scss';
 import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
+import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
+import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
 
 interface LoginProps {
     isAdmin?: boolean;
@@ -47,6 +49,8 @@ const Login: React.FC<LoginProps> = ({ isAdmin }) => {
         ? 'lg:shadow-[-10px_20px_0_20px_rgba(34,156,255,1)]'
         : 'lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]';
 
+    const backgroundImage = isAdmin ? bgAdmin : bgUser;
+
     return (
         <div className={`${styled.container} 
             h-screen w-screen 
@@ -60,6 +64,8 @@ const Login: React.FC<LoginProps> = ({ isAdmin }) => {
                 rounded-b-[500px] lg:rounded-b-[0] lg:rounded-br-[500px]
                 bg-center bg-no-repeat bg-[auto_115%]
                 ${shadowColorClass}`}
+                    style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}
+
                 >
                     <div className={`${styled.overlay} h-full w-full flex flex-col justify-center align-center lg:justify-start relative`}>
                         <h1 className={`${styled.title} ${styled_page.logo} 

@@ -7,7 +7,7 @@ import Favoritos from './pages/User/MeuPerfil/Favoritos'
 import Inicio from './pages/User/Inicio';
 import Cadastro from './pages/User/Inicio/Cadastro';
 import Login from './pages/User/Inicio/Login';
-import Filtros from './pages/User/Filtros';
+import Filtros from './pages/User/Pesquisar/Filtros';
 import InfoLocal from './pages/User/InfoLocal';
 import type { Place } from './types/place';
 import Home from './pages/User/Home';

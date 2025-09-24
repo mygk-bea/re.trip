@@ -184,7 +184,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
           )}
 
           <div className="w-full">
-            <label className="block font-semibold mb- text-black text-left">Categorias</label>
+            <label className="block font-semibold mb-1 text-black text-left">Categorias</label>
             <MultiSelect
               name="categoriaId"
               options={categories}
@@ -206,7 +206,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
             </>
           )}
 
-          <div className="mt-2">
+          <div className="mt-8">
             <label htmlFor="file-upload" className="flex items-center gap-3 cursor-pointer text-lg font-semibold text-black">
               {tipo === 'local' ? 'Anexar imagens do local' : 'Anexar imagens promocionais'}
               <IconUpload class="w-6 h-6 fill-[#229CFF]" />
@@ -215,8 +215,8 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
             {formData.imagens && formData.imagens.length > 0 && <p className="text-sm text-gray-600 mt-1">{formData.imagens.length} arquivo(s) selecionado(s)</p>}
           </div>
 
-          <div className="mt-3 col-span-full flex justify-center">
-            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="40%" height="50px" backgroundColor="#fff" colorText="#229CFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
+          <div className="mt-5 col-span-full flex justify-center">
+            <Button title="Salvar" buttonType="submit" isAdm={isAdmin} width="70%" height="50px" backgroundColor="#fff" colorText="#229CFF" colorShadow="#0073D2" fontSize="18px" fontWeight="bold" />
           </div>
         </form>
       </main>

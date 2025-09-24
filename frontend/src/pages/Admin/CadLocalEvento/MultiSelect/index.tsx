@@ -31,7 +31,7 @@ const MultiSelect = ({ options, name, selected, onChange }: MultiSelectProps) =>
     };
 
     return (
-        <div className="relative w-90">
+        <div className="relative w-60 lg:w-90">
             {/* Caixa principal */}
             <div
                 className="border-b border-gray-400 pb-2 pl-3 pr-8 text-gray-700 bg-white cursor-pointer select-none text-left flex flex-wrap gap-1 min-h-[38px] items-center relative"

@@ -23,3 +23,5 @@ $router->post('/cadastro-administrador', 'AdministradorController@store');
 $router->post('/cadastro-host-turistico', 'HostTuristicoController@store');
 $router->post('/cadastro-promotor-turistico', 'PromotorTuristicoController@store');
 $router->post('/cadastro-evento', 'EventoController@store');
+$router->post('/cadastro-local', 'LocalController@store');
+$router->post('/cadastro-rota', 'RotaController@store');

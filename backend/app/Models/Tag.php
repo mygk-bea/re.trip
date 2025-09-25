@@ -12,6 +12,7 @@ class Tag extends Model
 
     protected $fillable = [
         'codTag',
-        'nome'
+        'nome',
+        'tipo'
     ]; 
 }

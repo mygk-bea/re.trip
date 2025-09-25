@@ -24,7 +24,7 @@ class CreateLocalTable extends Migration
             $table->string('cidade');
             $table->string('descricao');
             $table->string('disponibilidade');
-            $table->double('avaliacao');
+            $table->double('avaliacao')->default(0.0);
             $table->string('cnpj');
             $table->integer('id_autor');
             $table->timestamps();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Evento;
+use App\Models\LocaisEvento;
 
 class EventoController extends Controller
 {
@@ -20,5 +21,18 @@ class EventoController extends Controller
         $evento->cidade = $request->input('cidade');
         $evento->imagem = $request->input('imagem');
         $evento->save();
+
+        $codEvento = $evento->codEvento;
+
+        $locais = $request->input('locais', []);
+        
+        if (!empty($locais)) {
+            foreach ($locais as $local) {
+                $locais_evento = new LocaisEvento();
+                $locais_evento->fk_local_codLocal = $local;
+                $locais_evento->fk_evento_codEvento = $codEvento;
+                $locais_evento->save();
+            }
+        }
     }    
 }

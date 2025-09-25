@@ -13,7 +13,9 @@ class Local extends Model
     protected $fillable = [
         'codLocal',
         'nome',
-        'endereco',
+        'logradouro',
+        'bairro',
+        'numero',
         'telefone',
         'imagem',
         'cidade',

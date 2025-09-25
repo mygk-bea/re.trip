@@ -150,7 +150,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
 
             {/* Menu */}
             <div className="mt-6">
-                <Menu />
+                <Menu isAdmin/>
             </div>
         </div>
     );

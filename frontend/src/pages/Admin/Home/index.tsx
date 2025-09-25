@@ -21,12 +21,13 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
     const localPlaceItems = localPlaces.map(place => (
         <Card
             key={place.id}
-            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh] cursor-pointer"
             nameBackground={place.image}
             title={place.title}
             isOpacity
             positionText="center"
             widthText="70px"
+            onClick={() => navigate("/admin/local/info")}
         />
     ));
 

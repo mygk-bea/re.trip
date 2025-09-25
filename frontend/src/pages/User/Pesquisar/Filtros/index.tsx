@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styles from './Filtros.module.scss'
-import Tag from '../../../components/Tag';
-import Menu from '../../../components/Menu';
-import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
+import Tag from '../../../../components/Tag';
+import Menu from '../../../../components/Menu';
+import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
 import { useNavigate } from "react-router-dom";
-import Button from "../../../components/Button";
+import Button from "../../../../components/Button";
 
 const Filtros: React.FC = () => {
     const navigate = useNavigate();
@@ -125,7 +125,8 @@ const Filtros: React.FC = () => {
                 {/* Botão de confirmação */}
                 <div className="flex justify-end mt-10">
                     <Button
-                        colorText="#FFFFFF"
+                        colorText="var(--color-primary-user)"
+                        backgroundColor="#fff" 
                         height="40px"
                         width="250px"
                         isAdm={false}

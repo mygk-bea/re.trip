@@ -42,7 +42,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
     return (
         <>
             <div className="relative">
-                <div className="fixed top-0 left-0 w-full p-6 flex items-center z-50 lg:p-10">
+                <div className="flex items-center mb-6 relative w-full lg:-mt-50 -mt-20 mb-10 ">
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
                         <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
                     </div>
@@ -61,13 +61,13 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
                 <div className="flex flex-col items-center">
                     <div
-                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-6 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-3 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
                         onClick={handleClick}
                     >
                         {image ? (
                             <img src={image} alt="Avatar" className="w-full h-full object-cover" />
                         ) : (
-                            <IconAvatar class="w-[5rem] h-[5rem] ml-4 fill-white opacity-70" />
+                            <IconAvatar class="w-[5rem] h-[5rem] ml-[13px] fill-white opacity-70" />
                         )}
                     </div>
 
@@ -85,10 +85,10 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                 <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
             </div>
 
-            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-23" >
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"
@@ -104,23 +104,23 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"
                     width="100%"
                     isAdm={false}
-                    title="Rotas Favoritas"
+                    title="Favoritos"
                     positionItems="start"
                     fontFamily="Rubik"
                     icon={IconHeart}
                     fontWeight='normal'
-                    onClick={() => navigate("/user/meu-perfil/rotas-favoritas")}
+                    onClick={() => navigate("/user/meu-perfil/favoritos")}
                 />
 
                 <Button
                     colorIcon="#ee8047"
-                    colorText="#363837"
+                    colorText="#000"
                     backgroundColor="#FFFFFF"
                     colorShadow="#ee8047"
                     height="50px"

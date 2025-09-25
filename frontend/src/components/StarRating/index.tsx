@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import styles from "./StarRating.module.scss";
 
 interface StarRatingProps {
-    rating?: number; // Avaliação inicial ou fixa (ex: 3.5)
-    editable?: boolean; // Se pode ou não avaliar
-    showNumber?: boolean; // Se exibe ou não o número da nota
-    onChange?: (rating: number) => void; // Callback ao mudar a nota
+    rating?: number;
+    editable?: boolean;
+    showNumber?: boolean;
+    onChange?: (rating: number) => void;
+    isAdmin?: boolean; // nova prop
 }
 
 const StarRating: React.FC<StarRatingProps> = ({
@@ -13,6 +14,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     editable = false,
     showNumber = true,
     onChange,
+    isAdmin = false,
 }) => {
     const [currentRating, setCurrentRating] = useState(rating);
     const [hover, setHover] = useState(0);
@@ -39,7 +41,13 @@ const StarRating: React.FC<StarRatingProps> = ({
     return (
         <div className="flex items-center gap-x-2 w-fit">
 
-            <div className={`${styles.container__stars} flex gap-x-4 rounded-full border border-orange-400 px-3 py-1 w-fit`}>
+            <div
+                className={`flex gap-x-4 rounded-full px-3 py-1 w-fit border ${
+                    isAdmin
+                        ? "bg-blue-50 border-blue-400"
+                        : "bg-[#fff2ed] border-orange-400"
+                } ${styles.container__stars}`}
+            >
                 {[...Array(5)].map((_, index) => {
                     const value = index + 1;
 
@@ -47,18 +55,16 @@ const StarRating: React.FC<StarRatingProps> = ({
                         <span
                             key={value}
                             className={`relative text-xl ${editable ? "cursor-pointer" : ""
-                                } text-yellow-400`}
+                                } ${isAdmin ? "text-yellow-500" : "text-yellow-400"}`}
                             onMouseLeave={() => editable && setHover(0)}
                         >
                             {editable ? (
                                 <>
-                                {/* controle de meia estrela */}
                                     <span
                                         className="absolute left-0 top-0 w-1/2 h-full"
                                         onMouseEnter={() => setHover(value - 0.5)}
                                         onClick={() => handleClick(value - 0.5)}
                                     />
-
                                     <span
                                         className="absolute right-0 top-0 w-1/2 h-full"
                                         onMouseEnter={() => setHover(value)}
@@ -75,7 +81,9 @@ const StarRating: React.FC<StarRatingProps> = ({
 
             {showNumber && (
                 <span
-                    className="text-orange-500 font-semibold text-lg"
+                    className={`font-semibold text-lg ${
+                        isAdmin ? "text-[#229CFF]" : "text-orange-500"
+                    }`}
                 >
                     {currentRating.toFixed(1)}
                 </span>
@@ -84,9 +92,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     );
 };
 
-{/* 
-<StarRating rating={4.5} showNumber={true} />
-
-<StarRating editable={true} showNumber={false} onChange={(avaliacao) => console.log("Nota:", avaliacao)} />*/}
+{/* <StarRating rating={4.5} showNumber={true} isAdmin />
+<StarRating editable={true} showNumber={false} isAdmin onChange={(nota) => console.log(nota)} /> */}
 
 export default StarRating;

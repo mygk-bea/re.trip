@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
-
+import { useNavigate } from "react-router-dom";
 import { categories, regionCities, localPlaces, sharedRoutes } from '../../../constants/infos'
 
 import Card from "../../../components/Card";
@@ -16,6 +16,7 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ call, username }) => {
     const theme = useTheme();
     const isLg = useMediaQuery(theme.breakpoints.up('lg'));
+    const navigate = useNavigate();
 
     // Map categorias
     const categoryItems = categories.map((cat) => (
@@ -31,12 +32,13 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const localPlaceItems = localPlaces.map((place) => (
         <Card
             key={place.id}
-            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh] cursor-pointer"
             nameBackground={place.image}
             title={place.title}
             isOpacity
             positionText="center"
             widthText="70px"
+            onClick={() => navigate("/user/local/info")}
         />
     ));
 

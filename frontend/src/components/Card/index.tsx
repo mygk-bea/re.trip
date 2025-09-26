@@ -4,6 +4,7 @@ import iconStar from '../../assets/icons/star.svg'
 
 interface CardProps {
   nameBackground: string;
+  onClick?: () => void;
   title?: string;
   isTags?: boolean;
   tags?: string[];
@@ -21,6 +22,7 @@ const Card: React.FC<CardProps> = ({
   nameBackground,
   title,
   isTags,
+  onClick,
   tags,
   isRating,
   numberRating,
@@ -36,7 +38,7 @@ const Card: React.FC<CardProps> = ({
   } as React.CSSProperties;
 
   return (
-    <div className={`${styles.card} ${className}`} style={CardStyle}>
+    <div className={`${styles.card} ${className}`} onClick={onClick} style={CardStyle}>
 
       {isBlur && <div className={styles.blur__overlay}></div>}
 

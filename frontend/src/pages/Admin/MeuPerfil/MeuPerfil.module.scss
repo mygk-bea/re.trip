@@ -1,9 +1,18 @@
-.icon {
+.icon__pin path {
+  stroke-width: 3px;
+}
+
+.icon__event path {
+  stroke-width: 1px;
+}
+
+.icon__pin,
+.icon__event {
   width: 30px;
   height: 30px;
+
   path {
-    stroke: red;
+    stroke: var(--color-primary-admin);
     fill: none;
-    stroke-width: 3px;
   }
 }

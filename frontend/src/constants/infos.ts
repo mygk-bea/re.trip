@@ -37,3 +37,20 @@ export const categories = [
     { id: 3, title: "Hospedagem", image: imgHotel },
     { id: 4, title: "Aventura e Diversão", image: imgAdventure },
 ];
+
+import imgRodeio from "../assets/images/events/img_bg_rodeio.png";
+import imgFestaJunina from "../assets/images/events/img_bg_festa_junina.png";
+import imgFeiraDoDoce from "../assets/images/events/img_bg_feira_do_doce.jpg";
+
+export const events = [
+    { id: 1, title: "Feira do Doce", image: imgFeiraDoDoce },
+    { id: 2, title: "Rodeio", image: imgRodeio },
+    { id: 3, title: "Festa Junina", image: imgFestaJunina },
+];
+
+export const kpis = [
+    { id: 1, nome: "Sítio do Carroção", quantidade: 1200, tipo: "local" },
+    { id: 2, nome: "Museu Paulo Setúbal", quantidade: 800, tipo: "local" },
+    { id: 3, nome: "Feira do Doce", quantidade: 500, tipo: "evento" },
+    { id: 4, nome: "Festa Junina", quantidade: 300, tipo: "evento" },
+];

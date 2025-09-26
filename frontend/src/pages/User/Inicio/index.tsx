@@ -2,6 +2,8 @@ import React from "react";
 import styled from './Inicio.module.scss';
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import bgUser from '../../../assets/images/city/img_bg_tatui.png';
+import bgAdmin from '../../../assets/images/city/img_bg_boituva_1.png';
 
 interface InicioProps {
     isAdmin?: boolean;
@@ -22,6 +24,8 @@ const Inicio: React.FC<InicioProps> = ({ isAdmin = false }) => {
         ? 'lg:shadow-[-10px_20px_0_20px_rgba(34,156,255,1)]'
         : 'lg:shadow-[-10px_20px_0_20px_rgba(255,112,34,1)]';
 
+    const backgroundImage = isAdmin ? bgAdmin : bgUser;
+
     return (
         <div className={`${styled.container} 
             h-screen w-screen 
@@ -35,6 +39,8 @@ const Inicio: React.FC<InicioProps> = ({ isAdmin = false }) => {
                 rounded-b-[500px] lg:rounded-b-[0] lg:rounded-br-[500px]
                 bg-center bg-no-repeat bg-[auto_115%]
                 ${shadowColorClass}`}
+                
+                    style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}
                 >
                     <div className={`${styled.overlay} h-full w-full flex justify-center`}>
                         <h1 className={`${styled.title} font-[Madimi_One] lg:hidden text-[#FFF] z-[2]`}>

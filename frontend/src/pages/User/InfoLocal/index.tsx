@@ -11,14 +11,19 @@ import StarRating from '../../../components/StarRating';
 import Tag from '../../../components/Tag';
 import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
-import Card from '../../../components/Card';
-
 import IconUpload from '../../../assets/icons/icon-upload';
 
 interface InfoLocalProps {
   place: Place;
   isAdmin?: boolean;
 }
+
+const tagStyles: { [key: string]: { bgColor: string; textColor: string; borderColor: string } } = {
+  "Natureza e Ecoturismo": { bgColor: "rgba(52, 181, 5, .1)", textColor: "#34B505", borderColor: "#34B505" },
+  "Pet Friendly": { bgColor: "rgba(0, 29, 215, .1)", textColor: "#001DD7", borderColor: "#001DD7" },
+  "Aventura e Diversão": { bgColor: "rgba(143, 0, 191, .1)", textColor: "#8F00BF", borderColor: "#8F00BF" },
+};
+const defaultTagStyle = { bgColor: "rgba(128, 128, 128, .1)", textColor: "#808080", borderColor: "#808080" };
 
 const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
   const [isFavorited, setIsFavorited] = useState(place.favorited);
@@ -261,6 +266,53 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
               <ul className="list-disc list-inside ml-2">
                 {place.events.map((event, index) => <li key={index}>{event}</li>)}
               </ul>
+          {/* Rotas */}
+          {routesValue.length > 0 && (
+            <div className={`${styled.rotas} mt-4 flex items-start justify-between`}>
+              {editingRoutes ? (
+                <textarea
+                  className="border rounded px-2 py-1 w-full"
+                  value={routesValue.join("\n")}
+                  onChange={(e) => setRoutesValue(e.target.value.split("\n"))}
+                />
+              ) : (
+                <div>
+                  <p><span style={labelStyle}>Rotas:</span></p>
+                  <ul className="list-disc list-inside ml-2">
+                    {routesValue.map((route, i) => <li key={i}>{route}</li>)}
+                  </ul>
+                </div>
+              )}
+              {isAdmin && (
+                <button onClick={() => setEditingRoutes(!editingRoutes)}>
+                  {editingRoutes ? <IconCheck /> : <IconEdit />}
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Eventos */}
+          {eventsValue.length > 0 && (
+            <div className={`${styled.eventos} mt-4 flex items-start justify-between`}>
+              {editingEvents ? (
+                <textarea
+                  className="border rounded px-2 py-1 w-full"
+                  value={eventsValue.join("\n")}
+                  onChange={(e) => setEventsValue(e.target.value.split("\n"))}
+                />
+              ) : (
+                <div>
+                  <p><span style={labelStyle}>Eventos:</span></p>
+                  <ul className="list-disc list-inside ml-2">
+                    {eventsValue.map((event, i) => <li key={i}>{event}</li>)}
+                  </ul>
+                </div>
+              )}
+              {isAdmin && (
+                <button onClick={() => setEditingEvents(!editingEvents)}>
+                  {editingEvents ? <IconCheck /> : <IconEdit />}
+                </button>
+              )}
             </div>
           )} */}
           {/* Rotas */}

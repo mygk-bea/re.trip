@@ -32,7 +32,7 @@ export const museuPauloSetubalBase: Place = {
   ],
   description: "Museu dedicado à preservação...",
   contactInfo: "(15) 3305-2000",
-  address: "Rod. SP-129, Km 12,5 - Bairro dos Mirandas, Tatuí - SP, 18270-000",
+  address: "Praça Manoel Guedes, 98 - Centro, Tatuí - SP, 18270-300",
   images: [
     "/images/places/img_bg_museu-paulo-setubal-1.png",
     "/images/places/img_bg_museu-paulo-setubal-2.png",

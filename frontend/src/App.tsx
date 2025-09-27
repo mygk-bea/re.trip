@@ -39,8 +39,8 @@ function App() {
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
 
         <Route path="/user/rota/cadastro" element={<RotaCadastro  />} />
-        <Route path="/user/rota/info" element={<RotaInfo type='admin' route={rotaSitioMuseu} />} />
-        <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
+        <Route path="/user/rota/info" element={<RotaInfo type='user' route={rotaSitioMuseu} />} />
+        <Route path="/user/rota/em-andamento" element={<RotaEmAndamento route={rotaSitioMuseu} />} />
         <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
         <Route path="/user/local/info" element={<InfoLocal place={sitioCarrocao} />} />
         <Route path="/user/home" element={<Home username='Username' call='aventureiro(a)' />} />

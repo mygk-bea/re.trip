@@ -57,6 +57,7 @@ function App() {
         <Route path="/admin/local/info" element={<InfoLocal place={sitioCarrocao} isAdmin/>} />
         <Route path="/admin/home" element={<HomeAdmin username='Username'/>} />
         <Route path="/admin/home/listagem" element={<ListagemRotas/>} />
+        <Route path="/admin/rota/info" element={<RotaInfo type='admin' route={rotaSitioMuseu} />} />
 
       </Routes>
     </>

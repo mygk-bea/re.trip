@@ -104,6 +104,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                         numberRating={sharedRoutes[0].rating}
                         positionText="center"
                         className="ml-10 w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh]"
+                        onClick={() => navigate("/admin/rota/info")}
                     />
                 )}
                 <div>

@@ -65,6 +65,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             isRating
             numberRating={route.rating}
             positionText="center"
+            onClick={() => navigate("/user/rota/info")}
         />
     ));
 

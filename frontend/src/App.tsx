@@ -25,6 +25,8 @@ import HomeAdmin from './pages/Admin/Home';
 
 import { sitioCarrocao } from './constants/infosPlaces';
 import { rotaSitioMuseu } from './constants/infosRoutes';
+import LoginSuperAdmin from './pages/SuperAdmin/Login';
+import HomeSuperAdmin from './pages/SuperAdmin/Home';
 
 function App() {
   return (
@@ -58,6 +60,10 @@ function App() {
         <Route path="/admin/home" element={<HomeAdmin username='Username'/>} />
         <Route path="/admin/home/listagem" element={<ListagemRotas/>} />
         <Route path="/admin/rota/info" element={<RotaInfo type='admin' route={rotaSitioMuseu} />} />
+
+        <Route path="/super-admin/login" element={<LoginSuperAdmin />} />
+        <Route path="/super-admin/home" element={<HomeSuperAdmin />} />
+
 
       </Routes>
     </>

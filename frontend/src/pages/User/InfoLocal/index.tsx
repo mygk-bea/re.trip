@@ -13,6 +13,7 @@ import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
 import IconUpload from '../../../assets/icons/icon-upload';
 import Card from '../../../components/Card';
+import { useNavigate } from 'react-router-dom';
 
 interface InfoLocalProps {
   place: Place;
@@ -45,6 +46,8 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
   const [tagsValue, setTagsValue] = useState(place.tags || []);
 
   const labelStyle = { color: isAdmin ? "#229CFF" : "#FF7022", fontWeight: 500 as const };
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -87,7 +90,6 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                   )}
                   {isAdmin && (
                     <button onClick={() => setEditingName(!editingName)}>
-                      {/* O tamanho do ícone pode ser ajustado diretamente no componente SVG se necessário */}
                       {editingName ? <IconCheck /> : <IconEdit />}
                     </button>
                   )}
@@ -108,7 +110,6 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                       if (e.target.files && e.target.files[0]) {
                         const file = e.target.files[0];
                         console.log("Arquivo selecionado:", file);
-                        // Lógica para upload da imagem
                       }
                     }}
                   />
@@ -260,7 +261,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                       {routesValue.map((route) => (
                         <Card
                           key={route.id}
-                          className="h-[80px] w-full"
+                          className="h-[80px] w-full cursor-pointer"
                           nameBackground={route.images[0]}
                           title={route.name}
                           isTags={route.locals?.some(local => local.tags.length > 0)}
@@ -269,6 +270,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                           isOpacity={false}
                           positionText="top"
                           widthText="100%"
+                          onClick={() => navigate('/user/rota/info')}
                         />
                       ))}
                     </div>

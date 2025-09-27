@@ -74,13 +74,10 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                                 color: "#fff",
                             }}
                         >
-                            {/* Número em destaque */}
                             <span className="text-2xl lg:text-3xl font-bold">{kpi.quantidade.toLocaleString("pt-BR")}</span>
 
-                            {/* Texto menor */}
                             <span className="text-sm lg:text-base mt-1">Visitas nas últimas horas em</span>
 
-                            {/* Nome do local/evento em destaque */}
                             <span className="text-lg lg:text-xl font-semibold mt-2">{kpi.nome}</span>
                         </div>
                     ))}

@@ -264,26 +264,42 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
             </div>
           )}
 
-          {/* {place.events && place.events.length > 0 && (
+          {place.events && place.events.length > 0 && (
             <div className={`${styled.eventos} mt-4`}>
               <p><span>Eventos:</span></p>
               <ul className="list-disc list-inside ml-2">
-                {place.events.map((event, index) => <li key={index}>{event}</li>)}
+                {place.events.map((event, index) => <li key={index}>{event.id}</li>)}
               </ul>
+            </div>
+          )}
           {/* Rotas */}
-          {/* {routesValue.length > 0 && (
+          {routesValue.length > 0 && (
             <div className={`${styled.rotas} mt-4 flex items-start justify-between`}>
               {editingRoutes ? (
                 <textarea
                   className="border rounded px-2 py-1 w-full"
                   value={routesValue.join("\n")}
-                  onChange={(e) => setRoutesValue(e.target.value.split("\n"))}
+                  onChange={(e) =>
+                    setRoutesValue(
+                      e.target.value.split("\n").map((line, i) => ({
+                        id: String(i),
+                        name: line.trim(),
+                        author: "",
+                        favorited: false,
+                        starRating: 0,
+                        comment: "",
+                        routeLength: "",
+                        locals: [],
+                        images: []
+                      }))
+                    )
+                  }
                 />
               ) : (
                 <div>
                   <p><span style={labelStyle}>Rotas:</span></p>
                   <ul className="list-disc list-inside ml-2">
-                    {routesValue.map((route, i) => <li key={i}>{route}</li>)}
+                    {routesValue.map((route, i) => <li key={i}>{route.id}</li>)}
                   </ul>
                 </div>
               )}
@@ -293,7 +309,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 </button>
               )}
             </div>
-          )} */}
+          )}
 
           {/* Eventos */}
           {eventsValue.length > 0 && (

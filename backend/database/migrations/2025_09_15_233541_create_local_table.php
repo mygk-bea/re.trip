@@ -15,18 +15,18 @@ class CreateLocalTable extends Migration
     {
         Schema::create('local', function (Blueprint $table) {
             $table->id('codLocal');
-            $table->string('nome');
-            $table->string('logradouro');
-            $table->string('bairro');
-            $table->string('numero');
-            $table->string('telefone');
-            $table->string('imagem');
-            $table->string('cidade');
-            $table->string('descricao');
-            $table->string('disponibilidade');
+            $table->string('nome')->nullable(false);
+            $table->string('logradouro')->nullable(false);
+            $table->string('bairro')->nullable(false);
+            $table->string('numero')->nullable(false);
+            $table->string('telefone')->nullable(false);
+            $table->string('imagem')->nullable(false);
+            $table->string('cidade')->nullable(false);
+            $table->string('descricao')->nullable(false);
+            $table->string('disponibilidade')->nullable(false);
             $table->double('avaliacao')->default(0.0);
-            $table->string('cnpj');
-            $table->integer('id_autor');
+            $table->string('cnpj')->nullable(false);
+            $table->integer('id_autor')->nullable(false);
             $table->timestamps();
         });
     }

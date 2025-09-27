@@ -15,7 +15,6 @@ class HostTuristico extends Model
         'nome',
         'cpf',
         'dataNascimento',
-        'email',
-        'senha'
+        'fk_credencial_codCredencial'
     ]; 
 }

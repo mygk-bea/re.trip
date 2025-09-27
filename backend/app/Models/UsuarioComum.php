@@ -15,7 +15,6 @@ class UsuarioComum extends Model
         'nome',
         'genero',
         'dataNascimento',
-        'email',
-        'senha'
+        'fk_credencial_codCredencial'
     ]; 
 }

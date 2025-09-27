@@ -15,11 +15,11 @@ class CreateUsuarioComumTable extends Migration
     {
         Schema::create('usuario_comum', function (Blueprint $table) {
             $table->id('codUsuario');
-            $table->string('nome');
-            $table->string('genero');
-            $table->date('dataNascimento');
-            $table->string('email');
-            $table->string('senha');
+            $table->string('nome')->nullable(false);
+            $table->string('genero')->nullable(false);
+            $table->date('dataNascimento')->nullable(false);
+            $table->unsignedBigInteger('fk_credencial_codCredencial');
+            $table->foreign('fk_credencial_codCredencial')->references('codCredencial')->on('credenciais');
             $table->timestamps();
         });
     }

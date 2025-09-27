@@ -54,7 +54,7 @@ function App() {
         <Route path="/admin/meu-perfil/meus-eventos" element={<MeusEventos />} />
         <Route path="/admin/cad-local" element={<CadastroLocalEvento tipo="local" isAdmin={true} />} />
         <Route path="/admin/cad-evento" element={<CadastroLocalEvento tipo="evento" isAdmin={true} />} />
-        <Route path="/admin/local/info" element={<InfoLocal place={meuLugar} isAdmin/>} />
+        <Route path="/admin/local/info" element={<InfoLocal place={sitioCarrocao} isAdmin/>} />
         <Route path="/admin/home" element={<HomeAdmin username='Username'/>} />
         <Route path="/admin/home/listagem" element={<ListagemRotas/>} />
 

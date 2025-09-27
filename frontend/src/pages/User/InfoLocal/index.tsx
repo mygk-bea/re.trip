@@ -12,18 +12,12 @@ import Tag from '../../../components/Tag';
 import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
 import IconUpload from '../../../assets/icons/icon-upload';
+import Card from '../../../components/Card';
 
 interface InfoLocalProps {
   place: Place;
   isAdmin?: boolean;
 }
-
-const tagStyles: { [key: string]: { bgColor: string; textColor: string; borderColor: string } } = {
-  "Natureza e Ecoturismo": { bgColor: "rgba(52, 181, 5, .1)", textColor: "#34B505", borderColor: "#34B505" },
-  "Pet Friendly": { bgColor: "rgba(0, 29, 215, .1)", textColor: "#001DD7", borderColor: "#001DD7" },
-  "Aventura e Diversão": { bgColor: "rgba(143, 0, 191, .1)", textColor: "#8F00BF", borderColor: "#8F00BF" },
-};
-const defaultTagStyle = { bgColor: "rgba(128, 128, 128, .1)", textColor: "#808080", borderColor: "#808080" };
 
 const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
   const [isFavorited, setIsFavorited] = useState(place.favorited);
@@ -125,7 +119,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
         </div>
 
         {/* Conteúdo */}
-        <div className={`${styled.content} p-[3.5vw]`}>
+        <div className={`${styled.content} p-[4.5vw]`}>
           <StarRating rating={place.starRating} showNumber={true} isAdmin={isAdmin} />
 
           {/* Tags */}
@@ -134,18 +128,28 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
               <input
                 className="border rounded px-2 py-1 w-full"
                 value={tagsValue.join(", ")}
-                onChange={(e) => setTagsValue(e.target.value.split(",").map(t => t.trim()))}
+                onChange={(e) =>
+                  setTagsValue(
+                    e.target.value.split(",").map((t) => ({
+                      text: t.trim(),
+                      style: {
+                        bgColor: "#fff",
+                        textColor: "#000",
+                        borderColor: "#ccc"
+                      }
+                    }))
+                  )
+                }
               />
             ) : (
-              tagsValue.map(tagText => {
-                const style = tagStyles[tagText] || defaultTagStyle;
+              place.tags.map(tag => {
                 return (
                   <Tag
-                    key={tagText}
-                    text={tagText}
-                    bgColor={style.bgColor}
-                    textColor={style.textColor}
-                    borderColor={style.borderColor}
+                    key={tag.text}
+                    text={tag.text}
+                    bgColor={tag.style.bgColor}
+                    textColor={tag.style.textColor}
+                    borderColor={tag.style.borderColor}
                   />
                 );
               })
@@ -249,7 +253,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                   nameBackground={route.images[0]}
                   title={route.name}
                   isTags={route.locals.some(local => local.tags.length > 0)}
-                  tags={route.locals[0].tags.map(tag => tag.text)}
+                  tags={route.locals[0].tags.map(tag => String(tag.text))} 
                   isBlur={true}
                   isOpacity={false}
                   positionText="top"
@@ -267,7 +271,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 {place.events.map((event, index) => <li key={index}>{event}</li>)}
               </ul>
           {/* Rotas */}
-          {routesValue.length > 0 && (
+          {/* {routesValue.length > 0 && (
             <div className={`${styled.rotas} mt-4 flex items-start justify-between`}>
               {editingRoutes ? (
                 <textarea
@@ -289,7 +293,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 </button>
               )}
             </div>
-          )}
+          )} */}
 
           {/* Eventos */}
           {eventsValue.length > 0 && (
@@ -298,13 +302,25 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 <textarea
                   className="border rounded px-2 py-1 w-full"
                   value={eventsValue.join("\n")}
-                  onChange={(e) => setEventsValue(e.target.value.split("\n"))}
+                  onChange={(e) =>
+                    setEventsValue(
+                      e.target.value.split("\n").map((line, i) => ({
+                        id: String(i),
+                        locals: [],
+                        address: "",
+                        description: line.trim(),
+                        date: "",
+                        time: "",
+                        images: []
+                      }))
+                    )
+                  }
                 />
               ) : (
                 <div>
                   <p><span style={labelStyle}>Eventos:</span></p>
                   <ul className="list-disc list-inside ml-2">
-                    {eventsValue.map((event, i) => <li key={i}>{event}</li>)}
+                    {eventsValue.map((event, i) => <li key={i}>{event.id}</li>)}
                   </ul>
                 </div>
               )}
@@ -314,7 +330,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 </button>
               )}
             </div>
-          )} */}
+          )}
           {/* Rotas */}
           {routesValue.length > 0 && (
             <div className={`${styled.rotas} mt-4 flex items-start justify-between`}>
@@ -322,13 +338,27 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 <textarea
                   className="border rounded px-2 py-1 w-full"
                   value={routesValue.join("\n")}
-                  onChange={(e) => setRoutesValue(e.target.value.split("\n"))}
+                  onChange={(e) =>
+                    setRoutesValue(
+                      e.target.value.split("\n").map((line, i) => ({
+                        id: String(i),
+                        name: line.trim(),
+                        author: "",
+                        favorited: false,
+                        starRating: 0,
+                        comment: "",
+                        routeLength: "",
+                        locals: [],
+                        images: []
+                      }))
+                    )
+                  }
                 />
               ) : (
                 <div>
                   <p><span style={labelStyle}>Rotas:</span></p>
                   <ul className="list-disc list-inside ml-2">
-                    {routesValue.map((route, i) => <li key={i}>{route}</li>)}
+                    {routesValue.map((route, i) => <li key={i}>{route.id}</li>)}
                   </ul>
                 </div>
               )}
@@ -347,13 +377,25 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                 <textarea
                   className="border rounded px-2 py-1 w-full"
                   value={eventsValue.join("\n")}
-                  onChange={(e) => setEventsValue(e.target.value.split("\n"))}
+                  onChange={(e) =>
+                    setEventsValue(
+                      e.target.value.split("\n").map((line, i) => ({
+                        id: String(i),
+                        locals: [],
+                        address: "",
+                        description: line.trim(),
+                        date: "",
+                        time: "",
+                        images: []
+                      }))
+                    )
+                  }
                 />
               ) : (
                 <div>
                   <p><span style={labelStyle}>Eventos:</span></p>
                   <ul className="list-disc list-inside ml-2">
-                    {eventsValue.map((event, i) => <li key={i}>{event}</li>)}
+                    {eventsValue.map((event, i) => <li key={i}>{event.id}</li>)}
                   </ul>
                 </div>
               )}

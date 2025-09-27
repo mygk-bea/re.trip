@@ -2,7 +2,6 @@ import React from 'react';
 import styled from './Menu.module.scss';
 import IconHome from '../../assets/icons/icon-home';
 import IconMap from '../../assets/icons/icon-map';
-import IconBookmark from '../../assets/icons/icon-bookmark';
 import IconPerson from '../../assets/icons/icon-person';
 import { NavLink } from 'react-router-dom';
 import IconHeart from '../../assets/icons/icon-heart';

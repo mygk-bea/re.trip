@@ -1,0 +1,125 @@
+.userTheme {
+  --current-primary-color: var(--color-primary-user);
+  --current-shadow-color: var(--color-shadow-user);
+}
+
+.adminTheme {
+  --current-primary-color: var(--color-primary-admin);
+  --current-shadow-color: var(--color-secondary-admin);
+}
+
+.guiaTheme {
+  --current-primary-color: var(--color-primary-guia);
+  --current-shadow-color: var(--color-secondary-guia);
+}
+
+div {
+  p {
+    span {
+      color: var(--current-primary-color);
+      font-weight: bold;
+    }
+  }
+}
+
+.header{
+  box-shadow: 0 3px 3px rgb(0, 0, 0, 0.25);
+
+  overflow: hidden;
+  .overlay {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      backdrop-filter: blur(4px);
+
+      -webkit-mask-image: linear-gradient(to top, black 0%, transparent 50%);
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-size: cover;
+      mask-image: linear-gradient(to top, black 0%, transparent 50%);
+      mask-repeat: no-repeat;
+      mask-size: cover;
+      pointer-events: none;
+    }
+    .top{
+      .arrow{
+        transform: rotate(90deg);
+        width: 40px;
+        height: 40px;
+      }
+
+      .pin{
+        width: 35px;
+        height: 35px;
+        path{
+          fill:none;
+          stroke-width: 3px;
+        }
+      }
+    }
+
+    .bottom {
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .heart{
+        width: 40px;
+        height: 40px;
+        &.fill{
+          fill: var(--current-primary-color);
+          path{
+            stroke: var(--current-primary-color);
+          }
+        }
+      }
+    }
+  }
+
+  .icon {
+    path {
+      stroke: var(--current-primary-color);
+    }
+  }
+}
+
+.content{
+  font-family: 'Rubik', sans-serif;
+
+  .item {
+    .number{ 
+      border-radius: 100%;
+      font-size: 1rem;
+      font-weight: 500;
+      color:var(--current-primary-color);
+      background-color: var(--color-light);
+      border: 1px solid var(--current-primary-color);
+  
+      &::before {
+        content: "";
+        display: block;
+        border: 1px dashed var(--current-primary-color);
+        position: absolute;
+        top: 140%;
+        height: 55px;
+      }
+  
+    }
+
+    &:first-child {
+      .number {
+        color:var(--color-light);
+        background-color: var(--current-primary-color);
+      }
+    }
+
+    &:last-child {
+      .number {
+        &::before {display: none;}
+      }
+    }
+  }
+}

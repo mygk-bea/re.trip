@@ -2,7 +2,6 @@ import React from 'react';
 import styled from './Menu.module.scss';
 import IconHome from '../../assets/icons/icon-home';
 import IconMap from '../../assets/icons/icon-map';
-import IconBookmark from '../../assets/icons/icon-bookmark';
 import IconPerson from '../../assets/icons/icon-person';
 import { NavLink } from 'react-router-dom';
 import IconHeart from '../../assets/icons/icon-heart';
@@ -29,7 +28,7 @@ const Menu: React.FC<MenuProps> = ({ isAdmin = false }) => {
   ];
 
   return (
-    <div data-admin={isAdmin} className={`${styled.menu} fixed mx-[4.54vw] bottom-0 left-0 right-0 border-t-3 border-black/20 bg-[#FFF]`}>
+    <div data-admin={isAdmin} className={`${styled.menu} fixed mx-[4.54vw] bottom-0 left-0 right-0 border-t-3 border-black/20 bg-[#FFF] z-[2]`}>
       <div className="flex justify-between items-center h-[8.3vh] p-[20px]">
         
         <NavLink

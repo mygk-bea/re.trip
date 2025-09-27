@@ -37,6 +37,14 @@ const HomeSuperAdmin: React.FC = () => {
         { label: "Novos Admins", value: 8 },
     ];
 
+    const topRotas = [
+        { nome: 'Sítio - Museu', acessos: 120 },
+        { nome: 'Parque - Balão', acessos: 95 },
+        { nome: 'Sítio - Praça', acessos: 80 },
+        { nome: 'Balão - Parque', acessos: 75 },
+        { nome: 'Pedra - Praça', acessos: 60 },
+    ];
+
     const cards = cardStatsArray.map((card, index) => (
         <Box
             key={index}
@@ -57,30 +65,16 @@ const HomeSuperAdmin: React.FC = () => {
         }
     };
 
-    // --- Dados para o gráfico de linha ---
     const lineData = {
-        labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
+        labels: ['Locais', 'Eventos', 'Admins', 'Guias', 'Usuários'],
         datasets: [
             {
-                label: 'Novos Usuários',
-                data: [5, 8, 12, 7, 10, 15, 12],
+                label: 'Cadastros Recentes',
+                data: [5, 3, 8, 6, 12],
                 borderColor: '#DD6626',
                 backgroundColor: 'rgba(221, 102, 38, 0.2)',
                 tension: 0.4,
-            },
-            {
-                label: 'Novos Admins',
-                data: [2, 4, 3, 5, 6, 5, 5],
-                borderColor: '#FFB289',
-                backgroundColor: 'rgba(255, 178, 137, 0.2)',
-                tension: 0.4,
-            },
-            {
-                label: 'Novos Guias',
-                data: [3, 5, 4, 6, 7, 6, 8],
-                borderColor: '#FFA500',
-                backgroundColor: 'rgba(255, 165, 0, 0.2)',
-                tension: 0.4,
+                fill: true,
             },
         ],
     };
@@ -88,7 +82,12 @@ const HomeSuperAdmin: React.FC = () => {
     const lineOptions = {
         responsive: true,
         plugins: {
-            legend: { position: 'top' as const },
+            legend: { display: false },
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+            },
         },
     };
 
@@ -110,19 +109,45 @@ const HomeSuperAdmin: React.FC = () => {
                 {/* Divisor */}
                 <div className="border-t border-gray-300 my-8"></div>
 
-                {/* Gráfico de linha */}
-                <div className="mt-[5%]">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-6 text-left">
-                        Tendência de <span className="text-[var(--color-primary-user)]">Novos Usuários</span>:
-                    </h2>
-                    <Line data={lineData} options={lineOptions} />
+                <div className="flex flex-row gap-8 pb-5">
+                    {/* Gráfico de Linhas */}
+                    <div className="w-full flex items-start">
+                        <div className="w-full h-[30vh] ">
+                            <h3 className="text-xl font-bold text-center text-gray-900">
+                                Novos <span className="text-[var(--color-primary-user)]">Cadastros</span>:
+                            </h3>
+                            <Line
+                                data={lineData}
+                                options={{
+                                    ...lineOptions,
+                                    maintainAspectRatio: false,
+                                }}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Top Rotas */}
+                    <div className=" w-full">
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                            Top 5 <span className="text-[var(--color-primary-user)]">Rotas Mais Acessadas</span>:
+                        </h3>
+                        <ul className="space-y-2 h-full">
+                            {topRotas.map((rota, idx) => (
+                                <li key={idx} className="flex justify-between border-b border-gray-200 py-2">
+                                    <span>{rota.nome}</span>
+                                    <span className="font-medium text-gray-700">{rota.acessos}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
                 </div>
 
                 {/* Divisor */}
                 <div className="border-t border-gray-300 my-8"></div>
 
                 {/* Listagem de Locais */}
-                <div className="mt-[5%] pb-10">
+                <div className="mt-[5%] pb-5">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 text-left">
                         Listagem de <span className="text-[var(--color-primary-user)]">Locais</span>:
                     </h2>

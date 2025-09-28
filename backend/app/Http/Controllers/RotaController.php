@@ -37,4 +37,8 @@ class RotaController extends Controller
             }
         }
     } 
+
+    public function status(Request $request){
+        
+    }
 }

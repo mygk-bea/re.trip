@@ -29,3 +29,6 @@ $router->post('/cadastro-rota', 'RotaController@store');
 
 // Rota de login
 $router->post('/login', 'LoginController@autenticar');
+
+// Rotas de update
+$router->post('/status-rota', 'RotaController@status');

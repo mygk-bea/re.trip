@@ -16,7 +16,7 @@ class CreateRelacaoRotaFavoritadaTable extends Migration
         Schema::create('relacao_rota_favoritada', function (Blueprint $table) {
             $table->id('codFavoritada');
             $table->unsignedBigInteger('fk_rota_codRota');
-            $table->integer('id_usuario');
+            $table->integer('id_usuario')->nullable(false);
 
             $table->foreign('fk_rota_codRota')->references('codRota')->on('rota');
             $table->timestamps();

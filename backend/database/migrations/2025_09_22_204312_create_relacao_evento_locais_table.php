@@ -20,7 +20,7 @@ class CreateRelacaoEventoLocaisTable extends Migration
             $table->foreign('fk_local_codLocal')->references('codLocal')->on('local');
             $table->foreign('fk_evento_codEvento')->references('codEvento')->on('evento');
 
-            $table->primary(['fk_local_codLocal', 'fk_evento_codEvento']);
+            $table->primary(['fk_local_codLocal', 'fk_evento_codEvento'], 'pk_evento_local');
 
             $table->timestamps();
         });

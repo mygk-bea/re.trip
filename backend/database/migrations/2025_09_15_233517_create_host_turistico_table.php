@@ -15,11 +15,11 @@ class CreateHostTuristicoTable extends Migration
     {
         Schema::create('host_turistico', function (Blueprint $table) {
             $table->id('codHost');
-            $table->string('nome');
-            $table->string('cpf');
-            $table->date('dataNascimento');
-            $table->string('email');
-            $table->string('senha');
+            $table->string('nome')->nullable(false);
+            $table->string('cpf')->nullable(false);
+            $table->date('dataNascimento')->nullable(false);
+            $table->unsignedBigInteger('fk_credencial_codCredencial');
+            $table->foreign('fk_credencial_codCredencial')->references('codCredencial')->on('credenciais');
             $table->timestamps();
         });
     }

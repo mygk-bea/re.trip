@@ -16,7 +16,7 @@ class CreateRelacaoLocalFavoritadoTable extends Migration
         Schema::create('relacao_local_favoritado', function (Blueprint $table) {
             $table->id('codFavoritado');
             $table->unsignedBigInteger('fk_local_codLocal');
-            $table->integer('id_usuario');
+            $table->integer('id_usuario')->nullable(false);
 
             $table->foreign('fk_local_codLocal')->references('codLocal')->on('local');
             $table->timestamps();

@@ -15,11 +15,11 @@ class CreateSuperAdminTable extends Migration
     {
         Schema::create('super_admin', function (Blueprint $table) {
             $table->id('codSuper');
-            $table->string('nome');
-            $table->string('cpf');
-            $table->date('dataNascimento');
-            $table->string('email');
-            $table->string('senha');
+            $table->string('nome')->nullable(false);
+            $table->string('cpf')->nullable(false);
+            $table->date('dataNascimento')->nullable(false);
+            $table->unsignedBigInteger('fk_credencial_codCredencial');
+            $table->foreign('fk_credencial_codCredencial')->references('codCredencial')->on('credenciais');
             $table->timestamps();
         });
     }

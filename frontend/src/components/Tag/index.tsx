@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './Tag.module.scss';
 
 interface TagProps {
+    key?: string;
     text: string;
     bgColor?: string;       // Cor de fundo
     textColor?: string;     // Cor do texto

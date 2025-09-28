@@ -20,6 +20,10 @@
   --color-primary-admin: #229CFF;
   --color-secondary-admin: #0073D2;
 
+  /* --- GUIA COLORS --- */
+  --color-primary-guia: #14c414;
+  --color-secondary-guia: rgb(22, 150, 10);
+
   /* --- TAGS COLORS --- */
   --color-bg-tag-orange: #F9F0E5;
   --color-main-tag-orange: #BF6600;

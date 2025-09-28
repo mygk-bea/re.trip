@@ -2,7 +2,8 @@ import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
-
+import { localPlaces } from "../../../../constants/infos";
+import Card from "../../../../components/Card/index";
 
 const MeusLocais: React.FC = () => {
     const navigate = useNavigate();
@@ -21,6 +22,21 @@ const MeusLocais: React.FC = () => {
                 </div>
 
                 <div className="w-6"></div>
+            </div>
+
+            <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
+                {localPlaces.map((place) => (
+                    <Card
+                        key={place.id}
+                        nameBackground={place.image}
+                        title={place.title}
+                        isOpacity
+                        positionText="center"
+                        widthText="70px"
+                        className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4 cursor-pointer"
+                        onClick={() => navigate('/admin/local/info')}
+                    />
+                ))}
             </div>
 
             <div>

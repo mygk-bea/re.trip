@@ -21,12 +21,13 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
     const localPlaceItems = localPlaces.map(place => (
         <Card
             key={place.id}
-            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh]"
+            className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh] cursor-pointer"
             nameBackground={place.image}
             title={place.title}
             isOpacity
             positionText="center"
             widthText="70px"
+            onClick={() => navigate("/admin/local/info")}
         />
     ));
 
@@ -73,13 +74,10 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                                 color: "#fff",
                             }}
                         >
-                            {/* Número em destaque */}
                             <span className="text-2xl lg:text-3xl font-bold">{kpi.quantidade.toLocaleString("pt-BR")}</span>
 
-                            {/* Texto menor */}
                             <span className="text-sm lg:text-base mt-1">Visitas nas últimas horas em</span>
 
-                            {/* Nome do local/evento em destaque */}
                             <span className="text-lg lg:text-xl font-semibold mt-2">{kpi.nome}</span>
                         </div>
                     ))}
@@ -103,6 +101,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                         numberRating={sharedRoutes[0].rating}
                         positionText="center"
                         className="ml-10 w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh]"
+                        onClick={() => navigate("/admin/rota/info")}
                     />
                 )}
                 <div>
@@ -149,7 +148,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
 
             {/* Menu */}
             <div className="mt-6">
-                <Menu />
+                <Menu isAdmin/>
             </div>
         </div>
     );

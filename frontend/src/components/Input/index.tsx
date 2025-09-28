@@ -4,12 +4,16 @@ interface InputProps {
     label: string;
     type: string;
     placeholder: string;
-    name: string;
-    value: any;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
+    value?: any;
+    key?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isAdmin?: boolean; // nova prop
 }
 
-const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, onChange }) => {
+const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, onChange, key, isAdmin }) => {
+    const focusColorClass = isAdmin ? 'focus:border-blue-500' : 'focus:border-orange-500';
+
     return (
         <div className='w-full'>
             <label className="block font-semibold mb-1 text-black text-left">{label}</label>
@@ -17,10 +21,11 @@ const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, on
                 id={name}
                 name={name}
                 type={type}
+                key={key}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="w-[100%] border-b border-gray-400 focus:outline-none focus:border-orange-500 pb-4 pl-3 mb-6 mt-4 text-black placeholder-gray-400"
+                className={`w-[100%] border-b border-gray-400 focus:outline-none pb-4 pl-3 mb-6 mt-4 text-black placeholder-gray-400 ${focusColorClass}`}
             />
         </div>
     );
@@ -34,6 +39,7 @@ const Input: React.FC<InputProps> = ({ label, type, placeholder, name, value, on
 //   name="nome"
 //   value={form.nome}
 //   onChange={handleChange}
+//   isAdmin={true}
 // />
 
 export default Input;

@@ -9,6 +9,49 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* --- USER COLORS --- */
+  --color-primary-user: #FF7022;
+  --color-secondary-user: #EE5313;
+  --color-shadow-user: #DD3603;
+  --color-bg-search: #FF8C3A;
+
+  /* --- ADMIN COLORS --- */
+  --color-primary-admin: #229CFF;
+  --color-secondary-admin: #0073D2;
+
+  /* --- GUIA COLORS --- */
+  --color-primary-guia: #14c414;
+  --color-secondary-guia: rgb(22, 150, 10);
+
+  /* --- TAGS COLORS --- */
+  --color-bg-tag-orange: #F9F0E5;
+  --color-main-tag-orange: #BF6600;
+
+  --color-bg-tag-green: #EBF8E6;
+  --color-main-tag-green: #34B505;
+
+  --color-bg-tag-purple: #F4E5F9;
+  --color-main-tag-purple: #8F00BF;
+
+  --color-bg-tag-gray: #F1F1F1;
+  --color-main-tag-gray: #757575;
+
+  --color-bg-tag-blue: #E5E8FB;
+  --color-main-tag-blue: #001DD7;
+
+  /* --- OTHER COMPONENTS COLORS --- */
+  --color-bg-box: #FFFFCD;
+  --color-border-box: #FFEE71;
+
+  --color-bg-star-rating: #FFF2ED;
+  --color-star-rating: #FEC505;
+
+  --color-light: #FFFFFF;
+  --color-dark: #000000;
+  --color-grayscale: #333333;
+
+  --color-verify: #47E417;
 }
 
 * {

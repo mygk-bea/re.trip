@@ -15,7 +15,8 @@ class CreateTagTable extends Migration
     {
         Schema::create('tag', function (Blueprint $table) {
             $table->id('codTag');
-            $table->string('nome');
+            $table->string('nome')->nullable(false);
+            $table->string('tipo')->nullable(false);
             $table->timestamps();
         });
     }

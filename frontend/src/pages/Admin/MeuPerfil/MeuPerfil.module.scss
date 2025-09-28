@@ -1,0 +1,18 @@
+.icon__pin path {
+  stroke-width: 3px;
+}
+
+.icon__event path {
+  stroke-width: 1px;
+}
+
+.icon__pin,
+.icon__event {
+  width: 30px;
+  height: 30px;
+
+  path {
+    stroke: var(--color-primary-admin);
+    fill: none;
+  }
+}

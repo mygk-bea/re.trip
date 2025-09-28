@@ -15,18 +15,18 @@ class CreateRotaTable extends Migration
     {
         Schema::create('rota', function (Blueprint $table) {
             $table->id('codRota');
-            $table->boolean('compartilhada');
-            $table->string('nome');
-            $table->boolean('privada');
-            $table->string('imagem');
-            $table->string('distancia_total');
-            $table->double('avalicao');
-            $table->string('status');
-            $table->integer('id_autor');
-            $table->boolean('favoritada');
-            $table->boolean('guiado');
-            $table->double('valor');
-            $table->string('comentario');
+            $table->boolean('compartilhada')->default(false);
+            $table->string('nome')->nullable(false);
+            $table->boolean('privada')->nullable(false);
+            $table->string('imagem')->nullable(false);
+            $table->string('distancia_total')->nullable(false);
+            $table->double('avalicao')->default(0.0);
+            $table->string('status')->default("Não iniciada");
+            $table->integer('id_autor')->nullable(false);
+            $table->boolean('favoritada')->default(false);
+            $table->boolean('guiado')->nullable(false);
+            $table->double('valor')->default(0.0);
+            $table->string('comentario')->nullable();
             $table->timestamps();
         });
     }

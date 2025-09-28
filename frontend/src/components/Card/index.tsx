@@ -3,9 +3,8 @@ import styles from "./Card.module.scss";
 import iconStar from '../../assets/icons/star.svg'
 
 interface CardProps {
-  height: string;
-  width: string;
   nameBackground: string;
+  onClick?: () => void;
   title?: string;
   isTags?: boolean;
   tags?: string[];
@@ -15,32 +14,31 @@ interface CardProps {
   isOpacity?: boolean;
   positionText?: "top" | "center" | "bottom";
   widthText?: string;
+  className?: string;
 }
 
 const Card: React.FC<CardProps> = ({
   widthText,
   nameBackground,
-  height,
-  width,
   title,
   isTags,
+  onClick,
   tags,
   isRating,
   numberRating,
   isBlur,
   positionText = "bottom",
-  isOpacity
+  isOpacity,
+  className = ""
 }) => {
   const CardStyle = {
-    "--height": height,
-    "--width": width,
     backgroundImage: `url(${nameBackground})`,
     "--width-text": widthText,
     "--position-text": positionText
   } as React.CSSProperties;
 
   return (
-    <div className={styles.card} style={CardStyle}>
+    <div className={`${styles.card} ${className}`} onClick={onClick} style={CardStyle}>
 
       {isBlur && <div className={styles.blur__overlay}></div>}
 
@@ -52,19 +50,15 @@ const Card: React.FC<CardProps> = ({
 
       {(isRating || isTags) && (
         <div className={styles.footer}>
-          {isTags && tags && (
+          {isTags && tags && tags.length > 0 && (
             <div className={styles.tags}>
-              {tags.map((tag, index) => (
-                <span key={index} className={styles.tag}>
-                  {tag}
-                </span>
-              ))}
+              <span className={styles.tag}>{tags[0]}</span>
             </div>
           )}
           {isRating && (
             <div className={styles.rating}>
-                <img className={styles.icon__star} src={iconStar} alt="" />
-                {numberRating?.toFixed(1)}</div>
+              <img className={styles.icon__star} src={iconStar} alt="" />
+              {numberRating?.toFixed(1)}</div>
           )}
         </div>
       )}

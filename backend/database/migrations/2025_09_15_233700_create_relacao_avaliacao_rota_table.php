@@ -16,8 +16,8 @@ class CreateRelacaoAvaliacaoRotaTable extends Migration
         Schema::create('relacao_avaliacao_rota', function (Blueprint $table) {
             $table->id('codAvaliacao');
             $table->unsignedBigInteger('fk_rota_codRota');
-            $table->integer('id_usuario');
-            $table->double('nota');
+            $table->integer('id_usuario')->nullable(false);
+            $table->double('nota')->nullable(false);
 
             $table->foreign('fk_rota_codRota')->references('codRota')->on('rota');
             $table->timestamps();

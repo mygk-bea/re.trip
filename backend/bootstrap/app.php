@@ -52,6 +52,7 @@ $app->singleton(
 );
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -71,7 +71,5 @@ php artisan db:seeder UsuariosSeeder
 
 ### ⚙️ Libs para instalar
 ```
-npm install @fortawesome/fontawesome-free
 composer require flipbox/lumen-generator
-npm i axios
 ```

@@ -100,7 +100,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                         isRating
                         numberRating={sharedRoutes[0].rating}
                         positionText="center"
-                        className="ml-10 w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh]"
+                        className="ml-10 w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] cursor-pointer"
                         onClick={() => navigate("/admin/rota/info")}
                     />
                 )}

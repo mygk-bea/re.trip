@@ -67,8 +67,8 @@ npm run dev
 \backend
 composer i
 php -S localhost:8000 -t public
-php artisan db:seeder TagSeeder
-php artisan db:seeder UsuariosSeeder
+php artisan db:seed TagSeeder
+php artisan db:seed UsuariosSeeder
 ```
 
 ---

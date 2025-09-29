@@ -63,13 +63,13 @@ git merge backup
 npm i 
 npm run dev
 php -S localhost:8000 -t public
+php artisan db:seeder TagSeeder
+php artisan db:seeder UsuariosSeeder
 ```
 
 ---
 
 ### ⚙️ Libs para instalar
 ```
-npm install @fortawesome/fontawesome-free
 composer require flipbox/lumen-generator
-npm i axios
 ```

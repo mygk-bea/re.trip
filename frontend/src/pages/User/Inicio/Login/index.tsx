@@ -30,7 +30,7 @@ const fields: Field[] = [
 const Login: React.FC<LoginProps> = ({ isAdmin }) => {
     const navigate = useNavigate();
 
- React.useEffect(() => {
+    React.useEffect(() => {
         if (authService.isUserAuthenticated()) {
             if (isAdmin) {
                 navigate('/admin/home');

@@ -6,6 +6,8 @@ import Carousel from './Carousel';
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { events, localPlaces, kpis, sharedRoutes } from '../../../constants/infos';
+import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
+import { allPlaces } from "../../../constants/infosPlaces";
 
 interface HomeAdminProps {
     username: string;
@@ -17,17 +19,36 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
     const theme = useTheme();
     const isLg = useMediaQuery(theme.breakpoints.up('lg'));
 
+    const verRota = (id: number) => {
+        const route = id == 1 ? rotaSitioMuseu : rotaParques;
+        if (route) {
+            navigate("/admin/rota/info", {
+                state: {
+                    type: "admin",
+                    route: route,
+                },
+            });
+        }
+    };
+
     // Map locais com Card
-    const localPlaceItems = localPlaces.map(place => (
+    const localPlaceItems = allPlaces.map(place => (
         <Card
             key={place.id}
             className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh] cursor-pointer"
-            nameBackground={place.image}
-            title={place.title}
+            nameBackground={place.images[0]}
+            title={place.name}
             isOpacity
             positionText="center"
             widthText="70px"
-            onClick={() => navigate("/admin/local/info")}
+            onClick={() => {
+                navigate("/admin/local/info", {
+                    state: {
+                        place: place,
+                        isAdmin: true,
+                    },
+                });
+            }}
         />
     ));
 
@@ -98,10 +119,11 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                         title={sharedRoutes[0].title}
                         isOpacity
                         isRating
+                        fontSize="30px"
                         numberRating={sharedRoutes[0].rating}
                         positionText="center"
                         className="ml-10 w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] cursor-pointer"
-                        onClick={() => navigate("/admin/rota/info")}
+                        onClick={() => verRota(sharedRoutes[0].id)}
                     />
                 )}
                 <div>
@@ -124,7 +146,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                 <div>
                     <p
                         className="underline text-right mr-9 mt-3 text-[#229CFF] cursor-pointer"
-                        onClick={() => navigate("/admin/cadLocal")}
+                        onClick={() => navigate("/admin/cad-local")}
                     >
                         Cadastrar Local
                     </p>
@@ -140,7 +162,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                 <Carousel items={eventItems} visibleCount={isLg ? 3 : 2} />
                 <p
                     className="underline text-right mr-9 mt-3 text-[#229CFF] cursor-pointer"
-                    onClick={() => navigate("/admin/cadEvento")}
+                    onClick={() => navigate("/admin/cad-evento")}
                 >
                     Cadastrar Evento
                 </p>

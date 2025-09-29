@@ -46,7 +46,7 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: var(--font-size-title, 20px);
   width: var(--width-text);
   text-align: var(--position-text);
     display: inline-block;

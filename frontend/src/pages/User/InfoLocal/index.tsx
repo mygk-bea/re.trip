@@ -326,7 +326,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
           </div>
         </div>
       </div>
-      <Menu />
+      <Menu isAdmin={isAdmin} />
     </>
   );
 };

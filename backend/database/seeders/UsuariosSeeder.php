@@ -21,7 +21,7 @@ class UsuariosSeeder extends Seeder
     {
         $credenciais = [['tipo' => 'usuario comum', 'email' => 'neusa@gmail.com', 'senha' => "123456"],
         ['tipo' => 'usuario comum', 'email' => 'caio@gmail.com', 'senha' => "123456"],
-        ['tipo' => 'administrador', 'email' => 'dina@gmail.com', 'senha' => "123456"],
+        ['tipo' => 'administrador', 'email' => 'dina@gmail.com', 'senha' => "123456@!ABC"],
         ['tipo' => 'administrador', 'email' => 'joana@gmail.com', 'senha' => "123456"], 
         ['tipo' => 'super administrador', 'email' => 'rafael@gmail.com', 'senha' => "123456"],
         ['tipo' => 'super administrador', 'email' => 'juliana@gmail.com', 'senha' => "123456"],   

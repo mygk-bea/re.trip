@@ -24,3 +24,5 @@ export const rotaParques: RouteInfo = {
   locals: [parqueMariaTucaBase, sitioCarrocaoBase],
   images: ["/images/printscreen/img_bg_maps-rota-2.png"],
 };
+
+export const allRoutes: RouteInfo[] = [rotaSitioMuseu, rotaParques];

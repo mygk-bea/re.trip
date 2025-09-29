@@ -88,7 +88,7 @@ export default function ModalForm({ fields = [], type, isAdmin = false, onLoginS
                     positionItems="center"
                     fontSize="1.25rem"
                     fontFamily="'Madimi One', sans-serif"
-                    onClick={() => navigate("/inicio")}
+                    onClick={isAdmin ? () => navigate('/admin/inicio') : () => navigate('/inicio')}
                 />
 
                 <Button

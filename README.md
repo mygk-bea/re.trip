@@ -60,8 +60,12 @@ git merge backup
 
 ### ⚙️ Comandos para build
 ```
+\frontend
 npm i 
 npm run dev
+
+\backend
+composer i
 php -S localhost:8000 -t public
 php artisan db:seeder TagSeeder
 php artisan db:seeder UsuariosSeeder

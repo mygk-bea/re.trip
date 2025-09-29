@@ -5,6 +5,8 @@ import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
 import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
 import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
+import { authService } from "../../../../core/services/loginService";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
     isAdmin?: boolean;
@@ -26,6 +28,26 @@ const fields: Field[] = [
 ];
 
 const Login: React.FC<LoginProps> = ({ isAdmin }) => {
+    const navigate = useNavigate();
+
+ React.useEffect(() => {
+        if (authService.isUserAuthenticated()) {
+            if (isAdmin) {
+                navigate('/admin/home');
+            } else {
+                navigate('/user/home');
+            }
+        }
+    }, [navigate, isAdmin]);
+
+    const handleLoginSuccess = () => {
+        if (isAdmin) {
+            navigate('/admin/home');
+        } else {
+            navigate('/user/home');
+        }
+    };
+
     const modalForm = (
         <div className={`${styled_page.modal} 
             p-[3.2vh_25px]
@@ -41,7 +63,7 @@ const Login: React.FC<LoginProps> = ({ isAdmin }) => {
                 `}>
                 Bem-vindo!
             </h1>
-            <ModalForm fields={fields} isAdmin={isAdmin} />
+            <ModalForm  type="login" onLoginSuccess={handleLoginSuccess} fields={fields} isAdmin={isAdmin} />
         </div>
     );
 

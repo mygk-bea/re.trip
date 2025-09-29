@@ -3,15 +3,19 @@ import { useNavigate } from "react-router-dom";
 import type { Field } from "../../../../types/field";
 import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
+import { authService } from "../../../../core/services/loginService";
 
 interface ModalFormProps {
     fields?: Field[];
     type?: 'login' | 'cadastro';
     isAdmin?: boolean;
+    onLoginSuccess?: () => void;
 }
 
-export default function ModalForm({ fields = [], type, isAdmin = false }: ModalFormProps) {
+export default function ModalForm({ fields = [], type, isAdmin = false, onLoginSuccess }: ModalFormProps) {
     const [formData, setFormData] = useState<Record<string, string>>({});
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,9 +25,37 @@ export default function ModalForm({ fields = [], type, isAdmin = false }: ModalF
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log("Dados enviados:", formData);
+        
+        if (type === 'login') {
+            setLoading(true);
+            setError("");
+
+            try {
+                const loginData = {
+                    email: formData.email || "",
+                    senha: formData.senha || ""
+                };
+                console.log("Dados enviados para login:", loginData); 
+                const response = await authService.autenticarLogin(loginData);
+                
+                if (response.validado) {
+                    console.log("Login realizado com sucesso!");
+                    if (onLoginSuccess) {
+                        onLoginSuccess();
+                    } 
+                } else {
+                    setError(response.mensagem || "Credenciais inválidas");
+                }
+            } catch (err) {
+                setError(err instanceof Error ? err.message : "Erro na autenticação");
+            } finally {
+                setLoading(false);
+            }
+        } else {
+            console.log("Dados enviados:", formData);
+        }
     };
 
     return (
@@ -39,8 +71,10 @@ export default function ModalForm({ fields = [], type, isAdmin = false }: ModalF
                     placeholder={field.placeholder}
                     onChange={handleChange}
                     isAdmin={isAdmin} 
+                    name={field.name}
                 />
             ))}
+            {error && <div style={{color: 'red'}}>{error}</div>}
 
             <div className="w-full flex justify-center gap-4 mt-4 mb-2 items-center">
                 <Button
@@ -68,7 +102,8 @@ export default function ModalForm({ fields = [], type, isAdmin = false }: ModalF
                     positionItems="center"
                     fontSize="1.25rem"
                     fontFamily="'Madimi One', sans-serif"
-                    onClick={() => navigate("/")}
+                    buttonType="submit"
+                    //onClick={() => handleSubmit({} as React.FormEvent)}
                 />
             </div>
         </form>

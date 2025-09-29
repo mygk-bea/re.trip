@@ -10,15 +10,23 @@ use App\Models\PromotorTuristico;
 use App\Models\SuperAdmin;
 use App\Models\UsuarioComum;
 use App\Models\Credenciais;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
     public function autenticar(Request $request){
 
-    $request->validate([
+    $validator = Validator::make($request->all(), [
         'email' => 'required|email',
         'senha' => 'required'
     ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'validado' => false,
+            'error' => $validator->errors()
+        ], 422);
+    }
 
     
     $email = $request->email;

@@ -7,6 +7,7 @@ import Button from "../../../components/Button";
 import IconAvatar from "../../../assets/icons/icon-avatar";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
+import { authService } from "../../../core/services/loginService";
 
 interface MeuPerfilProps {
     type: string;
@@ -37,6 +38,12 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
             };
             reader.readAsDataURL(file);
         }
+    };
+
+    // Função de logout
+    const handleLogout = () => {
+        authService.logout();
+        navigate("/inicio");
     };
 
     return (
@@ -131,7 +138,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     positionItems="start"
                     fontWeight='normal'
                     icon={IconLogout}
-                    onClick={() => navigate("/inicio")}
+                    onClick={handleLogout}
                 />
             </div>
 

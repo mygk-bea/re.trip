@@ -12,6 +12,7 @@ import {
     Tooltip,
     Legend,
 } from "chart.js";
+import IconExit from "../../../assets/icons/icon-exit";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -95,10 +96,20 @@ const HomeSuperAdmin: React.FC = () => {
         <div className="min-h-screen p-8 w-full">
             <div className="w-full">
                 {/* Cabeçalho */}
-                <div className="p-6 text-left">
+                <div className="p-6 text-left flex items-center justify-between">
                     <h1 className="text-4xl font-bold text-gray-900">
-                        Olá, <br /><span className="text-[var(--color-primary-user)]">Super Admin</span>!
+                        Olá, <br />
+                        <span className="text-[var(--color-primary-user)]">Super Admin</span>!
                     </h1>
+
+                    {/* Botão de Sair */}
+                    <button
+                        className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+                        title="Sair"
+                        onClick={() => console.log("Logout clicado")}
+                    >
+                        <IconExit class='w-10 h-10 text-gray-400 hover:text-gray-500 cursor-pointer' />
+                    </button>
                 </div>
 
                 {/* Carousel dos cards */}

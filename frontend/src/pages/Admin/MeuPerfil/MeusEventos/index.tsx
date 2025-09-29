@@ -3,6 +3,8 @@ import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
+import { events } from "../../../../constants/infos";
+import Card from "../../../../components/Card";
 
 
 const MeusEventos: React.FC = () => {
@@ -22,6 +24,20 @@ const MeusEventos: React.FC = () => {
                 </div> 
 
                 <div className="w-6"></div>
+            </div>
+
+            <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
+                {events.map((event) => (
+                    <Card
+                        key={event.id}
+                        nameBackground={event.image}
+                        title={event.title}
+                        isOpacity
+                        positionText="center"
+                        widthText="70px"
+                        className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4"
+                    />
+                ))}
             </div>
 
             <div>

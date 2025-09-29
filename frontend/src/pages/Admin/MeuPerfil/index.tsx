@@ -3,6 +3,7 @@ import IconLogout from "../../../assets/icons/icon-exit";
 import Menu from "../../../components/Menu";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import { authService } from "../../../core/services/loginService";
 
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import IconPin from "../../../assets/icons/icon-pin";
@@ -20,6 +21,10 @@ interface MeuPerfilProps {
 const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
     const navigate = useNavigate();
 
+    const handleLogout = () => {
+        authService.logout();
+        navigate("/admin/login");
+    };
 
     return (
         <>
@@ -102,7 +107,7 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     positionItems="start"
                     fontWeight='normal'
                     icon={IconLogout}
-                    onClick={() => navigate("/admin/inicio")}
+                    onClick={handleLogout}
                 />
             </div>
 

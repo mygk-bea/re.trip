@@ -1,5 +1,5 @@
 import React, { useState } from 'react'; // Importar o useState
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import styled from './RotaEmAndamento.module.scss';
 import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
@@ -12,11 +12,17 @@ import IconVerify from '../../../../assets/icons/icon-verify';
 import Tag from '../../../../components/Tag';
 
 interface RotaEmAndamentoProps {
-  route: RouteInfo
+  route?: RouteInfo
 }
 
-const RotaEmAndamento: React.FC<RotaEmAndamentoProps> = ({ route }) => {
+const RotaEmAndamento: React.FC<RotaEmAndamentoProps> = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { route } = (location.state || {}) as RotaEmAndamentoProps;
+
+  if (!route) {
+    return <p>⚠️ Nenhuma rota em andamento.</p>;
+  }
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentLocal = route.locals[currentIndex];
@@ -27,7 +33,7 @@ const RotaEmAndamento: React.FC<RotaEmAndamentoProps> = ({ route }) => {
       setCurrentIndex(prevIndex => prevIndex + 1);
     } else {
       console.log("Rota finalizada!");
-      navigate('/user/rota/final');
+      navigate('/user/rota/final', { state: { name: route.name } });
     }
   };
 

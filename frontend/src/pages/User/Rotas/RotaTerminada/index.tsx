@@ -3,14 +3,20 @@ import styled from './RotaTerminada.module.scss';
 import IconVerify from '../../../../assets/icons/icon-verify';
 import StarRating from '../../../../components/StarRating';
 import Button from '../../../../components/Button';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface RotaTerminadaProps {
-    name: string;
+    name?: string;
 }
 
-const RotaTerminada: React.FC<RotaTerminadaProps> = ({ name }) => {
+const RotaTerminada: React.FC<RotaTerminadaProps> = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { name } = (location.state || {}) as RotaTerminadaProps;
+
+    if (!name) {
+        return <p>⚠️ Nenhuma rota finalizada.</p>;
+    }
 
     return (
         <div className={`${styled.container} h-full w-screen text-center flex flex-col justify-center items-center gap-[50px]`}>
@@ -39,7 +45,7 @@ const RotaTerminada: React.FC<RotaTerminadaProps> = ({ name }) => {
                 fontFamily="'Rubik', sans-serif"
                 positionItems="center"
                 isAdm={false}
-                onClick={() => { navigate("/") }}
+                onClick={() => { navigate("/user/home") }}
             />
         </div>
     );

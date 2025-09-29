@@ -27,10 +27,12 @@ import { sitioCarrocao } from './constants/infosPlaces';
 import { rotaSitioMuseu } from './constants/infosRoutes';
 import LoginSuperAdmin from './pages/SuperAdmin/Login';
 import HomeSuperAdmin from './pages/SuperAdmin/Home';
+import ScrollToTop from './components/Effects/ScrollToTop';
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/criar-conta" element={<Cadastro />} />
@@ -42,11 +44,11 @@ function App() {
         <Route path="/user/pesquisar" element={<Pesquisar />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
 
-        <Route path="/user/local/info" element={<InfoLocal place={sitioCarrocao} />} />
+        <Route path="/user/local/info" element={<InfoLocal />} />
         <Route path="/user/rota/cadastro" element={<RotaCadastro  />} />
-        <Route path="/user/rota/info" element={<RotaInfo type='user' route={rotaSitioMuseu} />} />
-        <Route path="/user/rota/em-andamento" element={<RotaEmAndamento route={rotaSitioMuseu} />} />
-        <Route path="/user/rota/final" element={<RotaTerminada name='Sítio - Museu' />} />
+        <Route path="/user/rota/info" element={<RotaInfo />} />
+        <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
+        <Route path="/user/rota/final" element={<RotaTerminada />} />
 
         <Route path="/admin/inicio" element={<Inicio isAdmin={true} />} />
         <Route path="/admin/criar-conta" element={<Cadastro isAdmin={true} />} />

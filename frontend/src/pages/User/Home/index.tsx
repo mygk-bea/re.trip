@@ -7,6 +7,7 @@ import { categories, regionCities, localPlaces, sharedRoutes } from '../../../co
 import Card from "../../../components/Card";
 import Carousel from './Carousel';
 import { useMediaQuery, useTheme } from "@mui/material";
+import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 
 interface HomeProps {
     call: string;
@@ -17,6 +18,18 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const theme = useTheme();
     const isLg = useMediaQuery(theme.breakpoints.up('lg'));
     const navigate = useNavigate();
+
+    const verRota = (id: number) => {
+        const route = id == 1 ? rotaSitioMuseu : rotaParques;
+        if (route) {
+            navigate("/user/rota/info", {
+                state: {
+                    type: "user",
+                    route: route,
+                },
+            });
+        }
+    };
 
     // Map categorias
     const categoryItems = categories.map((cat) => (
@@ -65,7 +78,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             isRating
             numberRating={route.rating}
             positionText="center"
-            onClick={() => navigate("/user/rota/info")}
+            onClick={() => verRota(route.id)}
         />
     ));
 

@@ -13,14 +13,20 @@ import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
 import IconUpload from '../../../assets/icons/icon-upload';
 import Card from '../../../components/Card';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface InfoLocalProps {
-  place: Place;
+  place?: Place;
   isAdmin?: boolean;
 }
 
-const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
+const InfoLocal: React.FC<InfoLocalProps> = () => {
+  const location = useLocation();
+  const { place, isAdmin = false } = (location.state || {}) as InfoLocalProps;
+
+  if (!place) {
+    return <p>⚠️ Nenhum local encontrado.</p>;
+  }
   const [isFavorited, setIsFavorited] = useState(place.favorited);
 
   // Estados de edição

@@ -31,8 +31,8 @@ const MeusLocais: React.FC = () => {
                         nameBackground={place.image}
                         title={place.title}
                         isOpacity
+                        fontSize="30px"
                         positionText="center"
-                        widthText="70px"
                         className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4 cursor-pointer"
                         onClick={() => navigate('/admin/local/info')}
                     />

@@ -45,7 +45,6 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
 
                     <div className="w-10 h-10"></div>
                 </div>
-
                 <div className="flex flex-col items-center mb-5 lg:mb-10 mt-3">
                     <img
                         src={logoAdmin}
@@ -54,12 +53,13 @@ const MeuPerfilAdmin: React.FC<MeuPerfilProps> = ({ type, username }) => {
                     />
                 </div>
 
-
-                <div className={`text-[#229CFF] text-center font-bold text-[32px]`}>{username}</div>
-                <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
+                <div>
+                    <div className={`text-[#229CFF] text-center font-bold text-[32px]`}>{username}</div>
+                    <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
+                </div>
             </div>
 
-            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-30" >
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 mb-30" >
                 <Button
                     colorIcon="#229CFF"
                     colorText="#000"

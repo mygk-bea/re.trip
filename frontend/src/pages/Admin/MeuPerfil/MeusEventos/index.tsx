@@ -34,7 +34,7 @@ const MeusEventos: React.FC = () => {
                         title={event.title}
                         isOpacity
                         positionText="center"
-                        widthText="70px"
+                        fontSize="30px"
                         className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4"
                     />
                 ))}

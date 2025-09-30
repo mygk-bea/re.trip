@@ -21,9 +21,11 @@ export const regionCities = [
 ];
 
 import imgRota from '../assets/images/printscreen/img_bg_maps-rota-1.png';
+import imgRota2 from '../assets/images/printscreen/img_bg_maps-rota-2.png';
 
 export const sharedRoutes = [
     { id: 1, title: "Sítio - Museu", image: imgRota, rating: 4.1 },
+    { id: 2, title: "Parques Tatuí", image: imgRota2, rating: 4.8 },
 ];
 
 import imgGastronomy from "../assets/images/category/img_bg_gastronomy.png";

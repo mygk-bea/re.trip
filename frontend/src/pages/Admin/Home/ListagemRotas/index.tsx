@@ -4,9 +4,22 @@ import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 import { sharedRoutes } from "../../../../constants/infos";
 import Card from "../../../../components/Card/index";
+import { allRoutes, rotaParques, rotaSitioMuseu } from "../../../../constants/infosRoutes";
 
 const ListagemRotas: React.FC = () => {
     const navigate = useNavigate();
+
+    const verRota = (id: number) => {
+        const route = id == 1 ? rotaSitioMuseu : rotaParques;
+        if (route) {
+            navigate("/admin/rota/info", {
+                state: {
+                    type: "admin",
+                    route: route,
+                },
+            });
+        }
+    };
 
     return (
         <div className="relative">
@@ -24,18 +37,21 @@ const ListagemRotas: React.FC = () => {
                 <div className="w-6"></div>
             </div>
 
-            <div className="flex flex-col items-center w-full max-w-4xl mx-auto">
-                {sharedRoutes.map((route) => (
+            <div className="flex flex-col items-center w-full max-w-4xl mx-auto -mt-50">
+                {allRoutes.map((route) => (
                     <Card
                         key={route.id}
-                        nameBackground={route.image}
-                        title={route.title}
+                        nameBackground={route.images[0]}
+                        title={route.name}
                         isOpacity
                         positionText="center"
                         isRating
-                        numberRating={4.1}
-                        widthText="70px"
-                        className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4 -mt-50"
+                        numberRating={route.starRating}
+                        fontSize="30px"
+                        className="w-[80vw] h-[15vh] lg:w-[40vw] lg:h-[20vh] mb-4"
+                        onClick={() => {
+                            verRota(Number(route.id));
+                        }}
                     />
                 ))}
             </div>

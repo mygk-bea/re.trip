@@ -14,13 +14,22 @@ import Button from "../../../../components/Button";
 import styled from "./RotaInfo.module.scss";
 
 import type { RouteInfo } from "../../../../types/route";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface RotaInfoProps {
-  route: RouteInfo;
-  type: 'user' | 'admin' | 'guia'; 
+  route?: RouteInfo;
+  type?: 'user' | 'admin' | 'guia'; 
 }
 
-const RotaInfo: React.FC<RotaInfoProps> = ({ route, type }) => {
+const RotaInfo: React.FC<RotaInfoProps> = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { route, type } = (location.state || {}) as RotaInfoProps;
+
+  if (!route || !type) {
+    return <p>⚠️ Nenhuma rota encontrada.</p>;
+  }
+
   const [isFavorited, setIsFavorited] = useState(route.favorited);
   const mainStyleColor =
     type === 'guia' ? styled.guiaTheme :
@@ -151,6 +160,14 @@ const RotaInfo: React.FC<RotaInfoProps> = ({ route, type }) => {
                         isOpacity={false}
                         positionText="top"
                         widthText="100%"
+                        onClick={() => {
+                          navigate("/user/local/info", {
+                            state: {
+                              place: local,
+                              isAdmin: type === 'admin',
+                            },
+                          });
+                        }}
                       />
                     </div>
                   </div>
@@ -169,7 +186,13 @@ const RotaInfo: React.FC<RotaInfoProps> = ({ route, type }) => {
                     positionItems="center"
                     fontFamily="'Madimi One', sans-serif"
                     isAdm={false}
-                    onClick={() => {}}
+                    onClick={() => {
+                      navigate("/user/rota/em-andamento", {
+                        state: {
+                          route: route,
+                        },
+                      });
+                    }}
                   />
                 </div>
               )}
@@ -177,7 +200,7 @@ const RotaInfo: React.FC<RotaInfoProps> = ({ route, type }) => {
           </div>
         </div>
       </div>
-      <Menu />
+      <Menu isAdmin={type === 'admin'} />
     </>
   );
 };

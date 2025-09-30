@@ -30,7 +30,7 @@ const fields: Field[] = [
 const Login: React.FC<LoginProps> = ({ isAdmin }) => {
     const navigate = useNavigate();
 
- React.useEffect(() => {
+    React.useEffect(() => {
         if (authService.isUserAuthenticated()) {
             if (isAdmin) {
                 navigate('/admin/home');
@@ -81,9 +81,9 @@ const Login: React.FC<LoginProps> = ({ isAdmin }) => {
         >
             <div className="lg:w-1/2 flex justify-center">
                 <div className={`${styled.backgroundTitle} 
-                h-[63vh] w-[900px] lg:w-[50vw] lg:h-[100vh] 
+                h-[100vh] w-[900px] lg:w-[50vw] lg:h-[100vh] 
                 overflow-hidden 
-                rounded-b-[500px] lg:rounded-b-[0] lg:rounded-br-[500px]
+                rounded-b-[0] lg:rounded-br-[500px]
                 bg-center bg-no-repeat bg-[auto_115%]
                 ${shadowColorClass}`}
                     style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize: 'cover' }}

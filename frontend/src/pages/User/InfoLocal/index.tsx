@@ -13,14 +13,22 @@ import styled from './InfoLocal.module.scss';
 import type { Place } from '../../../types/place';
 import IconUpload from '../../../assets/icons/icon-upload';
 import Card from '../../../components/Card';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { events } from '../../../constants/infos';
+import { rotaParques, rotaSitioMuseu } from '../../../constants/infosRoutes';
 
 interface InfoLocalProps {
-  place: Place;
+  place?: Place;
   isAdmin?: boolean;
 }
 
-const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
+const InfoLocal: React.FC<InfoLocalProps> = () => {
+  const location = useLocation();
+  const { place, isAdmin = false } = (location.state || {}) as InfoLocalProps;
+
+  if (!place) {
+    return <p>⚠️ Nenhum local encontrado.</p>;
+  }
   const [isFavorited, setIsFavorited] = useState(place.favorited);
 
   // Estados de edição
@@ -48,6 +56,19 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
   const labelStyle = { color: isAdmin ? "#229CFF" : "#FF7022", fontWeight: 500 as const };
 
   const navigate = useNavigate();
+
+  const verRota = (id: number) => {
+    const route = id == 1 ? rotaSitioMuseu : rotaParques;
+    if (route) {
+      navigate("/user/rota/info", {
+        state: {
+          type: "user",
+          route: route,
+        },
+      });
+    }
+  };
+
 
   return (
     <>
@@ -270,7 +291,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                           isOpacity={false}
                           positionText="top"
                           widthText="100%"
-                          onClick={() => navigate('/user/rota/info')}
+                          onClick={() => { verRota(Number(route.id)) }}
                         />
                       ))}
                     </div>
@@ -308,11 +329,18 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
                       }
                     />
                   ) : (
-                    <ul className="list-disc list-inside ml-2">
-                      {eventsValue.map((event) => (
-                        <li key={event.id}>{event.description || event.id}</li>
+                    <div className="flex flex-col gap-2">
+                      {events.map((event) => (
+                        <Card
+                            key={event.id}
+                            nameBackground={event.image}
+                            title={event.title}
+                            isOpacity
+                            positionText="center"
+                            className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
+                        />
                       ))}
-                    </ul>
+                    </div>
                   )}
                 </div>
               )}
@@ -320,7 +348,7 @@ const InfoLocal: React.FC<InfoLocalProps> = ({ place, isAdmin = false }) => {
           </div>
         </div>
       </div>
-      <Menu />
+      <Menu isAdmin={isAdmin} />
     </>
   );
 };

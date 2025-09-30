@@ -14,11 +14,13 @@ interface CardProps {
   isOpacity?: boolean;
   positionText?: "top" | "center" | "bottom";
   widthText?: string;
+  fontSize?: string;
   className?: string;
 }
 
 const Card: React.FC<CardProps> = ({
   widthText,
+  fontSize,
   nameBackground,
   title,
   isTags,
@@ -34,7 +36,8 @@ const Card: React.FC<CardProps> = ({
   const CardStyle = {
     backgroundImage: `url(${nameBackground})`,
     "--width-text": widthText,
-    "--position-text": positionText
+    "--position-text": positionText,
+    "--font-size-title": fontSize ? fontSize : '20px',
   } as React.CSSProperties;
 
   return (

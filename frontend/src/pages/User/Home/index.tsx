@@ -7,6 +7,8 @@ import { categories, regionCities, localPlaces, sharedRoutes } from '../../../co
 import Card from "../../../components/Card";
 import Carousel from './Carousel';
 import { useMediaQuery, useTheme } from "@mui/material";
+import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
+import { allPlaces } from "../../../constants/infosPlaces";
 
 interface HomeProps {
     call: string;
@@ -17,6 +19,18 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     const theme = useTheme();
     const isLg = useMediaQuery(theme.breakpoints.up('lg'));
     const navigate = useNavigate();
+
+    const verRota = (id: number) => {
+        const route = id == 1 ? rotaSitioMuseu : rotaParques;
+        if (route) {
+            navigate("/user/rota/info", {
+                state: {
+                    type: "user",
+                    route: route,
+                },
+            });
+        }
+    };
 
     // Map categorias
     const categoryItems = categories.map((cat) => (
@@ -29,16 +43,23 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
     ));
 
     // Map locais
-    const localPlaceItems = localPlaces.map((place) => (
+    const localPlaceItems = allPlaces.map((place) => (
         <Card
             key={place.id}
             className="h-[100px] w-[150px] lg:w-[13vw] lg:h-[13vh] cursor-pointer"
-            nameBackground={place.image}
-            title={place.title}
+            nameBackground={place.images[0]}
+            title={place.name}
             isOpacity
             positionText="center"
             widthText="70px"
-            onClick={() => navigate("/user/local/info")}
+            onClick={() => {
+                navigate("/user/local/info", {
+                    state: {
+                        place: place,
+                        isAdmin: false,
+                    },
+                });
+            }}
         />
     ));
 
@@ -65,7 +86,7 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             isRating
             numberRating={route.rating}
             positionText="center"
-            onClick={() => navigate("/user/rota/info")}
+            onClick={() => verRota(route.id)}
         />
     ));
 

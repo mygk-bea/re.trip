@@ -9,6 +9,7 @@ const api = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
 class AuthService {
   async autenticarLogin(login: Login): Promise<Autenticacao> {
     try {

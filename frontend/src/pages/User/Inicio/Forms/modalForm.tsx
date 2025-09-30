@@ -4,15 +4,17 @@ import type { Field } from "../../../../types/field";
 import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
 import { authService } from "../../../../core/services/loginService";
+import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
 
 interface ModalFormProps {
     fields?: Field[];
     type?: 'login' | 'cadastro';
     isAdmin?: boolean;
     onLoginSuccess?: () => void;
+    onCadastroSuccess?: () => void;
 }
 
-export default function ModalForm({ fields = [], type, isAdmin = false, onLoginSuccess }: ModalFormProps) {
+export default function ModalForm({ fields = [], type, isAdmin = false, onLoginSuccess, onCadastroSuccess }: ModalFormProps) {
     const [formData, setFormData] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -56,7 +58,33 @@ export default function ModalForm({ fields = [], type, isAdmin = false, onLoginS
         } else {
             console.log("Dados enviados:", formData);
         }
+
+        if(type == 'cadastro'){
+            setLoading(true);
+            setError("");
+    
+            const cadastroData = {
+                email: formData.email || "",
+                senha: formData.senha || "",
+                nome: formData.nome || "",
+                dataNascimento: formData.dataNascimento || "",
+                genero: formData.genero || "",
+                cpf: formData.cpf || ""
+            };
+    
+            const response = await cadastrosUsuarios.cadastrarAdmin(cadastroData);
+    
+            if (response.validado) {
+                        console.log("Cadastro realizado com sucesso!");
+                        if (onCadastroSuccess) {
+                            onCadastroSuccess();
+                        } 
+                    } else {
+                        setError(response.mensagem || "Dados inválidas");
+                }
+        }
     };
+
 
     return (
         <form

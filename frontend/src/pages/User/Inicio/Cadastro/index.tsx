@@ -5,6 +5,8 @@ import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
 import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
 import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
+import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
+import { useNavigate } from "react-router-dom";
 
 interface CadastroProps {
     isAdmin?: boolean;
@@ -49,6 +51,15 @@ const fields: Field[] = [
 ];
 
 const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false }) => {
+        const navigate = useNavigate();
+    
+        const handleCadastroSuccess = () => {
+        if (isAdmin) {
+            navigate('/admin/login');
+        } else {
+            navigate('/login');
+        }
+    };
 
     const modalForm = (
         <div
@@ -68,7 +79,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false }) => {
             >
                 Cadastre-se
             </h1>
-            <ModalForm fields={fields} type="cadastro" isAdmin={isAdmin} />
+            <ModalForm onCadastroSuccess={handleCadastroSuccess} fields={fields} type="cadastro" isAdmin={isAdmin} />
         </div>
     );
 

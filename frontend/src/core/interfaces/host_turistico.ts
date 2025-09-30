@@ -1,7 +1,7 @@
 export interface HostTuristico {
     nome: String;
     cpf: String;
-    dataNascimento: Date;
+    dataNascimento: string;
     email: String;
     senha: String;
 }

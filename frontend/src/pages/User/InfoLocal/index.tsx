@@ -14,6 +14,8 @@ import type { Place } from '../../../types/place';
 import IconUpload from '../../../assets/icons/icon-upload';
 import Card from '../../../components/Card';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { events } from '../../../constants/infos';
+import { rotaParques, rotaSitioMuseu } from '../../../constants/infosRoutes';
 
 interface InfoLocalProps {
   place?: Place;
@@ -54,6 +56,19 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
   const labelStyle = { color: isAdmin ? "#229CFF" : "#FF7022", fontWeight: 500 as const };
 
   const navigate = useNavigate();
+
+  const verRota = (id: number) => {
+    const route = id == 1 ? rotaSitioMuseu : rotaParques;
+    if (route) {
+      navigate("/user/rota/info", {
+        state: {
+          type: "user",
+          route: route,
+        },
+      });
+    }
+  };
+
 
   return (
     <>
@@ -276,7 +291,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                           isOpacity={false}
                           positionText="top"
                           widthText="100%"
-                          onClick={() => navigate('/user/rota/info')}
+                          onClick={() => { verRota(Number(route.id)) }}
                         />
                       ))}
                     </div>
@@ -314,11 +329,18 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                       }
                     />
                   ) : (
-                    <ul className="list-disc list-inside ml-2">
-                      {eventsValue.map((event) => (
-                        <li key={event.id}>{event.description || event.id}</li>
+                    <div className="flex flex-col gap-2">
+                      {events.map((event) => (
+                        <Card
+                            key={event.id}
+                            nameBackground={event.image}
+                            title={event.title}
+                            isOpacity
+                            positionText="center"
+                            className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
+                        />
                       ))}
-                    </ul>
+                    </div>
                   )}
                 </div>
               )}

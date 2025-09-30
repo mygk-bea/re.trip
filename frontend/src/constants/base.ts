@@ -23,7 +23,7 @@ export const sitioCarrocaoBase: Place = {
 export const museuPauloSetubalBase: Place = {
   id: "2",
   name: "Museu Paulo Setúbal",
-  favorited: false,
+  favorited: true,
   verified: true,
   starRating: 4.5,
   tags: [

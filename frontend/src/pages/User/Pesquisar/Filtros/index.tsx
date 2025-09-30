@@ -3,7 +3,7 @@ import styles from './Filtros.module.scss'
 import Tag from '../../../../components/Tag';
 import Menu from '../../../../components/Menu';
 import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
 
 const Filtros: React.FC = () => {
@@ -72,13 +72,13 @@ const Filtros: React.FC = () => {
                     <div className={styles.cabecalho__divisor}></div>
                 </div>
 
-                <div className={styles.filtros__conteudos}>
+                <div className={`${styles.filtros__conteudos} px-[4.5vw]`}>
                     <div className={styles.filtros__atracoes}>
                         <div className={styles.atracoes__titulo}><h2>Atrações</h2></div>
                         <div className={styles.atracoes__conteudo}>
                             {tagsAtracoes.map((tag, index) => (
                                 <Tag
-                                    key={index}
+                                    key={`${index}-atracoes`}
                                     text={tag.text}
                                     bgColor={tag.bgColor}
                                     borderColor={tag.borderColor}
@@ -94,7 +94,7 @@ const Filtros: React.FC = () => {
                         <div className={styles.localizacao__conteudo}>
                             {tagsLocalizacao.map((tag, index) => (
                                 <Tag
-                                    key={index}
+                                    key={`${index}-localizacao`}
                                     text={tag.text}
                                     bgColor={tag.bgColor}
                                     borderColor={tag.borderColor}
@@ -110,7 +110,7 @@ const Filtros: React.FC = () => {
                         <div className={styles.acessibilidade__conteudo}>
                             {tagsAceInc.map((tag, index) => (
                                 <Tag
-                                    key={index}
+                                    key={`${index}-aceinc`}
                                     text={tag.text}
                                     bgColor={tag.bgColor}
                                     borderColor={tag.borderColor}

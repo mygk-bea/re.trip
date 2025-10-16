@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCredenciaisTable extends Migration
+class CreateImagensTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateCredenciaisTable extends Migration
      */
     public function up()
     {
-        Schema::create('credenciais', function (Blueprint $table) {
-            $table->id("codCredencial");
+        Schema::create('imagens', function (Blueprint $table) {
+            $table->id('codImagem');
             $table->string("tipo")->nullable(false);
-            $table->string("email")->unique();
-            // $table->string("token")->unique();
-            $table->string("senha")->nullable(false);
+            $table->string("nome")->nullable(false);
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateCredenciaisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('credenciais');
+        Schema::dropIfExists('imagens');
     }
 }

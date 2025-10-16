@@ -1,7 +1,7 @@
 export interface PromotorTuristico {
     nome: String;
     cpf: String;
-    dataNascimento: Date;
+    dataNascimento: string;
     email: String;
     senha: String;
 }

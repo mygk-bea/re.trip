@@ -24,5 +24,7 @@ class SuperAdminController extends Controller
         $usuario->dataNascimento = $request->input('dataNascimento');
         $usuario->fk_credencial_codCredencial = $codCredencial;
         $usuario->save();
+
+        // return response()->json(['validado' => true]);
     }
 }

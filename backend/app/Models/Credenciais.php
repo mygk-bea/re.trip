@@ -14,6 +14,7 @@ class Credenciais extends Model
         'id_usuario',
         'tipo',
         'email',
-        'senha'
+        'senha',
+        // 'token'
     ]; 
 }

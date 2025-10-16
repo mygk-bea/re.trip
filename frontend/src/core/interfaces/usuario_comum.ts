@@ -1,7 +1,20 @@
 export interface UsuarioComum {
-    nome: String;
-    genero: String;
-    dataNascimento: Date;
-    email: String;
-    senha: String;
+    nome: string;
+    genero: string;
+    dataNascimento: string;
+    email: string;
+    senha: string;
+}
+
+export interface UsuarioResponse {
+    validado: boolean;
+    mensagem: string;
+    id: number;
+    error?: {
+        nome: string[];
+        email: string[];
+        senha: string[];
+        genero: string[];
+        dataNascimento: string[];
+    };
 }

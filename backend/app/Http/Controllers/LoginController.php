@@ -11,6 +11,8 @@ use App\Models\SuperAdmin;
 use App\Models\UsuarioComum;
 use App\Models\Credenciais;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -31,10 +33,10 @@ class LoginController extends Controller
     
     $email = $request->email;
     $senha = $request->senha;
-
-
+    
     $user = new Credenciais();
     $usuario = $user->where('email', $email)->where('senha', $senha)->first();
+    $token =  hash('sha256', Str::random(60) . $usuario->codCredencial . time());
 
     if(!isset($usuario)){
         return response()->json(['error' => 'e-mail ou senha incorretos.']);
@@ -48,7 +50,12 @@ class LoginController extends Controller
         $usuarioTipo = $usuario->tipo;
         $usuarioNome = $usuarioComum->nome;
 
-        return response()->json(['validado' => true, 'id' => $codUsuario, 'tipo' => $usuarioTipo, 'nome' => $usuarioNome]);
+        return response()->json(['validado' => true, 'token' => $token,
+            'user' => [
+                'id' => $codUsuario,
+                'role' => $usuarioTipo,
+                'name' => $usuarioNome
+            ]]);
     } 
 
     if ( $usuario->tipo == 'super administrador') {
@@ -59,7 +66,12 @@ class LoginController extends Controller
         $usuarioTipo = $usuario->tipo;
         $superNome = $superAdmin->nome;
 
-        return response()->json(['validado' => true, 'id' => $codSuper, 'tipo' => $usuarioTipo, 'nome' => $superNome]);
+        return response()->json(['validado' => true, 'token' => $token,
+            'user' => [
+                'id' => $codSuper,
+                'role' => $usuarioTipo,
+                'name' => $superNome
+            ]]);
     } 
 
     if ( $usuario->tipo == 'administrador') {
@@ -70,7 +82,12 @@ class LoginController extends Controller
         $usuarioTipo = $usuario->tipo;
         $adminNome = $administrador->nome;
 
-        return response()->json(['validado' => true, 'id' => $codAdmin, 'tipo' => $usuarioTipo, 'nome' => $adminNome]);
+        return response()->json(['validado' => true, 'token' => $token,
+            'user' => [
+                'id' => $codAdmin,
+                'role' => $usuarioTipo,
+                'name' => $adminNome
+            ]]);
     } 
 
 
@@ -82,7 +99,12 @@ class LoginController extends Controller
         $usuarioTipo = $usuario->tipo;
         $hostNome = $hostTuristico->nome;
 
-        return response()->json(['validado' => true, 'id' => $codHost, 'tipo' => $usuarioTipo, 'nome' => $hostNome]);
+        return response()->json(['validado' => true, 'token' => $token,
+            'user' => [
+                'id' => $codHost,
+                'role' => $usuarioTipo,
+                'name' => $hostNome
+            ]]);
     }
     
         if ( $usuario->tipo == 'promotor turistico') {
@@ -93,7 +115,12 @@ class LoginController extends Controller
         $usuarioTipo = $usuario->tipo;
         $promotorNome = $promotorTuristico->nome;
 
-        return response()->json(['validado' => true, 'id' => $codPromotor, 'tipo' => $usuarioTipo, 'nome' => $promotorNome]);
+        return response()->json(['validado' => true,  'token' => $token,
+            'user' => [
+                'id' => $codPromotor,
+                'role' => $usuarioTipo,
+                'name' => $promotorNome
+            ]]);
     } 
 
     return response()->json(['validado' => false, 'mensagem' => 'Tipo de usuário não permitido.'], 403);

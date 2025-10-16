@@ -17,6 +17,7 @@ class CreateCredenciaisTable extends Migration
             $table->id("codCredencial");
             $table->string("tipo")->nullable(false);
             $table->string("email")->unique();
+            // $table->string("token")->unique();
             $table->string("senha")->nullable(false);
             $table->timestamps();
         });

@@ -21,9 +21,10 @@ class AuthService {
       const data = response.data;
 
       if (data.validado) {
-        sessionStorage.setItem('userId', data.id.toString());
-        sessionStorage.setItem('userType', data.tipo);
-        sessionStorage.setItem('userName', data.nome);
+        sessionStorage.setItem('userId', data.user.id.toString());
+        sessionStorage.setItem('userRole', data.user.role);
+        sessionStorage.setItem('userName', data.user.name);
+        sessionStorage.setItem('userToken', data.token);
       }
 
       return data;
@@ -47,24 +48,17 @@ class AuthService {
     sessionStorage.clear();
   }
 
-  getUserId(): string | null {
-    return sessionStorage.getItem('userId');
-  }
-
-  getUserData(): { id: string, type: string, name: string } | null {
+  getUserData(): { id: string, role: string, name: string, token: string } | null {
     const id = sessionStorage.getItem('userId');
-    const type = sessionStorage.getItem('userType');
+    const role = sessionStorage.getItem('userRole');
     const name = sessionStorage.getItem('userName');
+    const token = sessionStorage.getItem('userToken');
 
-    return id && type && name ? { id, type, name } : null;
+    return id && role && name && token ? { id, role, name, token } : null;
   }
 
   isUserAuthenticated(): boolean {
     return !!sessionStorage.getItem('userId');
-  }
-
-  getUserName(): string | null {
-    return sessionStorage.getItem('userName');
   }
 }
 

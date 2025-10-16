@@ -18,6 +18,8 @@ import IconGrab from '../../../../assets/icons/icon-grab';
 import { type Place } from '../../../../types/place';
 import { allPlaces } from '../../../../constants/infosPlaces';
 
+import { rotaService } from '../../../../core/services/RotaService';
+
 interface RotaCadastroProps {
     initialLocations?: Place[]; 
 }

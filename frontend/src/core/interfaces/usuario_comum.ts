@@ -9,6 +9,7 @@ export interface UsuarioComum {
 export interface UsuarioResponse {
     validado: boolean;
     mensagem: string;
+    id: number;
     error?: {
         nome: string[];
         email: string[];

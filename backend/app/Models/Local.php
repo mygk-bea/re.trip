@@ -16,6 +16,7 @@ class Local extends Model
         'logradouro',
         'bairro',
         'numero',
+        'cep',
         'telefone',
         'imagem',
         'cidade',

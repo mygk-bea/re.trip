@@ -9,6 +9,7 @@ export interface Administrador {
 export interface AdminResponse{
     validado: boolean;
     mensagem: string;
+    id: number;
     error?: {
         nome: string[];
         email: string[];

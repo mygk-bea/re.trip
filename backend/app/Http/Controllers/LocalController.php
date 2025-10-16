@@ -18,6 +18,7 @@ class LocalController extends Controller
         $local->telefone = $request->input('telefone');
         $local->imagem = $request->input('imagem');
         $local->cidade = $request->input('cidade');
+        $local->cep = $request->input('cep');
         $local->descricao = $request->input('descricao');
         $local->disponibilidade = $request->input('disponibilidade');
         $local->cnpj = $request->input('cnpj');

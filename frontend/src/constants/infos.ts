@@ -56,3 +56,21 @@ export const kpis = [
     { id: 3, nome: "Feira do Doce", quantidade: 500, tipo: "evento" },
     { id: 4, nome: "Festa Junina", quantidade: 300, tipo: "evento" },
 ];
+
+// Superadmin listagem
+export const usersList = [
+    { id: "001", username: "julia", nível: "admin" },
+    { id: "002", username: "beatriz", nível: "user" },
+];
+
+export const eventsList = [
+    { id: "E001", nome: "Festa do Doce", data: "2025-11-10", local: "Concha" },
+    { id: "E002", nome: "OctoberFest", data: "2025-12-05", local: "Matriz" },
+    { id: "E003", nome: "Dia da Terra", data: "2025-10-25", local: "Hípica" },
+];
+
+export const routesList = [
+    { id: "R001", nome: "Rota A", início: "Warehouse", fim: "Store 1", username: "julia" },
+    { id: "R002", nome: "Rota B", início: "Warehouse", fim: "Store 2", username: "beatriz"  },
+    { id: "R003", nome: "Rota C", início: "Warehouse", fim: "Store 3", username: "thayná" },
+];

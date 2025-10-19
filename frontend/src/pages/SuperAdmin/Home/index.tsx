@@ -13,6 +13,7 @@ import {
     Legend,
 } from "chart.js";
 import IconExit from "../../../assets/icons/icon-exit";
+import Sidebar from "../../../pages/SuperAdmin/Home/Sidebar"; 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -93,10 +94,14 @@ const HomeSuperAdmin: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen p-8 w-full">
-            <div className="w-full">
+        <div className="flex min-h-screen w-full">
+            {/* Sidebar */}
+            <Sidebar />
+
+            {/* Conteúdo Principal */}
+            <div className="flex-1 w-full">
                 {/* Cabeçalho */}
-                <div className="p-6 text-left flex items-center justify-between">
+                <div className="text-left flex items-center justify-between mt-10 mb-10">
                     <h1 className="text-4xl font-bold text-gray-900">
                         Olá, <br />
                         <span className="text-[var(--color-primary-user)]">Super Admin</span>!
@@ -108,22 +113,22 @@ const HomeSuperAdmin: React.FC = () => {
                         title="Sair"
                         onClick={() => console.log("Logout clicado")}
                     >
-                        <IconExit class='w-10 h-10 text-gray-400 hover:text-gray-500 cursor-pointer' />
+                        <IconExit class="w-10 h-10 text-gray-400 hover:text-gray-500 cursor-pointer" />
                     </button>
                 </div>
 
                 {/* Carousel dos cards */}
-                <div className="mt-[2%]">
+                <div>
                     <Carousel items={cards} visibleCount={3} autoplay autoplayInterval={4000} />
                 </div>
 
                 {/* Divisor */}
                 <div className="border-t border-gray-300 my-8"></div>
 
-                <div className="flex flex-row gap-8 pb-5">
+                <div className="flex flex-col md:flex-row">
                     {/* Gráfico de Linhas */}
-                    <div className="w-full flex items-start">
-                        <div className="w-full h-[30vh] ">
+                    <div className="w-full md:w-3/4 flex items-start">
+                        <div className="w-full h-[30vh]">
                             <h3 className="text-xl font-bold text-center text-gray-900">
                                 Novos <span className="text-[var(--color-primary-user)]">Cadastros</span>:
                             </h3>
@@ -138,7 +143,7 @@ const HomeSuperAdmin: React.FC = () => {
                     </div>
 
                     {/* Top Rotas */}
-                    <div className=" w-full">
+                    <div className="w-full md:w-1/4">
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">
                             Top 5 <span className="text-[var(--color-primary-user)]">Rotas Mais Acessadas</span>:
                         </h3>
@@ -151,14 +156,13 @@ const HomeSuperAdmin: React.FC = () => {
                             ))}
                         </ul>
                     </div>
-
                 </div>
 
                 {/* Divisor */}
                 <div className="border-t border-gray-300 my-8"></div>
 
                 {/* Listagem de Locais */}
-                <div className="mt-[5%] pb-5">
+                    <div className="pb-10">
                     <h2 className="text-2xl font-bold text-gray-900 mb-6 text-left">
                         Listagem de <span className="text-[var(--color-primary-user)]">Locais</span>:
                     </h2>

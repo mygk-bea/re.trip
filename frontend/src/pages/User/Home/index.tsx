@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import Carousel from './Carousel';
 import { useMediaQuery, useTheme } from "@mui/material";
 import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 import { allPlaces } from "../../../constants/infosPlaces";
+import { authService } from "../../../core/services/loginService";
 
 interface HomeProps {
     call: string;
@@ -89,6 +90,22 @@ const Home: React.FC<HomeProps> = ({ call, username }) => {
             onClick={() => verRota(route.id)}
         />
     ));
+
+    // Dados do usuário
+     useEffect(() => {
+        const userData = authService.getUserData();
+        
+        console.log("User Data:", userData);
+        
+        if (userData) {
+            console.log("Dados do usuário:", {
+                id: userData.id,
+                name: userData.name,
+                role: userData.role,
+                token: userData.token
+            });
+        }
+    }, []);
 
     return (
         <div className="relative pt-20 pb-25 w-full ">

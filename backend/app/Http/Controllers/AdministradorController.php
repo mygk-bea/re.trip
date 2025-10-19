@@ -25,5 +25,6 @@ class AdministradorController extends Controller
         $usuario->fk_credencial_codCredencial = $codCredencial;
         $usuario->save();
 
+        return response()->json(['validado' => true]);
     }    
 }

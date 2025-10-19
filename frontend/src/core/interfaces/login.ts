@@ -4,10 +4,13 @@ export interface Login {
 }
 
 export interface Autenticacao {
+    token: string;
+    user: {
+        name: string;
+        id: number;
+        role: string;
+    }
     validado: boolean;
-    nome: string;
-    id: number;
-    tipo: string;
     mensagem?: string;
     error?: {
         email: string[];

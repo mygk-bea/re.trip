@@ -15,6 +15,9 @@ import IconUpload from "../../../assets/icons/icon-upload";
 import { categories, localPlaces } from "../../../constants/infos";
 import MultiSelect from "./MultiSelect";
 
+import { localService } from "../../../core/services/Local";
+import { authService } from "../../../core/services/loginService";
+
 interface CadastroProps {
   isAdmin?: boolean;
   tipo: "local" | "evento";
@@ -34,6 +37,7 @@ type FormData = {
   numero: string;
   bairro: string;
   imagens: File[];
+  cidade: string;
 };
 
 // Função para aplicar máscaras de input
@@ -66,6 +70,7 @@ const applyMask = (name: string, value: string): string => {
 
 const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) => {
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const [formData, setFormData] = useState<Partial<FormData>>({
     nome: "",
@@ -103,10 +108,30 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Formulário enviado:", formData);
-    // Aqui a chamada para a API
+    const idUser = authService.getUserId();
+
+    if(tipo == 'local'){
+      setError("");
+
+      const localData = {
+        nome: formData.nome || "",
+        logradouro: formData.logradouro || "",
+        bairro: formData.bairro || "",
+        numero: formData.numero ? parseInt(formData.numero) : 0,
+        telefone: formData.telefone || "",
+        imagem: formData.imagens || "",
+        cidade: formData.cidade || "",
+        descricao: formData.descricao || "",
+        tags: formData.categoriaId || "",
+        cnpj: formData.cnpj || "",
+        id_autor: idUser || null,
+        cep: formData.cep || ""
+      }
+      const response = await localService.cadastrarLocal(localData);
+    }
     navigate(isAdmin ? "/admin/home" : "/");
   };
 

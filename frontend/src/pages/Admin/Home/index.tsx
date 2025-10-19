@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect }  from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import Card from "../../../components/Card";
@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { events, localPlaces, kpis, sharedRoutes } from '../../../constants/infos';
 import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 import { allPlaces } from "../../../constants/infosPlaces";
+import { authService } from "../../../core/services/loginService";
 
 interface HomeAdminProps {
     username: string;
@@ -63,6 +64,23 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
             positionText="center"
         />
     ));
+
+     // Dados do usuário
+    useEffect(() => {
+        const userData = authService.getUserData();
+        
+        console.log("User Data:", userData);
+        
+        if (userData) {
+            console.log("Dados do usuário:", {
+                id: userData.id,
+                name: userData.name,
+                role: userData.role,
+                token: userData.token
+            });
+        }
+    }, []);
+    
 
     return (
         <div className="relative pt-20 pb-25 w-full">

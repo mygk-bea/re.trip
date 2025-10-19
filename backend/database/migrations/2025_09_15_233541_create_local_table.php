@@ -19,6 +19,7 @@ class CreateLocalTable extends Migration
             $table->string('logradouro')->nullable(false);
             $table->string('bairro')->nullable(false);
             $table->string('numero')->nullable(false);
+            $table->string('cep')->nullable(false);
             $table->string('telefone')->nullable(false);
             $table->string('imagem')->nullable(false);
             $table->string('cidade')->nullable(false);

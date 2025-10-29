@@ -21,10 +21,10 @@ class CreateLocalTable extends Migration
             $table->string('numero')->nullable(false);
             $table->string('cep')->nullable(false);
             $table->string('telefone')->nullable(false);
-            $table->string('imagem')->nullable(false);
+            // $table->string('imagem')->nullable(false);
             $table->string('cidade')->nullable(false);
             $table->string('descricao')->nullable(false);
-            $table->string('disponibilidade')->nullable(false);
+            $table->string('disponibilidade')->nullable(true);
             $table->double('avaliacao')->default(0.0);
             $table->string('cnpj')->nullable(false);
             $table->integer('id_autor')->nullable(false);

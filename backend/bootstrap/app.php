@@ -30,6 +30,14 @@ $app->withFacades();
 
 $app->withEloquent();
 
+$app->instance('path.public', realpath(__DIR__.'/../public'));
+
+if (!function_exists('public_path')) {
+    function public_path($path = '') {
+        return app()->basePath('public') . ($path ? '/' . $path : $path);
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings

@@ -14,7 +14,18 @@ class LocalService {
   async cadastrarLocal(local: Local): Promise<LocalResponse> {
     try {
       const response = await api.post<LocalResponse>('/cadastro-local', {
-
+        nome: local.nome,
+        logradouro: local.logradouro,
+        bairro: local.bairro,
+        numero: local.numero,
+        telefone: local.telefone,
+        imagensNome: local.imagensNome,
+        cidade: local.cidade,
+        descricao: local.descricao,
+        tags: local.tags,
+        cnpj: local.cnpj,
+        id_autor: local.id_autor,
+        cep: local.cep
       });
 
       const data = response.data;
@@ -34,6 +45,21 @@ class LocalService {
       
       throw new Error('Erro no cadastro. Tente novamente.');
     }
+  }
+
+  async uploadImagens(imagens: File[]): Promise<string[]> {
+    const formData = new FormData();
+    imagens.forEach(file => {
+      formData.append('imagem[]', file);
+    });
+
+    const response = await api.post('/cadastro-imagem-local', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response.data.imagem;
   }
 }
 

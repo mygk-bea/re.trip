@@ -5,20 +5,32 @@ import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
 import { authService } from "../../../../core/services/loginService";
 import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
+import { dictDataRoutes } from "../../../../constants/typeUser";
 
 interface ModalFormProps {
     fields?: Field[];
     type?: 'login' | 'cadastro';
     isAdmin?: boolean;
+    isGuia?: boolean;
     onLoginSuccess?: () => void;
     onCadastroSuccess?: () => void;
 }
 
-export default function ModalForm({ fields = [], type, isAdmin = false, onLoginSuccess, onCadastroSuccess }: ModalFormProps) {
+export default function ModalForm({
+    fields = [],
+    type,
+    isAdmin = false,
+    isGuia = false,
+    onLoginSuccess,
+    onCadastroSuccess,
+}: ModalFormProps) {
     const [formData, setFormData] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    const typeUser = isAdmin ? "admin" : isGuia ? "guia" : "user";
+    const { color, secondaryColor, login, cadastro } = dictDataRoutes(typeUser);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -29,62 +41,43 @@ export default function ModalForm({ fields = [], type, isAdmin = false, onLoginS
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
-        if (type === 'login') {
-            setLoading(true);
-            setError("");
+        setLoading(true);
+        setError("");
 
-            try {
-                const loginData = {
+        try {
+            if (type === "login") {
+                const response = await authService.autenticarLogin({
                     email: formData.email || "",
-                    senha: formData.senha || ""
-                };
-                console.log("Dados enviados para login:", loginData); 
-                const response = await authService.autenticarLogin(loginData);
-                
+                    senha: formData.senha || "",
+                });
+
                 if (response.validado) {
-                    console.log("Login realizado com sucesso!");
-                    if (onLoginSuccess) {
-                        onLoginSuccess();
-                    } 
+                    onLoginSuccess?.();
                 } else {
                     setError(response.mensagem || "Credenciais inválidas");
                 }
-            } catch (err) {
-                setError(err instanceof Error ? err.message : "Erro na autenticação");
-            } finally {
-                setLoading(false);
-            }
-        } else {
-            console.log("Dados enviados:", formData);
-        }
+            } else if (type === "cadastro") {
+                const response = await cadastrosUsuarios.cadastrarAdmin({
+                    email: formData.email || "",
+                    senha: formData.senha || "",
+                    nome: formData.nome || "",
+                    dataNascimento: formData.dataNascimento || "",
+                    // genero: formData.genero || "",
+                    cpf: formData.cpf || "",
+                });
 
-        if(type == 'cadastro'){
-            setLoading(true);
-            setError("");
-    
-            const cadastroData = {
-                email: formData.email || "",
-                senha: formData.senha || "",
-                nome: formData.nome || "",
-                dataNascimento: formData.dataNascimento || "",
-                genero: formData.genero || "",
-                cpf: formData.cpf || ""
-            };
-    
-            const response = await cadastrosUsuarios.cadastrarAdmin(cadastroData);
-    
-            if (response.validado) {
-                        console.log("Cadastro realizado com sucesso!");
-                        if (onCadastroSuccess) {
-                            onCadastroSuccess();
-                        } 
-                    } else {
-                        setError(response.mensagem || "Dados inválidas");
+                if (response.validado) {
+                    onCadastroSuccess?.();
+                } else {
+                    setError(response.mensagem || "Dados inválidos");
                 }
+            }
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Erro na requisição");
+        } finally {
+            setLoading(false);
         }
     };
-
 
     return (
         <form
@@ -98,17 +91,20 @@ export default function ModalForm({ fields = [], type, isAdmin = false, onLoginS
                     type={field.type}
                     placeholder={field.placeholder}
                     onChange={handleChange}
-                    isAdmin={isAdmin} 
+                    isAdmin={isAdmin}
                     name={field.name}
                 />
             ))}
-            {error && <div style={{color: 'red'}}>{error}</div>}
+
+            {error && <div style={{ color: "red" }}>{error}</div>}
 
             <div className="w-full flex justify-center gap-4 mt-4 mb-2 items-center">
+                {/* Botão Voltar */}
                 <Button
-                    colorText={isAdmin ? "#229CFF" : "#ff7022ff"}
-                    backgroundColor={isAdmin ? "#FFFFFF" : "#fff9f6"}
-                    colorShadow={isAdmin ? "#229CFF" : "#ff7022ff"}
+                    colorText={color}
+                    backgroundColor="#FFFFFF"
+                    outlineColor={color}
+                    colorShadow={color}
                     height="50px"
                     width="200px"
                     isAdm={isAdmin}
@@ -116,22 +112,23 @@ export default function ModalForm({ fields = [], type, isAdmin = false, onLoginS
                     positionItems="center"
                     fontSize="1.25rem"
                     fontFamily="'Madimi One', sans-serif"
-                    onClick={isAdmin ? () => navigate('/admin/inicio') : () => navigate('/inicio')}
+                    onClick={() => navigate(isAdmin ? "/admin/inicio" : isGuia ? "/guia/inicio" : "/inicio")}
                 />
 
+                {/* Botão Entrar / Salvar */}
                 <Button
-                    colorText={isAdmin ? "#fff9f6" : "#fff9f6"}
-                    backgroundColor={isAdmin ? "#229CFF" : "#ff7022ff"}
-                    colorShadow={isAdmin ? undefined : "#dd3603"}
+                    colorText="#fff9f6"
+                    backgroundColor={color}
+                    outlineColor={color}
+                    colorShadow={secondaryColor}
                     height="50px"
                     width="200px"
                     isAdm={isAdmin}
-                    title={type === 'cadastro' ? "Salvar" : "Entrar"}
+                    title={type === "cadastro" ? "Salvar" : "Entrar"}
                     positionItems="center"
                     fontSize="1.25rem"
                     fontFamily="'Madimi One', sans-serif"
                     buttonType="submit"
-                    //onClick={() => handleSubmit({} as React.FormEvent)}
                 />
             </div>
         </form>

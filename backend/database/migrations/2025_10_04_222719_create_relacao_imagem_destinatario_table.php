@@ -14,12 +14,13 @@ class CreateRelacaoImagemDestinatarioTable extends Migration
     public function up()
     {
         Schema::create('relacao_imagem_destinatario', function (Blueprint $table) {
+            $table->id('codImagemDestinario');
             $table->unsignedBigInteger('fk_imagem_codImagem');
-            $table->string('id_destinatario');
+            $table->integer('id_destinatario');
+            $table->string('tipo_destinatario');
 
             $table->foreign('fk_imagem_codImagem')->references('codImagem')->on('imagens');
 
-            $table->primary('fk_imagem_codImagem');
 
             $table->timestamps();
         });

@@ -111,10 +111,19 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Formulário enviado:", formData);
-    const idUser = authService.getUserId();
+    const userData = authService.getUserData();
+    const idUser = userData?.id ? parseInt(userData.id) : 0;
 
     if(tipo == 'local'){
       setError("");
+
+      let nomesImagens: string[] = [];
+      
+      if (formData.imagens && formData.imagens.length > 0) {
+        nomesImagens = await localService.uploadImagens(formData.imagens);
+      }
+
+      const tagsArray = Array.isArray(formData.categoriaId) ? formData.categoriaId : formData.categoriaId ? [formData.categoriaId] : [];
 
       const localData = {
         nome: formData.nome || "",
@@ -122,15 +131,16 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
         bairro: formData.bairro || "",
         numero: formData.numero ? parseInt(formData.numero) : 0,
         telefone: formData.telefone || "",
-        imagem: formData.imagens || "",
+        imagensNome: nomesImagens,
         cidade: formData.cidade || "",
         descricao: formData.descricao || "",
-        tags: formData.categoriaId || "",
+        tags: tagsArray,
         cnpj: formData.cnpj || "",
-        id_autor: idUser || null,
+        id_autor: idUser,
         cep: formData.cep || ""
       }
-      const response = await localService.cadastrarLocal(localData);
+
+      await localService.cadastrarLocal(localData);
     }
     navigate(isAdmin ? "/admin/home" : "/");
   };

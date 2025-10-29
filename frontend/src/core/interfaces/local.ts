@@ -4,7 +4,7 @@ export interface Local {
     bairro: string;
     numero: number;
     telefone: string;
-    imagem: string;
+    imagensNome: string[];
     cidade: string;
     descricao: string;
     disponibilidade?: string;

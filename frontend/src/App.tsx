@@ -28,6 +28,9 @@ import { rotaSitioMuseu } from './constants/infosRoutes';
 import LoginSuperAdmin from './pages/SuperAdmin/Login';
 import HomeSuperAdmin from './pages/SuperAdmin/Home';
 import ScrollToTop from './components/Effects/ScrollToTop';
+import { Listagem } from './pages/SuperAdmin/Listagem';
+import { eventsList, routesList, usersList } from './constants/infos';
+
 
 function App() {
   return (
@@ -45,7 +48,7 @@ function App() {
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
 
         <Route path="/user/local/info" element={<InfoLocal />} />
-        <Route path="/user/rota/cadastro" element={<RotaCadastro  />} />
+        <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
         <Route path="/user/rota/info" element={<RotaInfo />} />
         <Route path="/user/rota/em-andamento" element={<RotaEmAndamento />} />
         <Route path="/user/rota/final" element={<RotaTerminada />} />
@@ -53,18 +56,21 @@ function App() {
         <Route path="/admin/inicio" element={<Inicio isAdmin={true} />} />
         <Route path="/admin/criar-conta" element={<Cadastro isAdmin={true} />} />
         <Route path="/admin/login" element={<Login isAdmin={true} />} />
-        <Route path="/admin/home" element={<HomeAdmin username='Username'/>} />
-        <Route path="/admin/home/listagem" element={<ListagemRotas/>} />
+        <Route path="/admin/home" element={<HomeAdmin username='Username' />} />
+        <Route path="/admin/home/listagem" element={<ListagemRotas />} />
         <Route path="/admin/meu-perfil" element={<MeuPerfilAdmin type='Administrador' username='Username Admin' />} />
         <Route path="/admin/meu-perfil/meus-locais" element={<MeusLocais />} />
         <Route path="/admin/meu-perfil/meus-eventos" element={<MeusEventos />} />
         <Route path="/admin/cad-local" element={<CadastroLocalEvento tipo="local" isAdmin={true} />} />
         <Route path="/admin/cad-evento" element={<CadastroLocalEvento tipo="evento" isAdmin={true} />} />
-        <Route path="/admin/local/info" element={<InfoLocal place={sitioCarrocao} isAdmin/>} />
+        <Route path="/admin/local/info" element={<InfoLocal place={sitioCarrocao} isAdmin />} />
         <Route path="/admin/rota/info" element={<RotaInfo type='admin' route={rotaSitioMuseu} />} />
 
         <Route path="/super-admin/login" element={<LoginSuperAdmin />} />
         <Route path="/super-admin/home" element={<HomeSuperAdmin />} />
+        <Route path='/super-admin/listagem-usuarios' element={<Listagem title="Usuários" data={usersList} />} />
+        <Route path='/super-admin/listagem-eventos' element={<Listagem title="Eventos" data={eventsList} />} />
+        <Route path='/super-admin/listagem-rotas' element={<Listagem title="Rotas" data={routesList} />} />
       </Routes>
     </>
   )

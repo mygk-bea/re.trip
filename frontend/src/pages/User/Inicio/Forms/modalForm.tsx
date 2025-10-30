@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { Field } from "../../../../types/field";
 import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
-import { authService } from "../../../../core/services/loginService";
+import { authService } from "../../../../core/services/LoginService";
 import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
 
 interface ModalFormProps {

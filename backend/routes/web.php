@@ -24,9 +24,11 @@ $router->post('/cadastro-host-turistico', 'HostTuristicoController@store');
 $router->post('/cadastro-promotor-turistico', 'PromotorTuristicoController@store');
 $router->post('/cadastro-super-admin', 'SuperAdminController@store');
 $router->post('/cadastro-evento', 'EventoController@store');
+$router->post('/cadastro-imagem-evento', 'EventoController@upload');
 $router->post('/cadastro-local', 'LocalController@store');
 $router->post('/cadastro-imagem-local', 'LocalController@upload');
 $router->post('/cadastro-rota', 'RotaController@store');
+$router->post('/cadastro-imagem-rota', 'RotaController@upload');
 
 // Rota de login
 $router->post('/login', 'LoginController@autenticar');

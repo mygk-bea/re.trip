@@ -7,7 +7,7 @@ import Button from "../../../components/Button";
 import IconAvatar from "../../../assets/icons/icon-avatar";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
-import { authService } from "../../../core/services/loginService";
+import { authService } from "../../../core/services/LoginService";
 
 interface MeuPerfilProps {
     type: string;

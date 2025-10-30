@@ -5,7 +5,7 @@ import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
 import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
 import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
-import { authService } from "../../../../core/services/loginService";
+import { authService } from "../../../../core/services/LoginService";
 import { useNavigate } from "react-router-dom";
 
 interface LoginProps {

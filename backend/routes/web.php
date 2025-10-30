@@ -28,6 +28,7 @@ $router->post('/cadastro-imagem-evento', 'EventoController@upload');
 $router->post('/cadastro-local', 'LocalController@store');
 $router->post('/cadastro-imagem-local', 'LocalController@upload');
 $router->post('/cadastro-rota', 'RotaController@store');
+$router->post('/cadastro-imagem-rota', 'RotaController@upload');
 
 // Rota de login
 $router->post('/login', 'LoginController@autenticar');

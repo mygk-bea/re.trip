@@ -11,10 +11,13 @@ const api = axios.create({
 });
 
 class RotaService {
-  async cadastrarRota(cadastro: Rota): Promise<RotaResponse> {
+  async cadastrarRota(rota: Rota): Promise<RotaResponse> {
     try {
-      const response = await api.post<RotaResponse>('/cadastro-usuario-comum', {
-
+      const response = await api.post<RotaResponse>('/cadastro-rota', {
+        nome: rota.nome,
+        privada: rota.privada,
+        imagemNome: rota.imagemNome,
+        id_autor: rota.id_autor
       });
 
       const data = response.data;
@@ -34,6 +37,21 @@ class RotaService {
       
       throw new Error('Erro no cadastro. Tente novamente.');
     }
+  }
+
+  async uploadImagens(imagem: File[]): Promise<string[]> {
+    const formData = new FormData();
+    imagem.forEach(file => {
+      formData.append('imagem[]', file);
+    });
+
+    const response = await api.post('/cadastro-imagem-rota', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response.data.imagem;
   }
 }
 

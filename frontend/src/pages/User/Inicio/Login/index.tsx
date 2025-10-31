@@ -139,6 +139,7 @@ const Login: React.FC<LoginProps> = ({ isAdmin = false, isGuia = false }) => {
                             onLoginSuccess={handleLoginSuccess}
                             fields={fields}
                             isAdmin={isAdmin}
+                            isGuia={isGuia}
                         />
                     </div>
                 </div>

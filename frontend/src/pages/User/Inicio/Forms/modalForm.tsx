@@ -27,10 +27,11 @@ export default function ModalForm({
     const [formData, setFormData] = useState<Record<string, string>>({});
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const navigate = useNavigate();
 
     const typeUser = isAdmin ? "admin" : isGuia ? "guia" : "user";
-    const { color, secondaryColor, login, cadastro } = dictDataRoutes(typeUser);
+    const { color, secondaryColor } = dictDataRoutes(typeUser);
+
+    const navigate = useNavigate();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData({
@@ -112,7 +113,7 @@ export default function ModalForm({
                     positionItems="center"
                     fontSize="1.25rem"
                     fontFamily="'Madimi One', sans-serif"
-                    onClick={() => navigate(isAdmin ? "/admin/inicio" : isGuia ? "/guia/inicio" : "/inicio")}
+                    onClick={() => navigate(-1)}
                 />
 
                 {/* Botão Entrar / Salvar */}

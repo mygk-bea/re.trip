@@ -56,13 +56,8 @@ const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false, isGuia = false }) 
     const navigate = useNavigate();
 
     const type = isAdmin ? "admin" : isGuia ? "guia" : "user";
-    const { color, secondaryColor, login } = dictDataRoutes(type);
-
-    const backgroundImage = isAdmin
-        ? bgAdmin
-        : isGuia
-        ? bgGuia
-        : bgUser;
+    const { color, login } = dictDataRoutes(type);
+    const backgroundImage = isAdmin ? bgAdmin : isGuia ? bgGuia : bgUser;
 
     const handleCadastroSuccess = () => {
         navigate(login);

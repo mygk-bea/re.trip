@@ -19,6 +19,7 @@ import { type Place } from '../../../../types/place';
 import { allPlaces } from '../../../../constants/infosPlaces';
 
 import { rotaService } from '../../../../core/services/RotaService';
+import { authService } from '../../../../core/services/LoginService';
 
 interface RotaCadastroProps {
     initialLocations?: Place[]; 
@@ -59,28 +60,34 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations }) => {
         }
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
+        const userData = authService.getUserData();
+        const idUser = userData?.id ? parseInt(userData.id) : 0;
 
+        let imageName = "";
+        console.log("Arquivo de imagem:", imageFile);
+    
+        if (imageFile) {
+            const filesArray = [imageFile];
+            const names = await rotaService.uploadImagens(filesArray);
+            imageName = names[0]; 
+        } else {
+            imageName = "";
+        }
+        
         const routeData = {
-            name: routeName,
-            private: isPrivate,
-            locations: selectedLocations.map(location => location.id),
-            image: imageFile
+            nome: routeName,
+            privada: isPrivate,
+            locais: selectedLocations.map(location => Number(location.id)),
+            imagemNome: imageName,
+            id_autor: idUser
         };
 
         console.log("Objeto a ser enviado para o backend:", routeData);
-        
-        // NOTA: Para enviar um arquivo para um backend de verdade, você geralmente
-        // usaria um objeto `FormData`. Exemplo:
-        // const formData = new FormData();
-        // formData.append('name', routeName);
-        // if (imageFile) {
-        //   formData.append('image', imageFile);
-        // }
-        // E então enviaria o `formData` na sua requisição.
-        
-        navigate("/");
+        await rotaService.cadastrarRota(routeData);
+
+        navigate("/user/home");
     };
 
     return (

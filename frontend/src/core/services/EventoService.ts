@@ -1,4 +1,4 @@
-import type {  Rota, RotaResponse } from '../interfaces/rota';
+import type {  Evento, EventoResponse } from '../interfaces/evento';
 import axios from 'axios';
 
 const url = '/api';
@@ -10,14 +10,19 @@ const api = axios.create({
   },
 });
 
-class RotaService {
-  async cadastrarRota(rota: Rota): Promise<RotaResponse> {
+
+class EventoService{
+  async cadastrarEvento(evento: Evento): Promise<EventoResponse> {
     try {
-      const response = await api.post<RotaResponse>('/cadastro-rota', {
-        nome: rota.nome,
-        privada: rota.privada,
-        imagemNome: rota.imagemNome,
-        id_autor: rota.id_autor
+      const response = await api.post<EventoResponse>('/cadastro-evento', {
+        nome: evento.nome,
+        data: evento.data,
+        hora: evento.hora,
+        id_autor: evento.id_autor,
+        descricao: evento.descricao,
+        locais: evento.locais,
+        tags: evento.tags,
+        imagensNomes: evento.imagensNomes
       });
 
       const data = response.data;
@@ -25,7 +30,7 @@ class RotaService {
       return data;
     } catch (error) {
       console.error('Erro ao cadastrar:', error);
-      
+    
       if (axios.isAxiosError(error)) {
         if (error.response) {
           const errorMessage = error.response.data.mensagem || 'Erro no cadastro';
@@ -34,18 +39,18 @@ class RotaService {
           throw new Error('Sem resposta do servidor. Verifique sua conexão.');
         }
       }
-      
+    
       throw new Error('Erro no cadastro. Tente novamente.');
     }
   }
 
-  async uploadImagens(imagem: File[]): Promise<string[]> {
+  async uploadImagens(imagens: File[]): Promise<string[]> {
     const formData = new FormData();
-    imagem.forEach(file => {
+    imagens.forEach(file => {
       formData.append('imagem[]', file);
     });
 
-    const response = await api.post('/cadastro-imagem-rota', formData, {
+    const response = await api.post('/cadastro-imagem-evento', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -55,4 +60,4 @@ class RotaService {
   }
 }
 
-export const rotaService = new RotaService();
+export const eventoService = new EventoService();

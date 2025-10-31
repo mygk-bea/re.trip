@@ -3,10 +3,10 @@ import styled from "../Inicio.module.scss";
 import styled_page from "../Forms/Form.module.scss";
 import type { Field } from "../../../../types/field";
 import ModalForm from "../Forms/modalForm";
-import bgUser from "../../../../assets/images/city/img_bg_tatui.png";
-import bgAdmin from "../../../../assets/images/city/img_bg_boituva_1.png";
-import bgGuia from "../../../../assets/images/city/img_bg_torre-de-pedra-1.jpg";
-import { authService } from "../../../../core/services/loginService";
+import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
+import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
+import bgGuia from '../../../../assets/images/city/img_bg_torre-de-pedra-1.jpg';
+import { authService } from "../../../../core/services/LoginService";
 import { useNavigate } from "react-router-dom";
 import { dictDataRoutes } from "../../../../constants/typeUser";
 

@@ -18,7 +18,7 @@ class EventoService{
         nome: evento.nome,
         data: evento.data,
         hora: evento.hora,
-        id_autor: evento.id_autor,
+        credencial_autor: evento.credencial_autor,
         descricao: evento.descricao,
         locais: evento.locais,
         tags: evento.tags,
@@ -58,6 +58,16 @@ class EventoService{
 
     return response.data.imagem;
   }
+
+  async getDadosEventos(userCredencial: number): Promise<any>{
+    try{
+      const response = await api.get(`/dados-eventos/${userCredencial}`);
+      return response.data;
+    } catch(error){
+      console.error('Erro ao buscar eventos do usuário:', error);
+      return { success: false, message: 'Erro ao buscar eventos' };
+    }
+  }  
 }
 
 export const eventoService = new EventoService();

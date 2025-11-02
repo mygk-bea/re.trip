@@ -12,14 +12,15 @@ class Evento extends Model
 
     protected $fillable = [
         'codEvento',
+        'nome',
         'data',
         'hora',
-        'id_autor',
+        'fk_credencial_autor',
         'descricao',
-        'logradouro',
-        'bairro',
-        'numero',
-        'cidade',
+        // 'logradouro',
+        // 'bairro',
+        // 'numero',
+        // 'cidade',
         'imagem'
     ];
 }

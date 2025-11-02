@@ -91,34 +91,35 @@ class RotaController extends Controller
         return response()->json(['imagem' => $nomes]);
     }
 
-public function dadosRotas($credencialUsuario){
-    $rotas = Rota::where('fk_credencial_autor', $credencialUsuario)->get();
+    public function dadosRotas($credencialUsuario){
+        $rotas = Rota::where('fk_credencial_autor', $credencialUsuario)->get();
 
-    $rotasDados = [];
-    foreach ($rotas as $rota) {
-        $locaisIds = RotaLocais::where('fk_rota_codRota', $rota->codRota)->pluck('fk_local_codLocal')->toArray();
-        $imagem = ImagemDestinatario::where('id_destinatario', $rota->codRota)->where('tipo_destinatario', 'rota')->first();
-        $imagemNome = null;
-        
-        if ($imagem) {
-            $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
-            $imagemNome = $imagemData ? $imagemData->nome : null;
+        $rotasDados = [];
+        foreach ($rotas as $rota) {
+            $locaisIds = RotaLocais::where('fk_rota_codRota', $rota->codRota)->pluck('fk_local_codLocal')->toArray();
+            $imagem = ImagemDestinatario::where('id_destinatario', $rota->codRota)->where('tipo_destinatario', 'rota')->first();
+            $imagemNome = null;
+            
+            if ($imagem) {
+                $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
+                $imagemNome = $imagemData ? $imagemData->nome : null;
+            }
+
+            $rotasDados[] = [
+                'rota' => $rota,
+                'locais' => $locaisIds,
+                'imagem' => $imagemNome
+            ];
         }
 
-        $rotasDados[] = [
-            'rota' => $rota,
-            'locais' => $locaisIds,
-            'imagem' => $imagemNome
-        ];
+        return response()->json([
+            'success' => true,
+            'data' => $rotasDados,
+            'total' => count($rotasDados)
+        ]);
+
     }
-
-    return response()->json([
-        'success' => true,
-        'data' => $rotasDados,
-        'total' => count($rotasDados)
-    ]);
-
-}
+    
     public function status(Request $request){
         
     }

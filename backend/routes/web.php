@@ -38,3 +38,5 @@ $router->post('/status-rota', 'RotaController@status');
 
 // Rotas de pesquisas
 $router->get('/dados-rotas/{credencialUsuario}', 'RotaController@dadosRotas');
+$router->get('/dados-eventos/{credencialUsuario}', 'EventoController@dadosEventos');
+$router->get('/dados-locais/{credencialUsuario}', 'LocalController@dadosLocais');

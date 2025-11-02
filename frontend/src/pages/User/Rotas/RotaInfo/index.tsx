@@ -15,26 +15,31 @@ import styled from "./RotaInfo.module.scss";
 
 import type { RouteInfo } from "../../../../types/route";
 import { useLocation, useNavigate } from "react-router-dom";
+import { dictDataRoutes } from "../../../../constants/typeUser";
 
 interface RotaInfoProps {
   route?: RouteInfo;
-  type?: 'user' | 'admin' | 'guia'; 
+  type?: "user" | "admin" | "guia";
 }
 
 const RotaInfo: React.FC<RotaInfoProps> = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { route, type } = (location.state || {}) as RotaInfoProps;
-
+  
   if (!route || !type) {
     return <p>⚠️ Nenhuma rota encontrada.</p>;
   }
 
+  const userData = dictDataRoutes(type);
+
   const [isFavorited, setIsFavorited] = useState(route.favorited);
   const mainStyleColor =
-    type === 'guia' ? styled.guiaTheme :
-    type === 'admin' ? styled.adminTheme :
-    styled.userTheme;
+    type === "guia"
+      ? styled.guiaTheme
+      : type === "admin"
+      ? styled.adminTheme
+      : styled.userTheme;
 
   return (
     <>
@@ -137,7 +142,9 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
               </div>
             </div>
 
-            <div className={`${styled.content} w-full lg:w-1/2 flex flex-col items-center mt-6 lg:mt-0`}>
+            <div
+              className={`${styled.content} w-full lg:w-1/2 flex flex-col items-center mt-6 lg:mt-0`}
+            >
               <div className="flex flex-col gap-4 w-full">
                 {route.locals.map((local, index) => (
                   <div
@@ -161,10 +168,12 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
                         positionText="top"
                         widthText="100%"
                         onClick={() => {
-                          navigate("/user/local/info", {
+                          navigate(userData.localInfo, {
                             state: {
                               place: local,
-                              isAdmin: type === 'admin',
+                              isAdmin: type === "admin",
+                              isGuia: type === "guia",
+                              type: type,
                             },
                           });
                         }}
@@ -174,7 +183,7 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
                 ))}
               </div>
 
-              { type !== 'admin' && (
+              {type === "user" && (
                 <div className="mt-4">
                   <Button
                     colorText="var(--color-light)"
@@ -200,7 +209,7 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
           </div>
         </div>
       </div>
-      <Menu isAdmin={type === 'admin'} />
+      <Menu isAdmin={type === "admin"} />
     </>
   );
 };

@@ -17,7 +17,8 @@ class RotaService {
         nome: rota.nome,
         privada: rota.privada,
         imagemNome: rota.imagemNome,
-        id_autor: rota.id_autor
+        locais: rota.locais,
+        credencial_autor: rota.credencial_autor
       });
 
       const data = response.data;
@@ -52,6 +53,16 @@ class RotaService {
     });
 
     return response.data.imagem;
+  }
+
+  async getDadosRotas(userCredencial: number): Promise<any>{
+    try{
+      const response = await api.get(`/dados-rotas/${userCredencial}`);
+      return response.data;
+    } catch(error){
+      console.error('Erro ao buscar rotas do usuário:', error);
+      return { success: false, message: 'Erro ao buscar rotas' };
+    }
   }
 }
 

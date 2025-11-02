@@ -8,6 +8,8 @@ use App\Models\Local;
 use App\Models\TagsLocal;
 use App\Models\Imagens;
 use App\Models\ImagemDestinatario;
+use App\Models\Administrador;
+use App\Models\Credenciais;
 
 class LocalController extends Controller
 {
@@ -23,7 +25,7 @@ class LocalController extends Controller
         $local->descricao = $request->input('descricao');
         $local->disponibilidade = $request->input('disponibilidade');
         $local->cnpj = $request->input('cnpj');
-        $local->id_autor = $request->input('id_autor');
+        $local->fk_credencial_autor = $request->input('credencial_autor');
         $local->save();
         
         $codLocal = $local->codLocal;
@@ -82,5 +84,34 @@ class LocalController extends Controller
         }
 
         return response()->json(['imagem' => $nomes]);
+    }
+
+    public function dadosLocais($credencialUsuario){
+        $locais = Local::where('fk_credencial_autor', $credencialUsuario)->get();
+
+        $locaisDados = [];
+        foreach ($locais as $local) {
+            $imagem = ImagemDestinatario::where('id_destinatario', $local->codLocal)
+                ->where('tipo_destinatario', 'local')
+                ->first();
+            
+            $imagemNome = null;
+            
+            if ($imagem) {
+                $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
+                $imagemNome = $imagemData ? $imagemData->nome : null;
+            }
+
+            $locaisDados[] = [
+                'local' => $local,
+                'imagem' => $imagemNome
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $locaisDados,
+            'total' => count($locaisDados)
+        ]);
     }
 }

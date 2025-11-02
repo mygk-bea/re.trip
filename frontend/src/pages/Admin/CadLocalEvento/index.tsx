@@ -113,7 +113,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
     e.preventDefault();
     console.log("Formulário enviado:", formData);
     const userData = authService.getUserData();
-    const idUser = userData?.id ? parseInt(userData.id) : 0;
+    const credencialUser = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
 
     if(tipo == 'local'){
       setError("");
@@ -137,7 +137,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
         descricao: formData.descricao || "",
         tags: tagsArray,
         cnpj: formData.cnpj || "",
-        id_autor: idUser,
+        credencial_autor: credencialUser,
         cep: formData.cep || ""
       }
 
@@ -171,7 +171,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
         imagensNomes: nomeImagens, 
         descricao: formData.descricao || "",
         tags: tagsArray,
-        id_autor: idUser
+        credencial_autor: credencialUser
       }
 
       await eventoService.cadastrarEvento(eventoData);

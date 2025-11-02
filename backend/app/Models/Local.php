@@ -24,6 +24,6 @@ class Local extends Model
         'disponibilidade',
         'avaliacao',
         'cnpj',
-        'id_autor'
+        'fk_credencial_autor'
     ]; 
 }

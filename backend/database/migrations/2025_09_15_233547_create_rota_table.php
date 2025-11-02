@@ -17,7 +17,7 @@ class CreateRotaTable extends Migration
             $table->id('codRota');
             $table->string('nome')->nullable(false);
             $table->boolean('privada')->nullable(false);
-            $table->integer('id_autor')->nullable(false);
+            $table->unsignedBigInteger('fk_credencial_autor')->nullable(false);
             $table->boolean('compartilhada')->default(false);
             $table->string('distancia_total')->default(0);
             $table->double('avalicao')->default(0.0);
@@ -26,6 +26,9 @@ class CreateRotaTable extends Migration
             $table->boolean('guiado')->default(false);
             $table->double('valor')->default(0.0);
             $table->string('comentario')->nullable(true);
+
+            $table->foreign('fk_credencial_autor')->references('codCredencial')->on('credenciais');
+
             $table->timestamps();
         });
     }

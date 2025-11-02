@@ -24,7 +24,7 @@ class LocalService {
         descricao: local.descricao,
         tags: local.tags,
         cnpj: local.cnpj,
-        id_autor: local.id_autor,
+        credencial_autor: local.credencial_autor,
         cep: local.cep
       });
 
@@ -60,6 +60,16 @@ class LocalService {
     });
 
     return response.data.imagem;
+  }
+
+  async getDadosLocais(userCredencial: number): Promise<any>{
+    try{
+      const response = await api.get(`/dados-locais/${userCredencial}`);
+      return response.data;
+    } catch(error){
+      console.error('Erro ao buscar locais do usuário:', error);
+      return { success: false, message: 'Erro ao buscar locais' };
+    }
   }
 }
 

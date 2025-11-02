@@ -3,7 +3,7 @@ export interface Rota {
     privada: boolean;
     locais: number[];
     imagemNome: string;
-    id_autor: number;
+    credencial_autor: number;
     compartilahada?: boolean;
     distancia_total?: string;
     avaliacao?: number;

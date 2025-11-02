@@ -22,6 +22,7 @@ import MeusEventos from './pages/Admin/MeuPerfil/MeusEventos';
 import CadastroLocalEvento from './pages/Admin/CadLocalEvento';
 import ListagemRotas from './pages/Admin/Home/ListagemRotas';
 import HomeAdmin from './pages/Admin/Home';
+import HomeGuia from './pages/Guia/Home';
 
 import { sitioCarrocao } from './constants/infosPlaces';
 import { rotaSitioMuseu } from './constants/infosRoutes';
@@ -46,7 +47,6 @@ function App() {
         <Route path="/user/meu-perfil/favoritos" element={<Favoritos />} />
         <Route path="/user/pesquisar" element={<Pesquisar />} />
         <Route path="/user/pesquisar/filtros" element={<Filtros />} />
-
         <Route path="/user/local/info" element={<InfoLocal />} />
         <Route path="/user/rota/cadastro" element={<RotaCadastro />} />
         <Route path="/user/rota/info" element={<RotaInfo />} />
@@ -56,8 +56,9 @@ function App() {
         <Route path="/guia/inicio" element={<Inicio isGuia={true} />} />
         <Route path="/guia/login" element={<Login isGuia={true} />} />
         <Route path="/guia/criar-conta" element={<Cadastro isGuia={true} />} />
-        <Route path="/guia/home" element={<HomeAdmin username='Username' />} />
+        <Route path="/guia/home" element={<HomeGuia username='Username' />} />
         <Route path="/guia/meu-perfil" element={<MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />} />
+        <Route path="/admin/meu-perfil/minhas-rotas" element={<MeusLocais />} />
         <Route path="/guia/rota/cadastro" element={<RotaCadastro />} />
         <Route path="/guia/rota/info" element={<RotaInfo />} />
         <Route path="/guia/local/info" element={<InfoLocal />} />

@@ -19,7 +19,7 @@ class Rota extends Model
         'distancia_total',
         'avaliacao',
         'status',
-        'id_autor',
+        'fk_credencial_autor',
         'favoritada',
         'guiado',
         'valor',

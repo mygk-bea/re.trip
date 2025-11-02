@@ -2,7 +2,7 @@ export interface Evento {
     nome: string;
     data: string;
     hora: string;
-    id_autor: Number;
+    credencial_autor: Number;
     descricao: String;
     locais: number[];
     tags: number[];

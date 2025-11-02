@@ -8,6 +8,8 @@ use App\Models\Rota;
 use App\Models\RotaLocais;
 use App\Models\Imagens;
 use App\Models\ImagemDestinatario;
+use App\Models\UsuarioComum;
+use App\Models\Credenciais;
 
 class RotaController extends Controller
 {
@@ -15,7 +17,7 @@ class RotaController extends Controller
         $rota = new Rota();
         $rota->nome = $request->input('nome');
         $rota->privada = $request->input('privada');
-        $rota->id_autor = $request->input('id_autor');
+        $rota->fk_credencial_autor = $request->input('credencial_autor');
         $rota->guiado = $request->input('guiado', false);
         $rota->distancia_total = $request->input('distancia_total', 0);
 
@@ -52,7 +54,12 @@ class RotaController extends Controller
             $imagemDestinatario->id_destinatario = $codRota;
             $imagemDestinatario->tipo_destinatario = $imagem->tipo;
             $imagemDestinatario->save();
-        }       
+        }    
+        
+            return response()->json([
+        'success' => true,
+        'message' => 'Rota cadastrada com sucesso'
+    ]);
     } 
 
     public function upload(Request $request){
@@ -84,6 +91,35 @@ class RotaController extends Controller
         return response()->json(['imagem' => $nomes]);
     }
 
+    public function dadosRotas($credencialUsuario){
+        $rotas = Rota::where('fk_credencial_autor', $credencialUsuario)->get();
+
+        $rotasDados = [];
+        foreach ($rotas as $rota) {
+            $locaisIds = RotaLocais::where('fk_rota_codRota', $rota->codRota)->pluck('fk_local_codLocal')->toArray();
+            $imagem = ImagemDestinatario::where('id_destinatario', $rota->codRota)->where('tipo_destinatario', 'rota')->first();
+            $imagemNome = null;
+            
+            if ($imagem) {
+                $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
+                $imagemNome = $imagemData ? $imagemData->nome : null;
+            }
+
+            $rotasDados[] = [
+                'rota' => $rota,
+                'locais' => $locaisIds,
+                'imagem' => $imagemNome
+            ];
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $rotasDados,
+            'total' => count($rotasDados)
+        ]);
+
+    }
+    
     public function status(Request $request){
         
     }

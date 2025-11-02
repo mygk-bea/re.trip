@@ -54,7 +54,8 @@ class LoginController extends Controller
             'user' => [
                 'id' => $codUsuario,
                 'role' => $usuarioTipo,
-                'name' => $usuarioNome
+                'name' => $usuarioNome,
+                'idCredencial' => $codCredencial
             ]]);
     } 
 
@@ -70,7 +71,8 @@ class LoginController extends Controller
             'user' => [
                 'id' => $codSuper,
                 'role' => $usuarioTipo,
-                'name' => $superNome
+                'name' => $superNome,
+                'idCredencial' => $codCredencial
             ]]);
     } 
 
@@ -86,7 +88,8 @@ class LoginController extends Controller
             'user' => [
                 'id' => $codAdmin,
                 'role' => $usuarioTipo,
-                'name' => $adminNome
+                'name' => $adminNome,
+                'idCredencial' => $codCredencial
             ]]);
     } 
 
@@ -103,7 +106,8 @@ class LoginController extends Controller
             'user' => [
                 'id' => $codHost,
                 'role' => $usuarioTipo,
-                'name' => $hostNome
+                'name' => $hostNome,
+                'idCredencial' => $codCredencial
             ]]);
     }
     
@@ -119,7 +123,8 @@ class LoginController extends Controller
             'user' => [
                 'id' => $codPromotor,
                 'role' => $usuarioTipo,
-                'name' => $promotorNome
+                'name' => $promotorNome,
+                'idCredencial' => $codCredencial
             ]]);
     } 
 

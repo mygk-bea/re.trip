@@ -1,14 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
 import IconPlus from "../../../../assets/icons/icon-plus";
 import styled from "./MinhasRotas.module.scss";
-
+import { rotaService } from "../../../../core/services/RotaService";
+import { authService } from "../../../../core/services/LoginService";
 
 const MinhasRotas: React.FC = () => {
     const navigate = useNavigate();
+    const [rotasUsuario, setRotasUsuario] = useState<any[]>([]);
+    
+    // dados das rotas
+    useEffect(() => {
+        const buscarRotas = async () => {
+            const userData = authService.getUserData();
+            const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
+
+            const response = await rotaService.getDadosRotas(userCredencial);
+
+            if (response && response.success) {
+                setRotasUsuario(response.data);
+                console.log("Rotas carregadas:", response.data);
+            } else {
+                console.error("Erro ao carregar rotas:", response.message);
+            }
+        }
+
+        buscarRotas();
+    }, []);
 
     return (
         <div className="relative flex flex-col justify-between h-[100vh] pb-[13vh]">

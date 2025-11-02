@@ -7,8 +7,9 @@ export interface Autenticacao {
     token: string;
     user: {
         name: string;
-        id: number;
+        id: string;
         role: string;
+        idCredencial: string;
     }
     validado: boolean;
     mensagem?: string;

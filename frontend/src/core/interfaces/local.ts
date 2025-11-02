@@ -11,7 +11,7 @@ export interface Local {
     tags: string[];
     avalicao?: number;
     cnpj: string;
-    id_autor: number;
+    credencial_autor: number;
     cep: string;
 }
 

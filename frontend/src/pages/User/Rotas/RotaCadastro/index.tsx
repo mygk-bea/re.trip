@@ -63,7 +63,7 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations }) => {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         const userData = authService.getUserData();
-        const idUser = userData?.id ? parseInt(userData.id) : 0;
+        const credencialUser = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
 
         let imageName = "";
         console.log("Arquivo de imagem:", imageFile);
@@ -81,13 +81,13 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations }) => {
             privada: isPrivate,
             locais: selectedLocations.map(location => Number(location.id)),
             imagemNome: imageName,
-            id_autor: idUser
+            credencial_autor: credencialUser
         };
 
         console.log("Objeto a ser enviado para o backend:", routeData);
         await rotaService.cadastrarRota(routeData);
 
-        navigate("/user/home");
+        navigate("/user/meu-perfil/minhas-rotas");
     };
 
     return (

@@ -35,3 +35,6 @@ $router->post('/login', 'LoginController@autenticar');
 
 // Rotas de update
 $router->post('/status-rota', 'RotaController@status');
+
+// Rotas de pesquisas
+$router->get('/dados-rotas/{credencialUsuario}', 'RotaController@dadosRotas');

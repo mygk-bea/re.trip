@@ -9,6 +9,7 @@ export const dictDataRoutes = (type: string) => {
       rotaInfo: "/admin/rota/info",
       rotaCadastro: "/admin/rota/cadastro",
       perfilConteudo: "/admin/meu-perfil/meus-locais",
+      pesquisar: "/admin/pesquisar",
       color: "rgba(34,156,255,1)",
       secondaryColor: "rgba(11,124,186,1)",
     };
@@ -23,6 +24,7 @@ export const dictDataRoutes = (type: string) => {
       rotaCadastro: "/guia/rota/cadastro",
       perfilConteudo: "/guia/meu-perfil/minhas-rotas",
       perfilContato: "/guia/meu-perfil/contato",
+      pesquisar: "/guia/pesquisar",
       color: "rgba(20,196,20,1)",
       secondaryColor: "rgba(22,150,10,1)",
     };
@@ -37,6 +39,7 @@ export const dictDataRoutes = (type: string) => {
       rotaInfo: "/user/rota/info",
       rotaCadastro: "/user/rota/cadastro",
       perfilConteudo: "/user/meu-perfil/favoritos",
+      pesquisar: "/user/pesquisar",
       color: "rgba(255,112,34,1)",
       secondaryColor: "rgba(221,54,3,1)",
     };

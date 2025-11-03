@@ -58,6 +58,7 @@ function App() {
         <Route path="/guia/criar-conta" element={<Cadastro isGuia={true} />} />
         <Route path="/guia/home" element={<HomeGuia username='Username' />} />
         <Route path="/guia/pesquisar" element={<Pesquisar isGuia={true} />} />
+        <Route path="/guia/pesquisar/filtros" element={<Filtros isGuia={true} />} />
         <Route path="/guia/meu-perfil" element={<MeuPerfil type='Promotor Turístico' username='Username' call='Aventureira' isGuia={true} />} />
         <Route path="/guia/meu-perfil/minhas-rotas" element={<MinhasRotas isGuia={true} />} />
         <Route path="/guia/rota/cadastro" element={<RotaCadastro isGuia={true} />} />

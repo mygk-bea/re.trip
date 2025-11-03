@@ -76,7 +76,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = f
                         onClick={() => navigate(userData.perfilConteudo)}
                     />
                 )}
-                {logicType === 'guia' && (
+                {logicType !== 'admin' && (
                     <Button
                         {...buttonProps}
                         title="Minhas Rotas"
@@ -117,7 +117,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = f
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
                         <IconArrowChevron
                             class="w-10 h-10 transform rotate-90"
-                            style={{ stroke: color }}
+                            // style={{ stroke: color }}
                         />
                     </div>
 

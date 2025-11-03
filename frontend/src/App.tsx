@@ -31,6 +31,7 @@ import HomeSuperAdmin from './pages/SuperAdmin/Home';
 import ScrollToTop from './components/Effects/ScrollToTop';
 import { Listagem } from './pages/SuperAdmin/Listagem';
 import { eventsList, routesList, usersList } from './constants/infos';
+import InfosContato from './pages/Guia/InfosContato';
 
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
         <Route path="/guia/pesquisar/filtros" element={<Filtros isGuia={true} />} />
         <Route path="/guia/meu-perfil" element={<MeuPerfil type='Promotor Turístico' username='Username' call='Aventureira' isGuia={true} />} />
         <Route path="/guia/meu-perfil/minhas-rotas" element={<MinhasRotas isGuia={true} />} />
+        <Route path="/guia/meu-perfil/contato" element={<InfosContato />} />
         <Route path="/guia/rota/cadastro" element={<RotaCadastro isGuia={true} />} />
         <Route path="/guia/rota/info" element={<RotaInfo />} />
         <Route path="/guia/local/info" element={<InfoLocal isGuia={true} />} />

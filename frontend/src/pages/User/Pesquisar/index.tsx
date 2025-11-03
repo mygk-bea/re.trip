@@ -9,7 +9,12 @@ import Card from '../../../components/Card';
 import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
 import Tag from '../../../components/Tag';
 
-const Pesquisar: React.FC = () => {
+interface PesquisarProps {
+    isAdmin?: boolean;
+    isGuia?: boolean;
+}
+
+const Pesquisar: React.FC<PesquisarProps> = ({isAdmin = false, isGuia = false}) => {
     const [searchQuery, setSearchQuery] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -67,10 +72,9 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
                                 borderColor={tag.borderColor}
                                 dismissible={true}       // permite remover na página de pesquisa
                                 showDismiss={true}       // mostra o botão de dismiss
-    onDismiss={() => {
-      setSelectedTags(selectedTags.filter((t: { id: any; }) => t.id !== tag.id));
-    }}
-
+                                onDismiss={() => {
+                                setSelectedTags(selectedTags.filter((t: { id: any; }) => t.id !== tag.id));
+                                }}
                             />
                         ))}
 
@@ -97,7 +101,7 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
             </div>
 
             <div>
-                <Menu />
+                <Menu isAdmin={isAdmin} isGuia={isGuia} />
             </div>
         </div>
     );

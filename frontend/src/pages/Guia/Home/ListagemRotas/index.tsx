@@ -2,7 +2,6 @@ import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
-import { sharedRoutes } from "../../../../constants/infos";
 import Card from "../../../../components/Card/index";
 import { allRoutes, rotaParques, rotaSitioMuseu } from "../../../../constants/infosRoutes";
 
@@ -12,9 +11,9 @@ const ListagemRotas: React.FC = () => {
     const verRota = (id: number) => {
         const route = id == 1 ? rotaSitioMuseu : rotaParques;
         if (route) {
-            navigate("/admin/rota/info", {
+            navigate("/guia/rota/info", {
                 state: {
-                    type: "admin",
+                    type: "guia",
                     route: route,
                 },
             });
@@ -57,7 +56,7 @@ const ListagemRotas: React.FC = () => {
             </div>
 
             <div>
-                <Menu isAdmin />
+                <Menu isGuia />
             </div>
 
         </div>

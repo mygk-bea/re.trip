@@ -57,11 +57,12 @@ function App() {
         <Route path="/guia/login" element={<Login isGuia={true} />} />
         <Route path="/guia/criar-conta" element={<Cadastro isGuia={true} />} />
         <Route path="/guia/home" element={<HomeGuia username='Username' />} />
-        <Route path="/guia/meu-perfil" element={<MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />} />
-        <Route path="/admin/meu-perfil/minhas-rotas" element={<MeusLocais />} />
-        <Route path="/guia/rota/cadastro" element={<RotaCadastro />} />
+        <Route path="/guia/pesquisar" element={<Pesquisar isGuia={true} />} />
+        <Route path="/guia/meu-perfil" element={<MeuPerfil type='Promotor Turístico' username='Username' call='Aventureira' isGuia={true} />} />
+        <Route path="/guia/meu-perfil/minhas-rotas" element={<MinhasRotas isGuia={true} />} />
+        <Route path="/guia/rota/cadastro" element={<RotaCadastro isGuia={true} />} />
         <Route path="/guia/rota/info" element={<RotaInfo />} />
-        <Route path="/guia/local/info" element={<InfoLocal />} />
+        <Route path="/guia/local/info" element={<InfoLocal isGuia={true} />} />
 
         <Route path="/admin/inicio" element={<Inicio isAdmin={true} />} />
         <Route path="/admin/criar-conta" element={<Cadastro isAdmin={true} />} />

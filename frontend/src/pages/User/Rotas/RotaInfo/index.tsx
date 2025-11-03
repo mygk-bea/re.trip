@@ -209,7 +209,7 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
           </div>
         </div>
       </div>
-      <Menu isAdmin={type === "admin"} />
+      <Menu isAdmin={type === "admin"} isGuia={type === "guia"} />
     </>
   );
 };

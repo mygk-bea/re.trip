@@ -6,7 +6,12 @@ import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
 
-const Filtros: React.FC = () => {
+interface FiltrosProps {
+    isAdmin?: boolean;
+    isGuia?: boolean;
+}
+
+const Filtros: React.FC<FiltrosProps> = ({isAdmin = false, isGuia = false}) => {
     const navigate = useNavigate();
 
     const [selectedTags, setSelectedTags] = useState<{ text: string, bgColor: string, borderColor: string, textColor: string }[]>([]);
@@ -137,7 +142,7 @@ const Filtros: React.FC = () => {
                 </div>
 
                 <div>
-                    <Menu />
+                    <Menu isAdmin={isAdmin} isGuia={isGuia} />
                 </div>
             </div>
         </>

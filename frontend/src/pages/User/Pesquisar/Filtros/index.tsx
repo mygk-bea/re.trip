@@ -69,6 +69,10 @@ const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) =>
         { text: "Elevadores e Rampas", bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
     ];
 
+    const tagsProfissional = [
+        { text: "Com guia", bgColor: "#30CA01", borderColor: "#30CA01", textColor: "#fff" }
+    ];
+
     return (
         <>
             <div className={styles.container__filtros}>
@@ -79,15 +83,15 @@ const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) =>
                                 class={styles.icon__arrow}
                             />
                         </button>
-                        <h1 style={{ color: color }}>Filtros</h1>
+                        <h1 style={{ color: '#333' }}>Filtros</h1>
                     </div>
-                    <div className={styles.cabecalho__divisor} style={{background: userData.color}}></div>
+                    <div className={styles.cabecalho__divisor} style={{ background: userData.color }}></div>
                 </div>
 
                 <div className={`${styles.filtros__conteudos} px-[4.5vw]`}>
                     <div className={styles.filtros__atracoes}>
                         <div className={styles.atracoes__titulo}>
-                            <h2 style={{ color: color }}>Atrações</h2>
+                            <h2 style={{ color: '#333' }}>Atrações</h2>
                         </div>
                         <div className={styles.atracoes__conteudo}>
                             {tagsAtracoes.map((tag, index) => (
@@ -105,7 +109,7 @@ const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) =>
 
                     <div className={styles.filtros__localizacao}>
                         <div className={styles.localizacao__titulo}>
-                            <h2 style={{ color: color }}>Localização</h2>
+                            <h2 style={{ color: '#333' }}>Localização</h2>
                         </div>
                         <div className={styles.localizacao__conteudo}>
                             {tagsLocalizacao.map((tag, index) => (
@@ -123,7 +127,7 @@ const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) =>
 
                     <div className={styles.filtros__acessibilidade_inclusao}>
                         <div className={styles.acessibilidade__titulo}>
-                            <h2 style={{ color: color }}>Acessibilidade e Inclusão</h2>
+                            <h2 style={{ color: '#333' }}>Acessibilidade e Inclusão</h2>
                         </div>
                         <div className={styles.acessibilidade__conteudo}>
                             {tagsAceInc.map((tag, index) => (
@@ -138,7 +142,25 @@ const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) =>
                             ))}
                         </div>
                     </div>
+                    <div className={styles.filtros__localizacao}>
+                        <div className={styles.localizacao__titulo}>
+                            <h2 style={{ color: '#333' }}>Profissional</h2>
+                        </div>
+                        <div className={styles.localizacao__conteudo}>
+                            {tagsProfissional.map((tag, index) => (
+                                <Tag
+                                    key={`${index}-profissional`}
+                                    text={tag.text}
+                                    bgColor={tag.bgColor}
+                                    borderColor={tag.borderColor}
+                                    textColor={tag.textColor}
+                                    onClick={() => handleTagClick(tag)}
+                                />
+                            ))}
+                        </div>
+                    </div>
                 </div>
+
 
                 <div className="flex justify-end mt-10">
                     <Button

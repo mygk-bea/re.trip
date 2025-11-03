@@ -7,7 +7,7 @@
   }
 }
 
-[data-admin="false"] .fillActive {
+[data-admin="false"] .fillActive, [data-guia="false"] .fillActive {
   .icon {
     &.fill { path { fill: var(--color-primary-user); } }
     &.stroke { path { stroke: var(--color-primary-user); } }
@@ -18,6 +18,13 @@
   .icon {
     &.fill { path { fill: var(--color-primary-admin); } }
     &.stroke { path { stroke: var(--color-primary-admin); } }
+  }
+}
+
+[data-guia="true"] .fillActive {
+  .icon {
+    &.fill { path { fill: var(--color-primary-guia); } }
+    &.stroke { path { stroke: var(--color-primary-guia); } }
   }
 }
 

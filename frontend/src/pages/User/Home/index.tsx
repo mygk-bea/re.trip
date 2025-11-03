@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import { useNavigate } from "react-router-dom";
-import { categories, regionCities, localPlaces, sharedRoutes } from '../../../constants/infos'
+import { categories, regionCities, sharedRoutes } from '../../../constants/infos'
 
 import Card from "../../../components/Card";
 import Carousel from './Carousel';

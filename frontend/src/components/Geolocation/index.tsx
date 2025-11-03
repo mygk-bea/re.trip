@@ -12,9 +12,10 @@ interface City {
 interface GeolocationProps {
   cities: City[];
   admin?: boolean; 
+  guia?: boolean;
 }
 
-const Geolocation: React.FC<GeolocationProps> = ({ cities: initialCities, admin }) => {
+const Geolocation: React.FC<GeolocationProps> = ({ cities: initialCities, admin, guia }) => {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState<City>(initialCities[0]);
   const [cities, setCities] = useState<City[]>(initialCities);
@@ -58,7 +59,7 @@ const Geolocation: React.FC<GeolocationProps> = ({ cities: initialCities, admin 
       ref={dropdownRef}
       className={`relative flex items-center justify-between ${styled.geolocation}`}
     >
-      <IconPin  class={`${styled.icon} ${admin ? 'stroke-[#229CFF]' : 'stroke-[#FF7022]'}`}/>
+      <IconPin  class={`${styled.icon} ${admin ? 'stroke-[#229CFF]' : guia ? 'stroke-[#14c414]' : 'stroke-[#FF7022]'}`}/>
       <p>{selected.city} - {selected.uf}</p>
 
       <button

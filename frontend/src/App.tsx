@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import './App.css'
+import "leaflet/dist/leaflet.css";
 
 import MeuPerfil from './pages/User/MeuPerfil'
 import MinhasRotas from './pages/User/MeuPerfil/MinhasRotas'

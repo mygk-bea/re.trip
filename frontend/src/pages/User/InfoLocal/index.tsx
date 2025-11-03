@@ -236,17 +236,22 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
 
               <div className="mt-4">
                 {!editingAddress && (
-                  <p>
-                    <span style={labelStyle}>Ver no mapa: </span>
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressValue)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-blue-600"
-                    >
-                      Abrir no Google Maps
-                    </a>
-                  </p>
+                  <>
+                    <p>
+                      <span style={labelStyle}>Ver no mapa:</span>
+                    </p>
+                    <div style={{ width: '100%', height: '400px', marginTop: '8px' }}>
+                      <iframe
+                        title="Mapa"
+                        width="100%"
+                        height="100%"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        src={`https://www.google.com/maps?q=${encodeURIComponent(addressValue)}&output=embed`}
+                      ></iframe>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
@@ -333,12 +338,12 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     <div className="flex flex-col gap-2">
                       {events.map((event) => (
                         <Card
-                            key={event.id}
-                            nameBackground={event.image}
-                            title={event.title}
-                            isOpacity
-                            positionText="center"
-                            className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
+                          key={event.id}
+                          nameBackground={event.image}
+                          title={event.title}
+                          isOpacity
+                          positionText="center"
+                          className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
                         />
                       ))}
                     </div>

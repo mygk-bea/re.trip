@@ -8,22 +8,38 @@ import Menu from '../../../components/Menu';
 import Card from '../../../components/Card';
 import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
 import Tag from '../../../components/Tag';
+import { dictDataRoutes } from '../../../constants/typeUser';
 
-const Pesquisar: React.FC = () => {
+interface PesquisarProps {
+    isAdmin?: boolean;
+    isGuia?: boolean;
+}
+
+const Pesquisar: React.FC<PesquisarProps> = ({ isAdmin = false, isGuia = false }) => {
     const [searchQuery, setSearchQuery] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
 
-const initialTagsRaw = location.state?.selectedTags || [];
-const initialTags = initialTagsRaw.map((tag: any) => ({ ...tag, id: uuidv4() }));
+    const type = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
+    const userData = dictDataRoutes(type);
+    const { color } = userData;
 
-const [selectedTags, setSelectedTags] = useState(initialTags);
+    const initialTagsRaw = location.state?.selectedTags || [];
+    const initialTags = initialTagsRaw.map((tag: any) => ({ ...tag, id: uuidv4() }));
+
+    const [selectedTags, setSelectedTags] = useState(initialTags);
 
     return (
         <div>
             <div className="w-full">
-                <div className="relative w-[100vw] mx-auto h-fit bg-[#FF8C3A] rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[32vh] shadow-md">
-                    <div className="absolute -left-20 -top-40 w-[110vw] lg:-top-30 h-[60vh] lg:w-[60vw] lg:h-[70vh] bg-orange-500 rounded-full z-0"></div>
+                <div
+                    className="relative w-[100vw] mx-auto h-fit rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[32vh] shadow-md"
+                    style={{ backgroundColor: color }}
+                >
+                    <div
+                        className="absolute -left-20 -top-40 w-[110vw] lg:-top-30 h-[60vh] lg:w-[60vw] lg:h-[70vh] rounded-full z-0"
+                        style={{ backgroundColor: color }}
+                    ></div>
 
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
                         <IconArrowChevron class="w-8 h-8 stroke-[#fff] transform rotate-90" />
@@ -33,7 +49,6 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
                         Bora se <br /> aventurar?
                     </h2>
 
-                    {/* Campo de pesquisa */}
                     <div className="relative mb-3 lg:mb-6 flex justify-center">
                         <div className="flex items-center border-b border-white px-4 py-1 w-[90vw] sm:w-[30vw] lg:w-[50vw]">
                             <IconSearch class="text-white mr-3 w-10 h-10 sm:w-6 sm:h-6 lg:w-12 lg:h-12 stroke-white fill-white" />
@@ -46,17 +61,18 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
                                 style={{ fontFamily: "'Rubrik', sans-serif", fontSize: '20px' }}
                             />
                         </div>
-                        <button className="ml-3 cursor-pointer" onClick={() => navigate("/user/pesquisar/filtros")}>
+                        <button className="ml-3 cursor-pointer" onClick={() => navigate(isGuia ? '/guia/pesquisar/filtros' : '/user/pesquisar/filtros', { state: { selectedTags } })}>
                             <IconFilter class="text-white stroke-white fill-white w-10 h-10 sm:w-6 sm:h-6 lg:w-12 lg:h-12" />
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* Se houver tags selecionadas, exiba-as */}
             {selectedTags.length > 0 && (
                 <div className="mb-6 ml-4 pt-[3vh]">
-                    <h2 className="text-2xl text-left text-[24px] lg:text-[30px] font-bold text-gray-900 mb-2 ml-2 lg:mb-4">Filtros</h2>
+                    <h2 className="text-2xl text-left text-[24px] lg:text-[30px] font-bold text-gray-900 mb-2 ml-2 lg:mb-4">
+                        Filtros
+                    </h2>
                     <div className="flex gap-2 mt-3 flex-wrap">
                         {selectedTags.map((tag: any) => (
                             <Tag
@@ -65,15 +81,13 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
                                 bgColor={tag.bgColor}
                                 textColor={tag.textColor}
                                 borderColor={tag.borderColor}
-                                dismissible={true}       // permite remover na página de pesquisa
-                                showDismiss={true}       // mostra o botão de dismiss
-    onDismiss={() => {
-      setSelectedTags(selectedTags.filter((t: { id: any; }) => t.id !== tag.id));
-    }}
-
+                                dismissible={true}
+                                showDismiss={true}
+                                onDismiss={() => {
+                                    setSelectedTags(selectedTags.filter((t: { id: any }) => t.id !== tag.id));
+                                }}
                             />
                         ))}
-
                     </div>
                 </div>
             )}
@@ -97,7 +111,7 @@ const [selectedTags, setSelectedTags] = useState(initialTags);
             </div>
 
             <div>
-                <Menu />
+                <Menu isAdmin={isAdmin} isGuia={isGuia} />
             </div>
         </div>
     );

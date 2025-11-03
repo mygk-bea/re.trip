@@ -1,13 +1,23 @@
 import { useState } from "react";
-import styles from './Filtros.module.scss'
+import styles from './Filtros.module.scss';
 import Tag from '../../../../components/Tag';
 import Menu from '../../../../components/Menu';
 import IconArrowChevron from '../../../../assets/icons/icon-arrow-chevron';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
+import { dictDataRoutes } from "../../../../constants/typeUser";
 
-const Filtros: React.FC = () => {
+interface FiltrosProps {
+    isAdmin?: boolean;
+    isGuia?: boolean;
+}
+
+const Filtros: React.FC<FiltrosProps> = ({ isAdmin = false, isGuia = false }) => {
     const navigate = useNavigate();
+
+    const type = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
+    const userData = dictDataRoutes(type);
+    const { color } = userData;
 
     const [selectedTags, setSelectedTags] = useState<{ text: string, bgColor: string, borderColor: string, textColor: string }[]>([]);
 
@@ -63,18 +73,22 @@ const Filtros: React.FC = () => {
         <>
             <div className={styles.container__filtros}>
                 <div className={styles.filtros__cabecalho}>
-                    <div className={styles.cabecalho__icon_titulo} >
-                        <button className={styles.icon__btn} onClick={() => navigate(-1)} >
-                            <IconArrowChevron class={styles.icon__arrow} />
+                    <div className={styles.cabecalho__icon_titulo}>
+                        <button className={styles.icon__btn} onClick={() => navigate(-1)}>
+                            <IconArrowChevron
+                                class={styles.icon__arrow}
+                            />
                         </button>
-                        <h1>Filtros</h1>
+                        <h1 style={{ color: color }}>Filtros</h1>
                     </div>
-                    <div className={styles.cabecalho__divisor}></div>
+                    <div className={styles.cabecalho__divisor} style={{background: userData.color}}></div>
                 </div>
 
                 <div className={`${styles.filtros__conteudos} px-[4.5vw]`}>
                     <div className={styles.filtros__atracoes}>
-                        <div className={styles.atracoes__titulo}><h2>Atrações</h2></div>
+                        <div className={styles.atracoes__titulo}>
+                            <h2 style={{ color: color }}>Atrações</h2>
+                        </div>
                         <div className={styles.atracoes__conteudo}>
                             {tagsAtracoes.map((tag, index) => (
                                 <Tag
@@ -90,7 +104,9 @@ const Filtros: React.FC = () => {
                     </div>
 
                     <div className={styles.filtros__localizacao}>
-                        <div className={styles.localizacao__titulo}><h2>Localização</h2></div>
+                        <div className={styles.localizacao__titulo}>
+                            <h2 style={{ color: color }}>Localização</h2>
+                        </div>
                         <div className={styles.localizacao__conteudo}>
                             {tagsLocalizacao.map((tag, index) => (
                                 <Tag
@@ -106,7 +122,9 @@ const Filtros: React.FC = () => {
                     </div>
 
                     <div className={styles.filtros__acessibilidade_inclusao}>
-                        <div className={styles.acessibilidade__titulo}><h2>Acessibilidade e Inclusão</h2></div>
+                        <div className={styles.acessibilidade__titulo}>
+                            <h2 style={{ color: color }}>Acessibilidade e Inclusão</h2>
+                        </div>
                         <div className={styles.acessibilidade__conteudo}>
                             {tagsAceInc.map((tag, index) => (
                                 <Tag
@@ -122,22 +140,23 @@ const Filtros: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Botão de confirmação */}
                 <div className="flex justify-end mt-10">
                     <Button
-                        colorText="var(--color-primary-user)"
-                        backgroundColor="#fff" 
+                        colorText={color}
+                        outlineColor={color}
+                        colorShadow={color}
+                        backgroundColor="#fff"
                         height="40px"
                         width="250px"
-                        isAdm={false}
+                        isAdm={type === 'admin'}
                         title="Confirmar Filtros"
                         positionItems="center"
-                        onClick={() => navigate('/user/pesquisar', { state: { selectedTags } })}
+                        onClick={() => navigate(userData.pesquisar, { state: { selectedTags } })}
                     />
                 </div>
 
                 <div>
-                    <Menu />
+                    <Menu isAdmin={isAdmin} isGuia={isGuia} />
                 </div>
             </div>
         </>

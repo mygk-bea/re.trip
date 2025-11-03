@@ -20,11 +20,12 @@ import { rotaParques, rotaSitioMuseu } from '../../../constants/infosRoutes';
 interface InfoLocalProps {
   place?: Place;
   isAdmin?: boolean;
+  isGuia?: boolean;
 }
 
 const InfoLocal: React.FC<InfoLocalProps> = () => {
   const location = useLocation();
-  const { place, isAdmin = false } = (location.state || {}) as InfoLocalProps;
+  const { place, isAdmin = false, isGuia = false } = (location.state || {}) as InfoLocalProps;
 
   if (!place) {
     return <p>⚠️ Nenhum local encontrado.</p>;
@@ -53,7 +54,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
   const [editingTags, setEditingTags] = useState(false);
   const [tagsValue, setTagsValue] = useState(place.tags || []);
 
-  const labelStyle = { color: isAdmin ? "#229CFF" : "#FF7022", fontWeight: 500 as const };
+  const labelStyle = { color: isAdmin ? "#229CFF" : isGuia ? "#14c414" : "#FF7022", fontWeight: 500 as const };
 
   const navigate = useNavigate();
 
@@ -213,7 +214,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     {editingContact ? <IconCheck /> : <IconEdit />}
                   </button>
                 )}
-                <IconChat class={`w-5 h-10 ${isAdmin ? "stroke-[#229CFF]" : "stroke-[#FF7022]"}`} />
+                <IconChat class={`w-5 h-10 ${isAdmin ? "stroke-[#229CFF]" : isGuia ? "stroke-[#14c414]" : "stroke-[#FF7022]"}`} />
               </div>
 
               <div className="mt-4">
@@ -348,7 +349,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
           </div>
         </div>
       </div>
-      <Menu isAdmin={isAdmin} />
+      <Menu isAdmin={isAdmin} isGuia={isGuia} />
     </>
   );
 };

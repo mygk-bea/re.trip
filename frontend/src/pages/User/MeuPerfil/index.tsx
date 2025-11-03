@@ -8,27 +8,33 @@ import IconAvatar from "../../../assets/icons/icon-avatar";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import { authService } from "../../../core/services/LoginService";
+import { dictDataRoutes } from "../../../constants/typeUser";
+import IconPin from "../../../assets/icons/icon-pin";
+import IconPhone from "../../../assets/icons/icon-phone";
 
 interface MeuPerfilProps {
     type: string;
     username: string;
     call: string;
+    isAdmin?: boolean;
+    isGuia?: boolean;
 }
 
-const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
+const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = false, isGuia = false }) => {
     const navigate = useNavigate();
+    const logicType = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
+    const userData = dictDataRoutes(logicType);
+    const { color, secondaryColor } = userData;
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [image, setImage] = useState<string | null>(null);
 
-    // Função para abrir o seletor de arquivos
     const handleClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
     };
 
-    // Função para carregar a foto escolhida
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
@@ -40,24 +46,85 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
         }
     };
 
-    // Função de logout
     const handleLogout = () => {
         authService.logout();
-        navigate("/inicio");
+        navigate(userData.inicio);
+    };
+
+    const renderButtons = () => {
+        const buttonProps = {
+            colorText: "#000",
+            backgroundColor: "#FFFFFF",
+            height: "50px",
+            width: "100%",
+            positionItems: "start" as "start",
+            fontFamily: "Rubik",
+            fontWeight: 'normal',
+            colorIcon: color,
+            outlineColor: color,
+            colorShadow: color,
+            isAdm: logicType === 'admin',
+        };
+
+        return (
+            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-23">
+                {logicType === 'user' && (
+                    <Button
+                        {...buttonProps}
+                        title="Favoritos"
+                        icon={IconHeart}
+                        onClick={() => navigate(userData.perfilConteudo)}
+                    />
+                )}
+                {logicType === 'guia' && (
+                    <Button
+                        {...buttonProps}
+                        title="Minhas Rotas"
+                        icon={IconRouteMap}
+                        onClick={() => navigate(userData.perfilConteudo)}
+                    />
+                )}
+                {logicType === 'admin' && (
+                    <Button
+                        {...buttonProps}
+                        title="Meus Locais"
+                        icon={IconPin}
+                        onClick={() => navigate(userData.perfilConteudo)}
+                    />
+                )}
+                {logicType === 'guia' && (
+                    <Button
+                        {...buttonProps}
+                        title="Informações de Contato"
+                        icon={IconPhone}
+                        onClick={() => navigate(userData.perfilContato ? userData.perfilContato : "/")}
+                    />
+                )}
+                <Button
+                    {...buttonProps}
+                    title="Sair"
+                    icon={IconLogout}
+                    onClick={handleLogout}
+                />
+            </div>
+        );
     };
 
     return (
         <>
             <div className="relative">
-                <div className="flex items-center mb-6 relative w-full lg:-mt-50 -mt-20 mb-10 ">
+                <div className="flex items-center mb-6 relative w-full lg:-mt-50 -mt-20 mb-10">
                     <div className="cursor-pointer" onClick={() => navigate(-1)}>
-                        <IconArrowChevron class="w-10 h-10 stroke-[#FF7022] transform rotate-90" />
+                        <IconArrowChevron
+                            class="w-10 h-10 transform rotate-90"
+                            style={{ stroke: color }}
+                        />
                     </div>
 
                     <div className="flex-1 flex justify-center">
                         <div
-                            className="text-[#FF7022] font-bold text-[32px]"
-                            style={{ fontFamily: "'Madimi One', sans-serif" }}
+                            className="font-bold text-[32px]"
+                            style={{ fontFamily: "'Madimi One', sans-serif", color: color }}
                         >
                             {call}
                         </div>
@@ -68,7 +135,8 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
 
                 <div className="flex flex-col items-center">
                     <div
-                        className="w-30 h-30 bg-[#FF7022] rounded-full mb-3 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
+                        className="w-30 h-30 rounded-full mb-3 lg:mb-2 flex items-center justify-center cursor-pointer overflow-hidden"
+                        style={{ backgroundColor: color }}
                         onClick={handleClick}
                     >
                         {image ? (
@@ -78,7 +146,6 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                         )}
                     </div>
 
-                    {/* Input escondido para upload */}
                     <input
                         type="file"
                         accept="image/*"
@@ -88,70 +155,21 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call }) => {
                     />
                 </div>
 
-                <div className={`text-[#FF7022] text-center font-bold text-[32px]`}>{username}</div>
-                <div className='text-[20px] mb-7 lg:mb-10' style={{ fontFamily: "'Rubik', sans-serif" }}>{type}</div>
+                <div className="text-center font-bold text-[32px]" style={{ color: color }}>
+                    {username}
+                </div>
+                <div className="text-[20px] mb-7 lg:mb-10" style={{ fontFamily: "'Rubik', sans-serif" }}>
+                    {type}
+                </div>
             </div>
 
-            <div className="w-[80vw] lg:w-[30vw] flex flex-col gap-8 lg:mb-23" >
-                <Button
-                    colorIcon="#ee8047"
-                    colorText="#000"
-                    backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
-                    height="50px"
-                    width="100%"
-                    isAdm={false}
-                    title="Minhas Rotas"
-                    positionItems="start"
-                    fontFamily="Rubik"
-                    icon={IconRouteMap}
-                    fontWeight='normal'
-                    onClick={() => navigate("/user/meu-perfil/minhas-rotas")}
-                />
-
-                <Button
-                    colorIcon="#ee8047"
-                    colorText="#000"
-                    backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
-                    height="50px"
-                    width="100%"
-                    isAdm={false}
-                    title="Favoritos"
-                    positionItems="start"
-                    fontFamily="Rubik"
-                    icon={IconHeart}
-                    fontWeight='normal'
-                    onClick={() => navigate("/user/meu-perfil/favoritos")}
-                />
-
-                <Button
-                    colorIcon="#ee8047"
-                    colorText="#000"
-                    backgroundColor="#FFFFFF"
-                    colorShadow="#ee8047"
-                    height="50px"
-                    width="100%"
-                    isAdm={false}
-                    title="Sair"
-                    fontFamily="Rubik"
-                    positionItems="start"
-                    fontWeight='normal'
-                    icon={IconLogout}
-                    onClick={handleLogout}
-                />
-            </div>
+            {renderButtons()}
 
             <div>
-                <Menu />
+                <Menu isAdmin={isAdmin} isGuia={isGuia} />
             </div>
-
         </>
-
     );
 };
-
-//   <MeuPerfil type='Usuário Comum' username='Username' call='Aventureira' />
-
 
 export default MeuPerfil;

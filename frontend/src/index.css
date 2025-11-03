@@ -65,3 +65,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+div[vw] {
+  right: 20px;
+  top: 70%;
+}

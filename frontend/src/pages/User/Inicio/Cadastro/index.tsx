@@ -68,6 +68,7 @@ const Cadastro: React.FC<CadastroProps> = ({ isAdmin = false, isGuia = false }) 
             className={`${styled_page.modal} 
                 p-[3.2vh_25px]
                 w-[90vw] lg:w-[40vw] 
+                lg:h-[80vh]
                 flex flex-col justify-center align-center gap-[2vh]
                 mx-auto`}
         >

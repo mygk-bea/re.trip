@@ -75,8 +75,14 @@ const Card: React.FC<CardProps> = ({
         {isOpacity && <div className={styles.opacity__overlay}></div>}
 
         <div className={`${styles.content} ${styles[positionText]}`}>
-          {title && <h3 className={styles.title}>{title}</h3>}
-
+          {title && (
+            <h3
+              className={`${styles.title} ${isEvent ? "text-2xl font-bold" : "text-[20px]"
+                }`}
+            >
+              {title}
+            </h3>
+          )}
           {isEvent && (
             <div className="flex justify-end"
             >

@@ -255,7 +255,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                       <iframe
                         title="Mapa"
                         width="100%"
-                        height="100%"
+                        height="80%"
                         style={{ border: 0 }}
                         loading="lazy"
                         allowFullScreen

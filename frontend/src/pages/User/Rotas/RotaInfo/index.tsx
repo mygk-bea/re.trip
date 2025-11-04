@@ -19,6 +19,8 @@ import type { RouteInfo } from "../../../../types/route";
 import { useLocation, useNavigate } from "react-router-dom";
 import { dictDataRoutes } from "../../../../constants/typeUser";
 import L from "leaflet";
+import { TAG_COLORS } from "../../../../constants/tagColors";
+import GuiaModal from "../../../../components/GuiaModal";
 
 interface RotaInfoProps {
   route?: RouteInfo;
@@ -61,6 +63,8 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
   const userData = dictDataRoutes(type);
 
   const [isFavorited, setIsFavorited] = useState(route.favorited);
+  const [isGuiaModalOpen, setIsGuiaModalOpen] = useState(false);
+  
   const mainStyleColor =
     type === "guia"
       ? styled.guiaTheme
@@ -70,17 +74,34 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
 
   return (
     <>
+      {isGuiaModalOpen && (
+        <GuiaModal
+          nome="João Silva"
+          descricao="Guia turístico apaixonado por cultura local, com 5 anos de experiência em passeios históricos e ecológicos."
+          contato="(11) 98765-4321"
+          tags={[
+            "Local Turístico",
+            "Natureza e Ecoturismo",
+            "Histórico",
+            "Tatuí",
+            "Boituva",
+          ]}
+          onClose={() => setIsGuiaModalOpen(false)}
+        />
+      )}
+
       <div
         className={`${styled.container} w-screen min-h-screen text-start pb-[15vh] ${mainStyleColor} `}
       >
         <div
-          className={`${styled.header} relative rounded-b-[50px] h-[20vh]`}
+          className={`${styled.header} relative rounded-b-[50px] h-[52vh] lg:h-[20vh]`}
         >
           <MapContainer
             center={rotaTatui[0] as [number, number]}
             zoom={14}
             scrollWheelZoom={false}
-            className="w-full h-full rounded-b-[50px]"
+            className="w-full h-full"
+            // attributionControl={false}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -97,14 +118,14 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
           </MapContainer>
 
           <div
-            className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] h-[52vh] lg:h-[20vh] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)]`}
+            className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)]`}
             style={{
               position: "absolute",
               top: 0,
               left: 0,
               width: "100%",
               height: "100%",
-              zIndex: 1000,
+              zIndex: 900,
             }}
           >
             <div
@@ -154,6 +175,16 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
               <div
                 className={`${styled.tags} w-full flex flex-wrap gap-2 mt-4`}
               >
+                {route.guiaAvailable && (
+                  <Tag
+                    key={`guiaAvailable`}
+                    text="Com Guia"
+                    bgColor={TAG_COLORS.guia.comGuia.bgColor}
+                    textColor={TAG_COLORS.guia.comGuia.textColor}
+                    borderColor={TAG_COLORS.guia.comGuia.borderColor}
+                    onClick={() => setIsGuiaModalOpen(true)}
+                  />
+                )}
                 {route.locals.map((local) =>
                   local.tags.map((tag) => (
                     <Tag

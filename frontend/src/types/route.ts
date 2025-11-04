@@ -10,4 +10,5 @@ export type RouteInfo = {
   routeLength: string;
   locals: Place[];
   images: string[];
+  guiaAvailable: boolean;
 };

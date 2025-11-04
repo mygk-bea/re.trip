@@ -14,8 +14,8 @@ import IconPinSharp from '../../../../assets/icons/icon-pin-sharp';
 import IconGrab from '../../../../assets/icons/icon-grab';
 import { type Place } from '../../../../types/place';
 import { allPlaces } from '../../../../constants/infosPlaces';
-import { rotaService } from '../../../../core/services/RotaService';
-import { authService } from '../../../../core/services/LoginService';
+// import { rotaService } from '../../../../core/services/RotaService';
+// import { authService } from '../../../../core/services/LoginService';
 import { dictDataRoutes } from '../../../../constants/typeUser';
 
 interface RotaCadastroProps {
@@ -62,27 +62,27 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations, isAdmin =
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-		const userDataAuth = authService.getUserData();
-		const credencialUser = userDataAuth?.idCredencial ? parseInt(userDataAuth.idCredencial) : 0;
+		// const userDataAuth = authService.getUserData();
+		// const credencialUser = userDataAuth?.idCredencial ? parseInt(userDataAuth.idCredencial) : 0;
 
-		let imageName = '';
-		if (imageFile) {
-			const filesArray = [imageFile];
-			const names = await rotaService.uploadImagens(filesArray);
-			imageName = names[0];
-		} else {
-			imageName = '';
-		}
+		// let imageName = '';
+		// if (imageFile) {
+		// 	const filesArray = [imageFile];
+		// 	const names = await rotaService.uploadImagens(filesArray);
+		// 	imageName = names[0];
+		// } else {
+		// 	imageName = '';
+		// }
 
-		const routeData = {
-			nome: routeName,
-			privada: isPrivate,
-			locais: selectedLocations.map((location) => Number(location.id)),
-			imagemNome: imageName,
-			credencial_autor: credencialUser,
-		};
+		// const routeData = {
+		// 	nome: routeName,
+		// 	privada: isPrivate,
+		// 	locais: selectedLocations.map((location) => Number(location.id)),
+		// 	imagemNome: imageName,
+		// 	credencial_autor: credencialUser,
+		// };
 
-		await rotaService.cadastrarRota(routeData);
+		// await rotaService.cadastrarRota(routeData);
 		navigate(userData.perfilConteudo);
 	};
 

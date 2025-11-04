@@ -4,31 +4,31 @@ import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 import { localPlaces } from "../../../../constants/infos";
 import Card from "../../../../components/Card/index";
-import { localService } from "../../../../core/services/LocalService";
-import { authService } from "../../../../core/services/LoginService";
+// import { localService } from "../../../../core/services/LocalService";
+// import { authService } from "../../../../core/services/LoginService";
 
 const MeusLocais: React.FC = () => {
     const navigate = useNavigate();
     const [locaisUsuario, setLocaisUsuario] = useState<any[]>([]);
 
     // dados das rotas
-    useEffect(() => {
-        const buscarLocais = async () => {
-            const userData = authService.getUserData();
-            const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
+    // useEffect(() => {
+    //     const buscarLocais = async () => {
+    //         const userData = authService.getUserData();
+    //         const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
 
-            const response = await localService.getDadosLocais(userCredencial);
+    //         const response = await localService.getDadosLocais(userCredencial);
 
-            if (response && response.success) {
-                setLocaisUsuario(response.data);
-                console.log("Locais carregados:", response.data);
-            } else {
-                console.error("Erro ao carregar locais:", response.message);
-            }
-        }
+    //         if (response && response.success) {
+    //             setLocaisUsuario(response.data);
+    //             console.log("Locais carregados:", response.data);
+    //         } else {
+    //             console.error("Erro ao carregar locais:", response.message);
+    //         }
+    //     }
 
-        buscarLocais();
-    }, []);
+    //     buscarLocais();
+    // }, []);
 
     return (
         <div className="relative">

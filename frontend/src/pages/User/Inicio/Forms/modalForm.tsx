@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import type { Field } from "../../../../types/field";
 import Input from "../../../../components/Input";
 import Button from "../../../../components/Button";
-import { authService } from "../../../../core/services/LoginService";
-import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
+// import { authService } from "../../../../core/services/LoginService";
+// import { cadastrosUsuarios } from "../../../../core/services/CadastrosUsuarios";
 import { dictDataRoutes } from "../../../../constants/typeUser";
 
 interface ModalFormProps {
@@ -42,42 +42,42 @@ export default function ModalForm({
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
-        setError("");
+        // setLoading(true);
+        // setError("");
 
-        try {
-            if (type === "login") {
-                const response = await authService.autenticarLogin({
-                    email: formData.email || "",
-                    senha: formData.senha || "",
-                });
+        // try {
+        //     if (type === "login") {
+        //         const response = await authService.autenticarLogin({
+        //             email: formData.email || "",
+        //             senha: formData.senha || "",
+        //         });
 
-                if (response.validado) {
-                    onLoginSuccess?.();
-                } else {
-                    setError(response.mensagem || "Credenciais inválidas");
-                }
-            } else if (type === "cadastro") {
-                const response = await cadastrosUsuarios.cadastrarAdmin({
-                    email: formData.email || "",
-                    senha: formData.senha || "",
-                    nome: formData.nome || "",
-                    dataNascimento: formData.dataNascimento || "",
-                    // genero: formData.genero || "",
-                    cpf: formData.cpf || "",
-                });
+        //         if (response.validado) {
+        //             onLoginSuccess?.();
+        //         } else {
+        //             setError(response.mensagem || "Credenciais inválidas");
+        //         }
+        //     } else if (type === "cadastro") {
+        //         const response = await cadastrosUsuarios.cadastrarAdmin({
+        //             email: formData.email || "",
+        //             senha: formData.senha || "",
+        //             nome: formData.nome || "",
+        //             dataNascimento: formData.dataNascimento || "",
+        //             // genero: formData.genero || "",
+        //             cpf: formData.cpf || "",
+        //         });
 
-                if (response.validado) {
-                    onCadastroSuccess?.();
-                } else {
-                    setError(response.mensagem || "Dados inválidos");
-                }
-            }
-        } catch (err) {
-            setError(err instanceof Error ? err.message : "Erro na requisição");
-        } finally {
-            setLoading(false);
-        }
+        //         if (response.validado) {
+        //             onCadastroSuccess?.();
+        //         } else {
+        //             setError(response.mensagem || "Dados inválidos");
+        //         }
+        //     }
+        // } catch (err) {
+        //     setError(err instanceof Error ? err.message : "Erro na requisição");
+        // } finally {
+        //     setLoading(false);
+        // }
     };
 
     return (

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
 import IconPlus from "../../../../assets/icons/icon-plus";
 import styled from "./MinhasRotas.module.scss";
-import { rotaService } from "../../../../core/services/RotaService";
-import { authService } from "../../../../core/services/LoginService";
+// import { rotaService } from "../../../../core/services/RotaService";
+// import { authService } from "../../../../core/services/LoginService";
 import { dictDataRoutes } from "../../../../constants/typeUser";
 
 interface MinhasRotasProps {
@@ -27,25 +27,25 @@ const MinhasRotas: React.FC<MinhasRotasProps> = ({
 	const pageTitle = isGuia ? "Minhas Rotas" : "Meus Favoritos";
 	const buttonTitle = "Criar Nova Rota";
 
-	useEffect(() => {
-		const buscarRotas = async () => {
-			const userData = authService.getUserData();
-			const userCredencial = userData?.idCredencial
-				? parseInt(userData.idCredencial)
-				: 0;
+	// useEffect(() => {
+	// 	const buscarRotas = async () => {
+	// 		const userData = authService.getUserData();
+	// 		const userCredencial = userData?.idCredencial
+	// 			? parseInt(userData.idCredencial)
+	// 			: 0;
 
-			const response = await rotaService.getDadosRotas(userCredencial);
+	// 		const response = await rotaService.getDadosRotas(userCredencial);
 
-			if (response && response.success) {
-				setRotasUsuario(response.data);
-				console.log("Rotas carregadas:", response.data);
-			} else {
-				console.error("Erro ao carregar rotas:", response.message);
-			}
-		};
+	// 		if (response && response.success) {
+	// 			setRotasUsuario(response.data);
+	// 			console.log("Rotas carregadas:", response.data);
+	// 		} else {
+	// 			console.error("Erro ao carregar rotas:", response.message);
+	// 		}
+	// 	};
 
-		buscarRotas();
-	}, []);
+	// 	buscarRotas();
+	// }, []);
 
 	return (
 		<div className="relative flex flex-col justify-between h-[100vh] pb-[13vh]">

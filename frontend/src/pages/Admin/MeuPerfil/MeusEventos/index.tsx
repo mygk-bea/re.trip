@@ -5,31 +5,31 @@ import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
 import { events } from "../../../../constants/infos";
 import Card from "../../../../components/Card";
-import { eventoService } from "../../../../core/services/EventoService";
-import { authService } from "../../../../core/services/LoginService";
+// import { eventoService } from "../../../../core/services/EventoService";
+// import { authService } from "../../../../core/services/LoginService";
 
 const MeusEventos: React.FC = () => {
     const navigate = useNavigate();
     const [eventosUsuario, setEventosUsuario] = useState<any[]>([]);
 
     // dados dos eventos
-    useEffect(() => {
-        const buscarEventos = async () => {
-            const userData = authService.getUserData();
-            const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
+    // useEffect(() => {
+    //     const buscarEventos = async () => {
+    //         const userData = authService.getUserData();
+    //         const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
 
-            const response = await eventoService.getDadosEventos(userCredencial);
+    //         const response = await eventoService.getDadosEventos(userCredencial);
 
-            if (response && response.success) {
-                setEventosUsuario(response.data);
-                console.log("Eventos carregados:", response.data);
-            } else {
-                console.error("Erro ao carregar eventos:", response.message);
-            }
-        }
+    //         if (response && response.success) {
+    //             setEventosUsuario(response.data);
+    //             console.log("Eventos carregados:", response.data);
+    //         } else {
+    //             console.error("Erro ao carregar eventos:", response.message);
+    //         }
+    //     }
 
-        buscarEventos();
-    }, []);
+    //     buscarEventos();
+    // }, []);
 
     return (
         <div className="relative">

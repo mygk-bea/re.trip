@@ -6,7 +6,7 @@ import ModalForm from "../Forms/modalForm";
 import bgUser from '../../../../assets/images/city/img_bg_tatui.png';
 import bgAdmin from '../../../../assets/images/city/img_bg_boituva_1.png';
 import bgGuia from '../../../../assets/images/city/img_bg_torre-de-pedra-1.jpg';
-import { authService } from "../../../../core/services/LoginService";
+// import { authService } from "../../../../core/services/LoginService";
 import { useNavigate } from "react-router-dom";
 import { dictDataRoutes } from "../../../../constants/typeUser";
 
@@ -34,11 +34,11 @@ const Login: React.FC<LoginProps> = ({ isAdmin = false, isGuia = false }) => {
     const navigate = useNavigate();
     const type = isAdmin ? "admin" : isGuia ? "guia" : "user";
 
-    React.useEffect(() => {
-        if (authService.isUserAuthenticated()) {
-            navigate(dictDataRoutes(type).home);
-        }
-    }, [navigate, isAdmin, isGuia]);
+    // React.useEffect(() => {
+    //     if (authService.isUserAuthenticated()) {
+    //         navigate(dictDataRoutes(type).home);
+    //     }
+    // }, [navigate, isAdmin, isGuia]);
 
     const handleLoginSuccess = () => {
         navigate(dictDataRoutes(type).home);

@@ -37,6 +37,7 @@ const InfosContato: React.FC = () => {
         const file = event.target.files?.[0];
         if (file) {
             setImageFile(file);
+            console.log(imageFile);
             setPhoto(URL.createObjectURL(file));
         }
     };

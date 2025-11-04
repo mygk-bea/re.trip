@@ -86,10 +86,10 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
     <>
       <div className={`${styled.container} w-screen min-h-screen text-start pb-[15vh]`}>
         <div
-          className={`${styled.header} bg-center bg-no-repeat bg-cover rounded-b-[50px]`}
+          className={`${styled.header} bg-center bg-no-repeat bg-cover rounded-b-[50px] h-[52vh] lg:h-[28vh] w-screen`}
           style={{ backgroundImage: `url(${place.images[currentImageIndex]})` }}
         >
-          <div className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] h-[52vh] lg:h-[20vh] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)]`}>
+          <div className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)] h-full`}>
             <div className={`${styled.top} flex justify-between items-center z-[2]`}>
               <button onClick={() => window.history.back()}>
                 <IconArrowChevron class={`${styled.icon} ${styled.arrow} w-6 h-6 md:w-8 md:h-8`} />
@@ -156,8 +156,8 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
           </div>
         </div>
 
-        <div className="w-full flex justify-center mt-8">
-          <div className="w-full max-w-md lg:max-w-6xl px-6 flex flex-col lg:flex-row lg:gap-12 lg:items-start">
+        <div className="w-screen flex justify-center mt-8">
+          <div className="w-full max-w-md lg:max-w-5xl px-6 flex flex-col lg:flex-row lg:gap-12 lg:items-start">
             <div className={`${styled.content} w-full lg:w-1/2 flex flex-col`}>
               <StarRating rating={place.starRating} showNumber={true} isAdmin={isAdmin} />
 
@@ -251,7 +251,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     <p>
                       <span style={labelStyle}>Ver no mapa:</span>
                     </p>
-                    <div style={{ width: '100%', height: '400px', marginTop: '8px' }}>
+                    <div className='w-full' style={{ height: '400px', marginTop: '8px' }}>
                       <iframe
                         title="Mapa"
                         width="100%"

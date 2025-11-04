@@ -101,7 +101,7 @@ const RotaInfo: React.FC<RotaInfoProps> = () => {
             zoom={14}
             scrollWheelZoom={false}
             className="w-full h-full"
-            // attributionControl={false}
+            attributionControl={false}
           >
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

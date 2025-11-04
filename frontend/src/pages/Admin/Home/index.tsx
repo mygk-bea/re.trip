@@ -107,7 +107,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                     items={kpis.map((kpi) => (
                         <div
                             key={kpi.id}
-                            className="h-[120px] w-[200px] lg:w-[15vw] lg:h-[15vh] flex flex-col items-center justify-center text-center rounded-2xl p-4"
+                            className="h-[120px] w-[200px] lg:w-[15vw] lg:h-[auto] lg:max-h-[150px] flex flex-col items-center justify-center text-center rounded-2xl p-4"
                             style={{
                                 background: "linear-gradient(135deg, #229CFF 0%, #155D99 100%)",
                                 color: "#fff",

@@ -38,7 +38,7 @@ export const dictDataRoutes = (type: string) => {
       localInfo: "/user/local/info",
       rotaInfo: "/user/rota/info",
       rotaCadastro: "/user/rota/cadastro",
-      perfilConteudo: "/user/meu-perfil/favoritos",
+      perfilConteudo: "/user/meu-perfil/minhas-rotas",
       pesquisar: "/user/pesquisar",
       color: "rgba(255,112,34,1)",
       secondaryColor: "rgba(221,54,3,1)",

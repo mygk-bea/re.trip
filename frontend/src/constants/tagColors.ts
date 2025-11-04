@@ -36,6 +36,9 @@ export const TAG_COLORS = {
         banheiros: { bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
         elevadoresRampas: { bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
     },
+    guia: {
+        comGuia: { bgColor: "#30CA01", borderColor: "#30CA01", textColor: "#FFFFFF" },
+    },
 };
 
 // import { TAG_COLORS } from "../../constants/tagColors";

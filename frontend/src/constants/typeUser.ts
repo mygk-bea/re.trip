@@ -27,6 +27,7 @@ export const dictDataRoutes = (type: string) => {
       pesquisar: "/guia/pesquisar",
       color: "rgba(20,196,20,1)",
       secondaryColor: "rgba(22,150,10,1)",
+      searchColor: "var(--color-guia-bg-search)",
     };
   } else {
     // user
@@ -42,6 +43,7 @@ export const dictDataRoutes = (type: string) => {
       pesquisar: "/user/pesquisar",
       color: "rgba(255,112,34,1)",
       secondaryColor: "rgba(221,54,3,1)",
+      searchColor: "var(--color-bg-search)",
     };
   }
 };

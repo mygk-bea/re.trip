@@ -2,6 +2,11 @@
     .title{font-size: 5rem;}
 
     .backgroundTitle{
+        box-shadow: none;
+
+        @media (min-width: 1024px) {
+            box-shadow: -10px 20px 0 20px var(--shadow-color);
+        }
 
         @media (min-width: 693px) {
             background-size: cover;

@@ -15,8 +15,9 @@ import IconUpload from "../../../assets/icons/icon-upload";
 import { categories, localPlaces } from "../../../constants/infos";
 import MultiSelect from "./MultiSelect";
 
-import { localService } from "../../../core/services/Local";
-import { authService } from "../../../core/services/loginService";
+import { localService } from "../../../core/services/LocalService";
+import { eventoService } from "../../../core/services/EventoService";
+import { authService } from "../../../core/services/LoginService";
 
 interface CadastroProps {
   isAdmin?: boolean;
@@ -112,7 +113,7 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
     e.preventDefault();
     console.log("Formulário enviado:", formData);
     const userData = authService.getUserData();
-    const idUser = userData?.id ? parseInt(userData.id) : 0;
+    const credencialUser = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
 
     if(tipo == 'local'){
       setError("");
@@ -136,11 +137,44 @@ const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) 
         descricao: formData.descricao || "",
         tags: tagsArray,
         cnpj: formData.cnpj || "",
-        id_autor: idUser,
+        credencial_autor: credencialUser,
         cep: formData.cep || ""
       }
 
       await localService.cadastrarLocal(localData);
+    } else if(tipo == 'evento'){
+      setError("");
+
+      let nomeImagens: string[] = [];
+      
+      if (formData.imagens && formData.imagens.length > 0) {
+        nomeImagens = await eventoService.uploadImagens(formData.imagens);
+      }
+
+      const tagsArray = Array.isArray(formData.categoriaId) 
+        ? formData.categoriaId.map(tag => parseInt(tag)).filter(tag => !isNaN(tag))
+        : formData.categoriaId 
+          ? [parseInt(formData.categoriaId)].filter(tag => !isNaN(tag))
+          : [];
+
+      const locaisArray = Array.isArray(formData.localId) 
+        ? formData.localId.map(id => parseInt(id)).filter(id => !isNaN(id))
+        : formData.localId 
+          ? [parseInt(formData.localId)].filter(id => !isNaN(id))
+          : [];
+
+      const eventoData = {
+        nome: formData.nome || "",
+        data: formData.data || "",
+        hora: formData.hora || "",
+        locais: locaisArray, 
+        imagensNomes: nomeImagens, 
+        descricao: formData.descricao || "",
+        tags: tagsArray,
+        credencial_autor: credencialUser
+      }
+
+      await eventoService.cadastrarEvento(eventoData);
     }
     navigate(isAdmin ? "/admin/home" : "/");
   };

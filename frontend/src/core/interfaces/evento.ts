@@ -1,7 +1,26 @@
 export interface Evento {
-    data_hora: String;
-    id_autor: Number;
+    nome: string;
+    data: string;
+    hora: string;
+    credencial_autor: Number;
     descricao: String;
-    endereco: String;
-    cidade: String;
+    locais: number[];
+    tags: number[];
+    imagensNomes: string[];
+    cidade?: String;
+    numero?: String;
+    bairro?: String;
+    logradouro?: String;
+}
+
+export interface EventoResponse{
+    validado: boolean;
+    mensagem: string;
+    error?: {
+        nome: string[];
+        email: string[];
+        senha: string[];
+        genero: string[];
+        dataNascimento: string[];
+    };
 }

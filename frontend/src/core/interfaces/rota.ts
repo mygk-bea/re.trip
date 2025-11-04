@@ -1,17 +1,17 @@
 export interface Rota {
-    compartilahada: boolean;
     nome: string;
     privada: boolean;
-    imagem: string;
-    distancia_total: string;
-    avaliacao: number;
-    status: string;
-    id_autor: number;
-    favoritada: boolean;
-    guiado: boolean;
-    valor: number;
-    comentario: string;
-    id_locais: number[];
+    locais: number[];
+    imagemNome: string;
+    credencial_autor: number;
+    compartilahada?: boolean;
+    distancia_total?: string;
+    avaliacao?: number;
+    status?: string;
+    favoritada?: boolean;
+    guiado?: boolean;
+    valor?: number;
+    comentario?: string;
 }
 
 export interface RotaResponse{

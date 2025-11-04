@@ -5,10 +5,10 @@ import Card from "../../../components/Card";
 import Carousel from './Carousel';
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { events, localPlaces, kpis, sharedRoutes } from '../../../constants/infos';
+import { events, kpis, sharedRoutes } from '../../../constants/infos';
 import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 import { allPlaces } from "../../../constants/infosPlaces";
-import { authService } from "../../../core/services/loginService";
+import { authService } from "../../../core/services/LoginService";
 
 interface HomeAdminProps {
     username: string;

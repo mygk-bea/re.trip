@@ -17,13 +17,16 @@ class CreateEventoTable extends Migration
             $table->id('codEvento');
             $table->date('data')->nullable(false);
             $table->time('hora')->nullable(false);
-            $table->integer('id_autor')->nullable(false);
             $table->string('descricao')->nullable(false);
-            $table->string('logradouro')->nullable(false);
-            $table->string('bairro')->nullable(false);
-            $table->string('numero')->nullable(false);
-            $table->string('cidade')->nullable(false);
-            $table->string('imagem')->nullable(false);
+            $table->string('nome')->nullable(false);
+            // $table->string('logradouro')->nullable(true);
+            // $table->string('bairro')->nullable(true);
+            // $table->string('numero')->nullable(true);
+            // $table->string('cidade')->nullable(true);
+            $table->unsignedBigInteger('fk_credencial_autor')->nullable(false);
+
+            $table->foreign('fk_credencial_autor')->references('codCredencial')->on('credenciais');
+            
             $table->timestamps();
         });
     }

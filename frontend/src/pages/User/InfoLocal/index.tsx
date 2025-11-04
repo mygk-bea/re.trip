@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
 import IconExpand from '../../../assets/icons/icon-expand';
 import IconHeart from '../../../assets/icons/icon-heart';
@@ -20,11 +20,12 @@ import { rotaParques, rotaSitioMuseu } from '../../../constants/infosRoutes';
 interface InfoLocalProps {
   place?: Place;
   isAdmin?: boolean;
+  isGuia?: boolean;
 }
 
 const InfoLocal: React.FC<InfoLocalProps> = () => {
   const location = useLocation();
-  const { place, isAdmin = false } = (location.state || {}) as InfoLocalProps;
+  const { place, isAdmin = false, isGuia = false } = (location.state || {}) as InfoLocalProps;
 
   if (!place) {
     return <p>⚠️ Nenhum local encontrado.</p>;
@@ -53,7 +54,9 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
   const [editingTags, setEditingTags] = useState(false);
   const [tagsValue, setTagsValue] = useState(place.tags || []);
 
-  const labelStyle = { color: isAdmin ? "#229CFF" : "#FF7022", fontWeight: 500 as const };
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const labelStyle = { color: isAdmin ? "#229CFF" : isGuia ? "#14c414" : "#FF7022", fontWeight: 500 as const };
 
   const navigate = useNavigate();
 
@@ -69,13 +72,22 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
     }
   };
 
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === place.images.length - 1 ? 0 : prevIndex + 1
+    );
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [place.images.length]);
 
   return (
     <>
       <div className={`${styled.container} w-screen min-h-screen text-start pb-[15vh]`}>
         <div
           className={`${styled.header} bg-center bg-no-repeat bg-cover rounded-b-[50px]`}
-          style={{ backgroundImage: `url(${place.images[0]})` }}
+          style={{ backgroundImage: `url(${place.images[currentImageIndex]})` }}
         >
           <div className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] h-[52vh] lg:h-[20vh] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)]`}>
             <div className={`${styled.top} flex justify-between items-center z-[2]`}>
@@ -213,7 +225,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     {editingContact ? <IconCheck /> : <IconEdit />}
                   </button>
                 )}
-                <IconChat class={`w-5 h-10 ${isAdmin ? "stroke-[#229CFF]" : "stroke-[#FF7022]"}`} />
+                <IconChat class={`w-5 h-10 ${isAdmin ? "stroke-[#229CFF]" : isGuia ? "stroke-[#14c414]" : "stroke-[#FF7022]"}`} />
               </div>
 
               <div className="mt-4">
@@ -235,17 +247,22 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
 
               <div className="mt-4">
                 {!editingAddress && (
-                  <p>
-                    <span style={labelStyle}>Ver no mapa: </span>
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressValue)}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="underline text-blue-600"
-                    >
-                      Abrir no Google Maps
-                    </a>
-                  </p>
+                  <>
+                    <p>
+                      <span style={labelStyle}>Ver no mapa:</span>
+                    </p>
+                    <div style={{ width: '100%', height: '400px', marginTop: '8px' }}>
+                      <iframe
+                        title="Mapa"
+                        width="100%"
+                        height="80%"
+                        style={{ border: 0 }}
+                        loading="lazy"
+                        allowFullScreen
+                        src={`https://www.google.com/maps?q=${encodeURIComponent(addressValue)}&output=embed`}
+                      ></iframe>
+                    </div>
+                  </>
                 )}
               </div>
             </div>
@@ -332,12 +349,18 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     <div className="flex flex-col gap-2">
                       {events.map((event) => (
                         <Card
-                            key={event.id}
-                            nameBackground={event.image}
-                            title={event.title}
-                            isOpacity
-                            positionText="center"
-                            className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
+                          key={event.id}
+                          height="140px"
+                          className="w-[100%]" 
+                          nameBackground={event.image}
+                          title={event.title}
+                          description={event.description}
+                          local={event.local}
+                          date={event.date}
+                          time={event.time}
+                          isBlur
+                          positionText="bottom"
+                          isEvent
                         />
                       ))}
                     </div>
@@ -348,7 +371,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
           </div>
         </div>
       </div>
-      <Menu isAdmin={isAdmin} />
+      <Menu isAdmin={isAdmin} isGuia={isGuia} />
     </>
   );
 };

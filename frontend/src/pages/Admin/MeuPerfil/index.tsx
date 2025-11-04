@@ -3,7 +3,7 @@ import IconLogout from "../../../assets/icons/icon-exit";
 import Menu from "../../../components/Menu";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
-import { authService } from "../../../core/services/loginService";
+import { authService } from "../../../core/services/LoginService";
 
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
 import IconPin from "../../../assets/icons/icon-pin";

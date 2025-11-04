@@ -1,13 +1,103 @@
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Re.Trip</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Re.Trip</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.tsx"></script>
+
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+    window.addEventListener("load", function () {
+      const vlibrasDiv = document.querySelector("div[vw]");
+      if (!vlibrasDiv) return;
+
+      vlibrasDiv.style.position = "fixed";
+      vlibrasDiv.style.cursor = "grab";
+      vlibrasDiv.style.zIndex = "9999";
+
+      let isDragging = false;
+      let moved = false; 
+      let startX, startY, startLeft, startTop;
+      let currentLeft = 0, currentTop = 0;
+
+      const smoothFactor = 0.25; 
+
+      vlibrasDiv.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        isDragging = true;
+        moved = false;
+        vlibrasDiv.style.cursor = "grabbing";
+
+        const rect = vlibrasDiv.getBoundingClientRect();
+        startLeft = rect.left;
+        startTop = rect.top;
+        startX = e.clientX;
+        startY = e.clientY;
+
+        currentLeft = startLeft;
+        currentTop = startTop;
+
+        document.body.style.userSelect = "none";
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) moved = true;
+
+        let targetLeft = startLeft + dx;
+        let targetTop = startTop + dy;
+
+        const maxX = window.innerWidth - vlibrasDiv.offsetWidth;
+        const maxY = window.innerHeight - vlibrasDiv.offsetHeight;
+        targetLeft = Math.max(0, Math.min(targetLeft, maxX));
+        targetTop = Math.max(0, Math.min(targetTop, maxY));
+
+        currentLeft += (targetLeft - currentLeft) * smoothFactor;
+        currentTop += (targetTop - currentTop) * smoothFactor;
+
+        vlibrasDiv.style.left = currentLeft + "px";
+        vlibrasDiv.style.top = currentTop + "px";
+        vlibrasDiv.style.right = "auto";
+        vlibrasDiv.style.bottom = "auto";
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (!isDragging) return;
+        isDragging = false;
+        vlibrasDiv.style.cursor = "grab";
+        document.body.style.userSelect = "auto";
+      });
+
+      vlibrasDiv.addEventListener("click", (e) => {
+        if (moved) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          moved = false;
+        }
+      }, true);
+    });
+  </script>
+</body>
+
 </html>

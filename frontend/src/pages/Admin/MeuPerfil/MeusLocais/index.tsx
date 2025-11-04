@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import Card from "../../../../components/Card/index";
 
 const MeusLocais: React.FC = () => {
     const navigate = useNavigate();
-    const [locaisUsuario, setLocaisUsuario] = useState<any[]>([]);
+    // const [locaisUsuario, setLocaisUsuario] = useState<any[]>([]);
 
     // dados das rotas
     // useEffect(() => {

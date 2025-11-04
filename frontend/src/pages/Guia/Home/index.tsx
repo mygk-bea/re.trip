@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import Card from "../../../components/Card";

@@ -71,7 +71,7 @@ const applyMask = (name: string, value: string): string => {
 
 const CadastroLocalEvento: React.FC<CadastroProps> = ({ isAdmin = true, tipo }) => {
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const [formData, setFormData] = useState<Partial<FormData>>({
     nome: "",

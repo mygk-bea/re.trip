@@ -1,5 +1,5 @@
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import Card from "../../../../components/Card";
 
 const MeusEventos: React.FC = () => {
     const navigate = useNavigate();
-    const [eventosUsuario, setEventosUsuario] = useState<any[]>([]);
+    // const [eventosUsuario, setEventosUsuario] = useState<any[]>([]);
 
     // dados dos eventos
     // useEffect(() => {

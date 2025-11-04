@@ -56,6 +56,7 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations, isAdmin =
 		const file = event.target.files?.[0];
 		if (file) {
 			setImageFile(file);
+			console.log(imageFile);
 			setRouteImage(URL.createObjectURL(file));
 		}
 	};

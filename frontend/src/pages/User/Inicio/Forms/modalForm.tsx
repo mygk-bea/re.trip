@@ -21,11 +21,11 @@ export default function ModalForm({
     type,
     isAdmin = false,
     isGuia = false,
-    onLoginSuccess,
-    onCadastroSuccess,
+    // onLoginSuccess,
+    // onCadastroSuccess,
 }: ModalFormProps) {
     const [formData, setFormData] = useState<Record<string, string>>({});
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
     const typeUser = isAdmin ? "admin" : isGuia ? "guia" : "user";
@@ -43,7 +43,7 @@ export default function ModalForm({
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         // setLoading(true);
-        // setError("");
+        setError("");
 
         // try {
         //     if (type === "login") {

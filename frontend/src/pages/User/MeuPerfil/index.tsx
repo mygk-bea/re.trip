@@ -24,7 +24,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = f
     const navigate = useNavigate();
     const logicType = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
     const userData = dictDataRoutes(logicType);
-    const { color, secondaryColor } = userData;
+    const { color } = userData;
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [image, setImage] = useState<string | null>(null);

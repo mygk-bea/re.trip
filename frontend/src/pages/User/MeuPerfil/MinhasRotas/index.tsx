@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ const MinhasRotas: React.FC<MinhasRotasProps> = ({
 	isGuia = false,
 }) => {
 	const navigate = useNavigate();
-	const [rotasUsuario, setRotasUsuario] = useState<any[]>([]);
+	// const [rotasUsuario, setRotasUsuario] = useState<any[]>([]);
 
 	const type = isGuia ? "guia" : "user";
 	const userData = dictDataRoutes(type);

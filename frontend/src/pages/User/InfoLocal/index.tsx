@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import IconArrowChevron from '../../../assets/icons/icon-arrow-chevron';
 import IconExpand from '../../../assets/icons/icon-expand';
 import IconHeart from '../../../assets/icons/icon-heart';
@@ -54,6 +54,8 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
   const [editingTags, setEditingTags] = useState(false);
   const [tagsValue, setTagsValue] = useState(place.tags || []);
 
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   const labelStyle = { color: isAdmin ? "#229CFF" : isGuia ? "#14c414" : "#FF7022", fontWeight: 500 as const };
 
   const navigate = useNavigate();
@@ -70,13 +72,22 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
     }
   };
 
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === place.images.length - 1 ? 0 : prevIndex + 1
+    );
+  }, 3000);
+
+  return () => clearInterval(interval);
+}, [place.images.length]);
 
   return (
     <>
       <div className={`${styled.container} w-screen min-h-screen text-start pb-[15vh]`}>
         <div
           className={`${styled.header} bg-center bg-no-repeat bg-cover rounded-b-[50px]`}
-          style={{ backgroundImage: `url(${place.images[0]})` }}
+          style={{ backgroundImage: `url(${place.images[currentImageIndex]})` }}
         >
           <div className={`${styled.overlay} flex flex-col justify-between lg:justify-center lg:gap-[20px] h-[52vh] lg:h-[20vh] w-full p-[9vw] lg:py-[0] bg-[rgba(255,255,255,0.2)] lg:bg-[rgba(255,255,255,0.6)]`}>
             <div className={`${styled.top} flex justify-between items-center z-[2]`}>

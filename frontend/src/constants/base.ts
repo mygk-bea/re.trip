@@ -15,7 +15,8 @@ export const sitioCarrocaoBase: Place = {
   description: "Acampamento de vivências únicas...",
   contactInfo: "(15) 3305-2000",
   address: "Rod. SP-129, Km 12,5 - Bairro dos Mirandas, Tatuí - SP, 18270-000",
-  images: ["/images/places/img_bg_sitio-carrocao.png"],
+  images: ["/images/places/img_bg_sitio-carrocao.png", "/images/places/img_bg_sitio-carrocao-1.jpg"
+  ],
   routes: [],
   events: [],
 };

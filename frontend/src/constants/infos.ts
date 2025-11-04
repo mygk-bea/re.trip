@@ -40,14 +40,47 @@ export const categories = [
     { id: 4, title: "Aventura e Diversão", image: imgAdventure },
 ];
 
-import imgRodeio from "../assets/images/events/img_bg_rodeio.png";
-import imgFestaJunina from "../assets/images/events/img_bg_festa_junina.png";
-import imgFeiraDoDoce from "../assets/images/events/img_bg_feira_do_doce.jpg";
+// import imgRodeio from "../assets/images/events/img_bg_rodeio.png";
+// import imgFestaJunina from "../assets/images/events/img_bg_festa_junina.png";
+// import imgFeiraDoDoce from "../assets/images/events/img_bg_feira_do_doce.jpg";
+
+// export const events = [
+//     { id: 1, title: "Feira do Doce", image: imgFeiraDoDoce },
+//     { id: 2, title: "Rodeio", image: imgRodeio },
+//     { id: 3, title: "Festa Junina", image: imgFestaJunina },
+// ];
 
 export const events = [
-    { id: 1, title: "Feira do Doce", image: imgFeiraDoDoce },
-    { id: 2, title: "Rodeio", image: imgRodeio },
-    { id: 3, title: "Festa Junina", image: imgFestaJunina },
+    {
+        id: 1,
+        title: "Feira do Doce",
+        description:
+            "Evento tradicional de Tatuí com diversas barracas de doces artesanais, apresentações culturais e música ao vivo.",
+        local: "Praça da Matriz, Tatuí - SP",
+        date: "12 a 15 de Julho de 2025",
+        time: "10h às 22h",
+        image: "/images/events/img_bg_feira_do_doce.jpg",
+    },
+    {
+        id: 2,
+        title: "Rodeio de Tatuí",
+        description:
+            "Shows sertanejos, montarias e comidas típicas em um dos maiores eventos do interior paulista.",
+        local: "Hípica de Tatuí",
+        date: "20 a 24 de Agosto de 2025",
+        time: "A partir das 19h",
+        image: "/images/events/img_bg_rodeio.png",
+    },
+    {
+        id: 3,
+        title: "Festa Junina de Tatuí",
+        description:
+            "Celebração com quadrilhas, comidas típicas e apresentações musicais, reunindo famílias e visitantes da região.",
+        local: "Centro Cultural de Tatuí",
+        date: "1º a 3 de Junho de 2025",
+        time: "17h às 23h",
+        image: "/images/events/img_bg_festa_junina.png",
+    },
 ];
 
 export const kpis = [
@@ -71,6 +104,6 @@ export const eventsList = [
 
 export const routesList = [
     { id: "R001", nome: "Rota A", início: "Warehouse", fim: "Store 1", username: "julia" },
-    { id: "R002", nome: "Rota B", início: "Warehouse", fim: "Store 2", username: "beatriz"  },
+    { id: "R002", nome: "Rota B", início: "Warehouse", fim: "Store 2", username: "beatriz" },
     { id: "R003", nome: "Rota C", início: "Warehouse", fim: "Store 3", username: "thayná" },
 ];

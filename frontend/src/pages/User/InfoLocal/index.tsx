@@ -350,11 +350,17 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                       {events.map((event) => (
                         <Card
                           key={event.id}
+                          height="140px"
+                          className="w-[100%]" 
                           nameBackground={event.image}
                           title={event.title}
-                          isOpacity
-                          positionText="center"
-                          className="w-[100%] h-[80px] lg:w-[40vw] lg:h-[20vh]"
+                          description={event.description}
+                          local={event.local}
+                          date={event.date}
+                          time={event.time}
+                          isBlur
+                          positionText="bottom"
+                          isEvent
                         />
                       ))}
                     </div>

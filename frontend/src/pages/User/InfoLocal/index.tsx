@@ -6,16 +6,18 @@ import IconVerify from '../../../assets/icons/icon-verify';
 import IconChat from '../../../assets/icons/icon-chat';
 import IconEdit from '../../../assets/icons/icon-edit';
 import IconCheck from '../../../assets/icons/icon-check';
+import IconUpload from '../../../assets/icons/icon-upload';
 import Menu from '../../../components/Menu';
 import StarRating from '../../../components/StarRating';
 import Tag from '../../../components/Tag';
-import styled from './InfoLocal.module.scss';
-import type { Place } from '../../../types/place';
-import IconUpload from '../../../assets/icons/icon-upload';
 import Card from '../../../components/Card';
+import styled from './InfoLocal.module.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { events } from '../../../constants/infos';
 import { rotaParques, rotaSitioMuseu } from '../../../constants/infosRoutes';
+
+import type { Place } from '../../../types/place';
+import { localPlaceService } from '../../../adapters/localAdapter';
 
 interface InfoLocalProps {
   place?: Place;
@@ -25,66 +27,78 @@ interface InfoLocalProps {
 
 const InfoLocal: React.FC<InfoLocalProps> = () => {
   const location = useLocation();
-  const { place, isAdmin = false, isGuia = false } = (location.state || {}) as InfoLocalProps;
+  const navigate = useNavigate();
+  const { place: initialPlace, isAdmin = false, isGuia = false } = (location.state || {}) as InfoLocalProps;
 
-  if (!place) {
-    return <p>⚠️ Nenhum local encontrado.</p>;
-  }
-  const [isFavorited, setIsFavorited] = useState(place.favorited);
+  const [place, setPlace] = useState<Place | null>(initialPlace ?? null); // 🟢
+  const [isFavorited, setIsFavorited] = useState(place?.favorited ?? false);
 
   // Estados de edição
   const [editingName, setEditingName] = useState(false);
-  const [nameValue, setNameValue] = useState(place.name);
-
+  const [nameValue, setNameValue] = useState(place?.name ?? '');
   const [editingDescription, setEditingDescription] = useState(false);
-  const [descriptionValue, setDescriptionValue] = useState(place.description);
-
+  const [descriptionValue, setDescriptionValue] = useState(place?.description ?? '');
   const [editingContact, setEditingContact] = useState(false);
-  const [contactValue, setContactValue] = useState(place.contactInfo);
-
+  const [contactValue, setContactValue] = useState(place?.contactInfo ?? '');
   const [editingAddress, setEditingAddress] = useState(false);
-  const [addressValue, setAddressValue] = useState(place.address);
-
+  const [addressValue, setAddressValue] = useState(place?.address ?? '');
   const [editingRoutes, setEditingRoutes] = useState(false);
-  const [routesValue, setRoutesValue] = useState(place.routes || []);
-
+  const [routesValue, setRoutesValue] = useState(place?.routes ?? []);
   const [editingEvents, setEditingEvents] = useState(false);
-  const [eventsValue, setEventsValue] = useState(place.events || []);
-
+  const [eventsValue, setEventsValue] = useState(place?.events ?? []);
   const [editingTags, setEditingTags] = useState(false);
-  const [tagsValue, setTagsValue] = useState(place.tags || []);
-
+  const [tagsValue, setTagsValue] = useState(place?.tags ?? []);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const labelStyle = { color: isAdmin ? "#229CFF" : isGuia ? "#14c414" : "#FF7022", fontWeight: 500 as const };
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchLocais = async () => {
+      if (!initialPlace) {
+        try {
+          const userCredencial = Number(localStorage.getItem("userCredencial")) || 1;
+          const places = await localPlaceService.listarPlaces(userCredencial);
+          if (places.length > 0) {
+            setPlace(places[0]);
+          }
+        } catch (err) {
+          console.error("Erro ao buscar locais:", err);
+        }
+      }
+    };
+    fetchLocais();
+  }, [initialPlace]);
+
+  useEffect(() => {
+    if (!place || !place.images.length) return;
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) =>
+        prev === place.images.length - 1 ? 0 : prev + 1
+      );
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [place]);
+
+  if (!place) {
+    return <p>⚠️ Nenhum local encontrado.</p>;
+  }
 
   const verRota = (id: number) => {
-    const route = id == 1 ? rotaSitioMuseu : rotaParques;
+    const route = id === 1 ? rotaSitioMuseu : rotaParques;
     if (route) {
       navigate("/user/rota/info", {
         state: {
           type: "user",
-          route: route,
+          route,
         },
       });
     }
   };
 
-  useEffect(() => {
-  const interval = setInterval(() => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === place.images.length - 1 ? 0 : prevIndex + 1
-    );
-  }, 3000);
-
-  return () => clearInterval(interval);
-}, [place.images.length]);
-
   return (
     <>
       <div className={`${styled.container} w-screen min-h-screen text-start pb-[15vh]`}>
+        {/* HEADER */}
         <div
           className={`${styled.header} bg-center bg-no-repeat bg-cover rounded-b-[50px] h-[52vh] lg:h-[28vh] w-screen`}
           style={{ backgroundImage: `url(${place.images[currentImageIndex]})` }}
@@ -94,10 +108,11 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
               <button onClick={() => window.history.back()}>
                 <IconArrowChevron class={`${styled.icon} ${styled.arrow} w-6 h-6 md:w-8 md:h-8`} />
               </button>
-              <button onClick={() => { /* Lógica para expandir imagem */ }}>
+              <button onClick={() => { /* Expandir imagem futuramente */ }}>
                 <IconExpand class={`${styled.icon} ${styled.expand} w-6 h-6 md:w-8 md:h-8`} />
               </button>
             </div>
+
             <div className={`${styled.bottom} flex justify-between items-end z-[2]`}>
               <div>
                 {place.verified && (
@@ -141,25 +156,29 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                     className="hidden"
                     onChange={(e) => {
                       if (e.target.files && e.target.files[0]) {
-                        const file = e.target.files[0];
-                        console.log("Arquivo selecionado:", file);
+                        console.log("Arquivo selecionado:", e.target.files[0]);
                       }
                     }}
                   />
                 </>
               ) : (
-                <button onClick={() => setIsFavorited(!isFavorited)} className='p-2'>
-                  <IconHeart class={`${styled.icon} ${styled.heart} ${isFavorited ? styled.fill : ''} w-8 h-8 md:w-10 md:h-10`} />
+                <button onClick={() => setIsFavorited(!isFavorited)} className="p-2">
+                  <IconHeart
+                    class={`${styled.icon} ${styled.heart} ${isFavorited ? styled.fill : ''} w-8 h-8 md:w-10 md:h-10`}
+                  />
                 </button>
               )}
             </div>
           </div>
         </div>
 
+        {/* CONTEÚDO */}
         <div className="w-screen flex justify-center mt-8">
           <div className="w-full max-w-md lg:max-w-5xl px-6 flex flex-col lg:flex-row lg:gap-12 lg:items-start">
+            
+            {/* LADO ESQUERDO */}
             <div className={`${styled.content} w-full lg:w-1/2 flex flex-col`}>
-              <StarRating rating={place.starRating} showNumber={true} isAdmin={isAdmin} />
+              <StarRating rating={place.starRating} showNumber isAdmin={isAdmin} />
 
               <div className="flex flex-wrap gap-2 mt-4">
                 {editingTags ? (
@@ -177,13 +196,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                   />
                 ) : (
                   tagsValue.map(tag => (
-                    <Tag
-                      key={tag.text}
-                      text={tag.text}
-                      bgColor={tag.style.bgColor}
-                      textColor={tag.style.textColor}
-                      borderColor={tag.style.borderColor}
-                    />
+                    <Tag key={tag.text} {...tag} />
                   ))
                 )}
                 {isAdmin && (
@@ -245,28 +258,25 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                 )}
               </div>
 
-              <div className="mt-4">
-                {!editingAddress && (
-                  <>
-                    <p>
-                      <span style={labelStyle}>Ver no mapa:</span>
-                    </p>
-                    <div className='w-full' style={{ height: '400px', marginTop: '8px' }}>
-                      <iframe
-                        title="Mapa"
-                        width="100%"
-                        height="80%"
-                        style={{ border: 0 }}
-                        loading="lazy"
-                        allowFullScreen
-                        src={`https://www.google.com/maps?q=${encodeURIComponent(addressValue)}&output=embed`}
-                      ></iframe>
-                    </div>
-                  </>
-                )}
-              </div>
+              {!editingAddress && (
+                <div className="mt-4">
+                  <p><span style={labelStyle}>Ver no mapa:</span></p>
+                  <div className="w-full" style={{ height: '400px', marginTop: '8px' }}>
+                    <iframe
+                      title="Mapa"
+                      width="100%"
+                      height="80%"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      allowFullScreen
+                      src={`https://www.google.com/maps?q=${encodeURIComponent(addressValue)}&output=embed`}
+                    ></iframe>
+                  </div>
+                </div>
+              )}
             </div>
 
+            {/* LADO DIREITO */}
             <div className={`${styled.content} w-full lg:w-1/2 flex flex-col gap-6 mt-6 lg:mt-0`}>
               {(routesValue.length > 0 || isAdmin) && (
                 <div>
@@ -302,13 +312,13 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                           className="h-[80px] w-full cursor-pointer"
                           nameBackground={route.images[0]}
                           title={route.name}
-                          isTags={route.locals?.some(local => local.tags.length > 0)}
+                          isTags={!!route.locals?.some(local => local.tags.length > 0)}
                           tags={route.locals[0]?.tags.map(tag => String(tag.text))}
-                          isBlur={true}
+                          isBlur
                           isOpacity={false}
                           positionText="top"
                           widthText="100%"
-                          onClick={() => { verRota(Number(route.id)) }}
+                          onClick={() => verRota(Number(route.id))}
                         />
                       ))}
                     </div>
@@ -329,18 +339,13 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                   {editingEvents ? (
                     <textarea
                       className="border rounded px-2 py-1 w-full h-24"
-                      value={eventsValue.map(event => event.description).join("\n")}
+                      value={eventsValue.map(e => e.description).join("\n")}
                       onChange={(e) =>
                         setEventsValue(
                           e.target.value.split("\n").map((line, i) => ({
                             ...(eventsValue[i] || {}),
                             id: eventsValue[i]?.id || String(i),
                             description: line.trim(),
-                            locals: eventsValue[i]?.locals || [],
-                            address: eventsValue[i]?.address || "",
-                            date: eventsValue[i]?.date || "",
-                            time: eventsValue[i]?.time || "",
-                            images: eventsValue[i]?.images || [],
                           }))
                         )
                       }
@@ -351,7 +356,7 @@ const InfoLocal: React.FC<InfoLocalProps> = () => {
                         <Card
                           key={event.id}
                           height="140px"
-                          className="w-[100%]" 
+                          className="w-full"
                           nameBackground={event.image}
                           title={event.title}
                           description={event.description}

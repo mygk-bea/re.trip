@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React  from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import Card from "../../../components/Card";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { events, kpis, sharedRoutes } from '../../../constants/infos';
 import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 import { allPlaces } from "../../../constants/infosPlaces";
-import { authService } from "../../../core/services/LoginService";
+// import { authService } from "../../../core/services/LoginService";
 
 interface HomeAdminProps {
     username: string;
@@ -66,20 +66,20 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
     ));
 
      // Dados do usuário
-    useEffect(() => {
-        const userData = authService.getUserData();
+    // useEffect(() => {
+    //     const userData = authService.getUserData();
         
-        console.log("User Data:", userData);
+    //     console.log("User Data:", userData);
         
-        if (userData) {
-            console.log("Dados do usuário:", {
-                id: userData.id,
-                name: userData.name,
-                role: userData.role,
-                token: userData.token
-            });
-        }
-    }, []);
+    //     if (userData) {
+    //         console.log("Dados do usuário:", {
+    //             id: userData.id,
+    //             name: userData.name,
+    //             role: userData.role,
+    //             token: userData.token
+    //         });
+    //     }
+    // }, []);
     
 
     return (
@@ -107,7 +107,7 @@ const HomeAdmin: React.FC<HomeAdminProps> = ({ username }) => {
                     items={kpis.map((kpi) => (
                         <div
                             key={kpi.id}
-                            className="h-[120px] w-[200px] lg:w-[15vw] lg:h-[15vh] flex flex-col items-center justify-center text-center rounded-2xl p-4"
+                            className="h-[120px] w-[200px] lg:w-[15vw] lg:h-[auto] lg:max-h-[150px] flex flex-col items-center justify-center text-center rounded-2xl p-4"
                             style={{
                                 background: "linear-gradient(135deg, #229CFF 0%, #155D99 100%)",
                                 color: "#fff",

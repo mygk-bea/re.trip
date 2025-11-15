@@ -7,7 +7,7 @@ import Button from "../../../components/Button";
 import IconAvatar from "../../../assets/icons/icon-avatar";
 import { useNavigate } from "react-router-dom";
 import IconArrowChevron from "../../../assets/icons/icon-arrow-chevron";
-import { authService } from "../../../core/services/LoginService";
+// import { authService } from "../../../core/services/LoginService";
 import { dictDataRoutes } from "../../../constants/typeUser";
 import IconPin from "../../../assets/icons/icon-pin";
 import IconPhone from "../../../assets/icons/icon-phone";
@@ -24,7 +24,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = f
     const navigate = useNavigate();
     const logicType = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
     const userData = dictDataRoutes(logicType);
-    const { color, secondaryColor } = userData;
+    const { color } = userData;
 
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [image, setImage] = useState<string | null>(null);
@@ -47,7 +47,7 @@ const MeuPerfil: React.FC<MeuPerfilProps> = ({ type, username, call, isAdmin = f
     };
 
     const handleLogout = () => {
-        authService.logout();
+        // authService.logout();
         navigate(userData.inicio);
     };
 

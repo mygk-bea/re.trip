@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import IconFilter from "../../../../assets/icons/icon-filter";
 import { allRoutes, rotaParques, rotaSitioMuseu } from "../../../../constants/infosRoutes";
 import { allPlaces } from "../../../../constants/infosPlaces";
@@ -10,9 +10,9 @@ import Card from "../../../../components/Card";
 
 const Favoritos: React.FC = () => {
     const navigate = useNavigate();
-    const location = useLocation();
+    // const location = useLocation();
 
-    const selectedTags = location.state?.selectedTags || [];
+    // const selectedTags = location.state?.selectedTags || [];
 
     const favoritedPlaces = [
         ...allRoutes

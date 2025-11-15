@@ -2,7 +2,7 @@ import React from "react";
 import Menu from "../../../../components/Menu";
 import IconArrowChevron from "../../../../assets/icons/icon-arrow-chevron";
 import { useNavigate } from "react-router-dom";
-import { sharedRoutes } from "../../../../constants/infos";
+// import { sharedRoutes } from "../../../../constants/infos";
 import Card from "../../../../components/Card/index";
 import { allRoutes, rotaParques, rotaSitioMuseu } from "../../../../constants/infosRoutes";
 

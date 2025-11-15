@@ -22,7 +22,7 @@ const Pesquisar: React.FC<PesquisarProps> = ({ isAdmin = false, isGuia = false }
 
     const type = isAdmin ? 'admin' : isGuia ? 'guia' : 'user';
     const userData = dictDataRoutes(type);
-    const { color } = userData;
+    const { color, searchColor } = userData;
 
     const initialTagsRaw = location.state?.selectedTags || [];
     const initialTags = initialTagsRaw.map((tag: any) => ({ ...tag, id: uuidv4() }));
@@ -33,11 +33,11 @@ const Pesquisar: React.FC<PesquisarProps> = ({ isAdmin = false, isGuia = false }
         <div>
             <div className="w-full">
                 <div
-                    className="relative w-[100vw] mx-auto h-fit rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] lg:h-[32vh] shadow-md"
-                    style={{ backgroundColor: color }}
+                    className="relative w-[100vw] mx-auto h-fit rounded-b-3xl overflow-hidden p-6 lg:w-[60vw] shadow-md"
+                    style={{ backgroundColor: searchColor }}
                 >
                     <div
-                        className="absolute -left-20 -top-40 w-[110vw] lg:-top-30 h-[60vh] lg:w-[60vw] lg:h-[70vh] rounded-full z-0"
+                        className="absolute -left-55 -top-60 lg:-top-30 w-[565px] h-[565px] lg:w-[70vw] aspect-square rounded-full z-0"
                         style={{ backgroundColor: color }}
                     ></div>
 

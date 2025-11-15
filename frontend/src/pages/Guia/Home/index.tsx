@@ -1,4 +1,4 @@
-import React, { useEffect }  from "react";
+import React from "react";
 import Menu from "../../../components/Menu";
 import Geolocation from "../../../components/Geolocation";
 import Card from "../../../components/Card";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { events, sharedRoutes } from '../../../constants/infos';
 import { rotaParques, rotaSitioMuseu } from "../../../constants/infosRoutes";
 import { allPlaces } from "../../../constants/infosPlaces";
-import { authService } from "../../../core/services/LoginService";
+// import { authService } from "../../../core/services/LoginService";
 
 interface HomeGuiaProps {
     username: string;
@@ -96,20 +96,20 @@ const HomeGuia: React.FC<HomeGuiaProps> = ({ username }) => {
     ));
 
      // Dados do usuário
-    useEffect(() => {
-        const userData = authService.getUserData();
+    // useEffect(() => {
+    //     const userData = authService.getUserData();
         
-        console.log("User Data:", userData);
+    //     console.log("User Data:", userData);
         
-        if (userData) {
-            console.log("Dados do usuário:", {
-                id: userData.id,
-                name: userData.name,
-                role: userData.role,
-                token: userData.token
-            });
-        }
-    }, []);
+    //     if (userData) {
+    //         console.log("Dados do usuário:", {
+    //             id: userData.id,
+    //             name: userData.name,
+    //             role: userData.role,
+    //             token: userData.token
+    //         });
+    //     }
+    // }, []);
     
 
     return (

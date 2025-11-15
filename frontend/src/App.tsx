@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 import "leaflet/dist/leaflet.css";
 
@@ -40,6 +40,8 @@ function App() {
     <>
       <ScrollToTop />
       <Routes>
+        <Route path="/" element={<Navigate to="/inicio" replace />} />
+
         <Route path="/inicio" element={<Inicio />} />
         <Route path="/criar-conta" element={<Cadastro />} />
         <Route path="/login" element={<Login />} />

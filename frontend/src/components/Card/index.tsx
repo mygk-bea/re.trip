@@ -64,6 +64,68 @@ const Card: React.FC<CardProps> = ({
     else onClick?.();
   };
 
+  function createGoogleCalendarUrl(title: string, description: string, local: string, date: string, time: string) {
+    // Ex.: "12 a 15 de julho de 2025"
+    const dateRegex = /(\d{1,2})\s*a\s*(\d{1,2})\s*de\s*([a-zç]+)\s*de\s*(\d{4})/i;
+    const match = date.match(dateRegex);
+
+    if (!match) {
+      console.error("Formato de data inválido:", date);
+      return "#";
+    }
+
+    const startDay = match[1];
+    const endDay = match[2];
+    const monthName = match[3].toLowerCase();
+    const year = match[4];
+
+    const meses: Record<string, string> = {
+      janeiro: "01",
+      fevereiro: "02",
+      março: "03",
+      abril: "04",
+      maio: "05",
+      junho: "06",
+      julho: "07",
+      agosto: "08",
+      setembro: "09",
+      outubro: "10",
+      novembro: "11",
+      dezembro: "12",
+    };
+
+    const month = meses[monthName];
+
+    // Ex.: "10h às 22h"
+    const timeRegex = /(\d{1,2})h.*?(\d{1,2})h/i;
+    const t = time.match(timeRegex);
+
+    if (!t) {
+      console.error("Formato de horário inválido:", time);
+      return "#";
+    }
+
+    const startHour = t[1].padStart(2, "0");
+    const endHour = t[2].padStart(2, "0");
+
+    const start = new Date(`${year}-${month}-${startDay}T${startHour}:00:00`);
+    const end = new Date(`${year}-${month}-${endDay}T${endHour}:00:00`);
+
+    const format = (date: Date) =>
+      date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const startStr = format(start);
+    const endStr = format(end);
+
+    const encodedTitle = encodeURIComponent(title || "");
+    const encodedDescription = encodeURIComponent(description || "");
+    const encodedLocation = encodeURIComponent(local || "");
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodedTitle}&dates=${startStr}/${endStr}&details=${encodedDescription}&location=${encodedLocation}`;
+  }
+
+
+
   return (
     <>
       <div
@@ -150,6 +212,22 @@ const Card: React.FC<CardProps> = ({
                 {description}
               </p>
             )}
+
+            <a
+              onClick={(e) => e.stopPropagation()}
+              href={createGoogleCalendarUrl(
+                title ?? "",
+                description ?? "",
+                local ?? "",
+                date ?? "",
+                time ?? ""
+              )} target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 block text-center bg-[#FF7022] text-white px-4 py-2 rounded-lg font-semibold hover:bg-[#5a95ff] transition"
+            >
+              Adicionar ao Google Agenda
+            </a>
+
           </div>
         </div>
       )}

@@ -18,6 +18,8 @@ import { allPlaces } from '../../../../constants/infosPlaces';
 // import { authService } from '../../../../core/services/LoginService';
 import { dictDataRoutes } from '../../../../constants/typeUser';
 
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
 interface RotaCadastroProps {
 	initialLocations?: Place[];
 	isAdmin?: boolean;
@@ -85,6 +87,80 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations, isAdmin =
 
 		// await rotaService.cadastrarRota(routeData);
 		navigate(userData.perfilConteudo);
+	};
+
+	const [iaSuggestedName, setIaSuggestedName] = useState('');
+	const [iaSuggestedPlaces, setIaSuggestedPlaces] = useState<Place[]>([]);
+	const [loadingIA, setLoadingIA] = useState(false);
+
+	const generateRouteWithIA = async () => {
+		try {
+			setLoadingIA(true);
+
+			const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+			const model = genAI.getGenerativeModel({
+				model: "gemini-2.5-flash",
+			});
+
+			const prompt = `
+				Quero criar uma rota turística para um aplicativo de turismo no interior do estado de São Paulo, focado em cidades próximas de Tatuí.
+
+				Analise esta lista de locais:
+				${allPlaces.map(p => `{"id": ${p.id}, "name": "${p.name}"}`).join(", ")}
+
+				Com base nisso:
+				1. Sugira um nome curto, criativo e profissional para a rota.
+				2. Sugira entre 2 e 6 locais coerentes, respondendo somente os IDs.
+
+				REGRAS IMPORTANTES:
+				- Não apresente nada em tópicos, listas ou bullets.
+				- NÃO USE markdown.
+				- NÃO USE crases.
+				- NÃO explique nada.
+				- Responda SOMENTE com JSON puro e válido.
+
+				Formato esperado:
+				{
+				"nome": "string",
+				"locais": [1, 2, 3]
+				}
+				`;
+
+			const result = await model.generateContent(prompt);
+
+			let text = result.response.text().trim();
+
+			text = text.replace(/```json|```/g, "").trim();
+
+			const jsonMatch = text.match(/\{[\s\S]*\}/);
+			if (!jsonMatch) throw new Error("Resposta inválida da IA: não retornou JSON.");
+
+			const json = JSON.parse(jsonMatch[0]);
+
+			setIaSuggestedName(json.nome);
+
+			const iaIds = json.locais.map((id: any) => Number(id));
+
+			const mappedPlaces = allPlaces.filter(p => iaIds.includes(Number(p.id)));
+
+			const shuffleArray = <T,>(arr: T[]): T[] => {
+				const a = [...arr];
+				for (let i = a.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[a[i], a[j]] = [a[j], a[i]];
+				}
+				return a;
+			};
+
+			const shuffled = shuffleArray(mappedPlaces);
+
+			setIaSuggestedPlaces(shuffled);
+
+		} catch (err) {
+			console.error("Erro IA:", err);
+		} finally {
+			setLoadingIA(false);
+		}
 	};
 
 	return (
@@ -266,6 +342,60 @@ const RotaCadastro: React.FC<RotaCadastroProps> = ({ initialLocations, isAdmin =
 							</DragDropContext>
 						</div>
 					</div>
+
+					<div className="w-full mt-10 p-4 border rounded-lg">
+						<h2 className="text-2xl font-bold mb-2" style={{ color: userData.color }}>
+							Sugestões Automáticas (IA)
+						</h2>
+
+						<div className="w-full flex justify-center my-6">
+							<Button
+								colorText="#FFF"
+								backgroundColor={userData.color}
+								height="50px"
+								width="200px"
+								title={loadingIA ? "Gerando..." : "Gerar sugestões"}
+								positionItems="center"
+								onClick={generateRouteWithIA}
+								isAdm={type === 'admin'}
+							/>
+						</div>
+
+
+						{iaSuggestedName && (
+							<div className="mt-4">
+								<p className="font-bold">Nome sugerido:</p>
+								<p>{iaSuggestedName}</p>
+								<button
+									type="button"
+									className="mt-1 underline"
+									onClick={() => setRouteName(iaSuggestedName)}
+								>
+									Usar este nome
+								</button>
+							</div>
+						)}
+
+						{iaSuggestedPlaces.length > 0 && (
+							<div className="mt-4">
+								<p className="font-bold">Locais sugeridos:</p>
+								<p>
+									{iaSuggestedPlaces.map(loc => (
+										<p key={loc.id}>{loc.name}</p>
+									))}
+								</p>
+
+								<button
+									type="button"
+									className="mt-2 underline"
+									onClick={() => setSelectedLocations(iaSuggestedPlaces)}
+								>
+									Usar esses locais
+								</button>
+							</div>
+						)}
+					</div>
+
 
 					<div className="w-full flex justify-center mt-12">
 						<Button

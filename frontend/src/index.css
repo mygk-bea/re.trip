@@ -23,6 +23,8 @@
   /* --- GUIA COLORS --- */
   --color-primary-guia: #14c414;
   --color-secondary-guia: rgb(22, 150, 10);
+  --color-guia-bg-search: #43ff43;
+
 
   /* --- TAGS COLORS --- */
   --color-bg-tag-orange: #F9F0E5;
@@ -64,4 +66,10 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+div[vw] {
+  right: 20px;
+  top: 70%;
 }

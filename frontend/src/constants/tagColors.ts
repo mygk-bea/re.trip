@@ -36,6 +36,24 @@ export const TAG_COLORS = {
         banheiros: { bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
         elevadoresRampas: { bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
     },
+    guia: {
+        comGuia: { bgColor: "#30CA01", borderColor: "#30CA01", textColor: "#FFFFFF" },
+    },
+};
+
+export const DICT_TAGS = {
+    "Local Turistico": { bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600" },
+    "Rota Turistica": { bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600" },
+    "Gastronômica": { bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600" },
+    "Cultural": { bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600" },
+    "Compras": { bgColor: "#F9F0E5", borderColor: "#BF6600", textColor: "#BF6600" },
+    "Natureza e Ecoturismo": { bgColor: "#EBF8E6", borderColor: "#34B505", textColor: "#34B505" },
+    "Aventura e Diversão": { bgColor: "#F4E5F9", borderColor: "#8F00BF", textColor: "#8F00BF" },
+    "Histórico": { bgColor: "#F4E5F9", borderColor: "#8F00BF", textColor: "#8F00BF" },
+    "Religioso": { bgColor: "#F4E5F9", borderColor: "#8F00BF", textColor: "#8F00BF" },
+    "Localização": { bgColor: "#F1F1F1", borderColor: "#757575", textColor: "#757575" },
+    "Acessibilidade e Inclusão": { bgColor: "#E5E8FB", borderColor: "#001DD7", textColor: "#001DD7" },
+    "Com Guia": { bgColor: "#30CA01", borderColor: "#30CA01", textColor: "#FFFFFF" },
 };
 
 // import { TAG_COLORS } from "../../constants/tagColors";

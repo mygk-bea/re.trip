@@ -11,6 +11,7 @@ export const rotaSitioMuseu: RouteInfo = {
   routeLength: "10,7 km",
   locals: [sitioCarrocaoBase, museuPauloSetubalBase],
   images: ["/images/printscreen/img_bg_maps-rota-1.png"],
+  guiaAvailable: true,
 };
 
 export const rotaParques: RouteInfo = {
@@ -23,6 +24,7 @@ export const rotaParques: RouteInfo = {
   routeLength: "10,7 km",
   locals: [parqueMariaTucaBase, sitioCarrocaoBase],
   images: ["/images/printscreen/img_bg_maps-rota-2.png"],
+  guiaAvailable: false,
 };
 
 export const allRoutes: RouteInfo[] = [rotaSitioMuseu, rotaParques];

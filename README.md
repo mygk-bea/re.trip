@@ -1,5 +1,13 @@
 # Re.Trip 
 
+## 🌎 Para Acessar no Vercel
+Acesse o link: https://re-trip.vercel.app/
+
+Viaje pelas rotas:
+- Para acessar a parte do guia: `/guia/inicio`
+- Para acessar a parte do admin: `/admin/inicio`
+- Para acessar a parte do super admin: `/super-admin/login`
+
 ## 📦 Guide Commits
 
 | Emoji  | Gitmoji        | Tipo de Commit   | Descrição                     |

@@ -11,7 +11,7 @@ const MeusLocais: React.FC = () => {
     const navigate = useNavigate();
     const [locaisUsuario, setLocaisUsuario] = useState<any[]>([]);
 
-    // dados das rotas
+    // dados dos locais
     useEffect(() => {
         const buscarLocais = async () => {
             const userData = authService.getUserData();

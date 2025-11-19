@@ -27,6 +27,8 @@ class CreateLocalTable extends Migration
             $table->string('disponibilidade')->nullable(true);
             $table->double('avaliacao')->default(0.0);
             $table->string('cnpj')->nullable(false);
+            $table->string('status')->default('Em análise');
+            $table->string('verificado')->default(false);
             $table->unsignedBigInteger('fk_credencial_autor')->nullable(false);
 
             $table->foreign('fk_credencial_autor')->references('codCredencial')->on('credenciais');

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { Box } from "@mui/material";
 import Carousel from "./Carousel";
 import { Line } from "react-chartjs-2";
@@ -13,7 +13,8 @@ import {
     Legend,
 } from "chart.js";
 import IconExit from "../../../assets/icons/icon-exit";
-import Sidebar from "../../../pages/SuperAdmin/Home/Sidebar"; 
+import Sidebar from "../../../pages/SuperAdmin/Home/Sidebar";
+import { localService } from "../../../core/services/LocalService"; 
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -25,6 +26,38 @@ interface Local {
 }
 
 const HomeSuperAdmin: React.FC = () => {
+    const [locaisUsuario, setLocaisUsuario] = useState<any[]>([]);
+
+    // dados dos locais
+    useEffect(() => {
+        const buscarLocais = async () => {
+            // const userData = authService.getUserData();
+            // const userCredencial = userData?.idCredencial ? parseInt(userData.idCredencial) : 0;
+    
+            const userCredencial = 5; //solução provisória
+
+            const response = await localService.getDadosLocais(userCredencial);
+    
+            if (response && response.success) {
+                setLocaisUsuario(response.data);
+                console.log("Locais carregados:", response.data);
+            } else {
+                console.error("Erro ao carregar locais:", response.message);
+            }
+        }
+    
+        buscarLocais();
+    }, []);
+
+    // função para atualizar o status
+    // const handleChangeStatus = async (id: number, novoStatus: string) => {
+    //     const localSelecionado = {
+    //         localCod: id,
+    //         status: novoStatus || "" 
+    //     };
+    //     await localService.verificacaoLocais(localSelecionado);
+    // };
+
     const locais: Local[] = [
         { id: '#0000LC', nome: 'Sítio do Carroção', admin: 'Username Admin', status: 'Aprovado' },
         { id: '#0000LC', nome: 'Casa sem Teto', admin: 'Username Admin', status: 'Desaprovado' },

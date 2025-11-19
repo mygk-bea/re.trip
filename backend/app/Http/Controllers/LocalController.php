@@ -10,6 +10,7 @@ use App\Models\Imagens;
 use App\Models\ImagemDestinatario;
 use App\Models\Administrador;
 use App\Models\Credenciais;
+use Illuminate\Support\Facades\DB; 
 
 class LocalController extends Controller
 {
@@ -87,31 +88,61 @@ class LocalController extends Controller
     }
 
     public function dadosLocais($credencialUsuario){
-        $locais = Local::where('fk_credencial_autor', $credencialUsuario)->get();
+        $credencial = Credenciais::where('codCredencial', $credencialUsuario)->first();
+        $tipoCred = $credencial->tipo;
+       
+        if($tipoCred == 'super administrador'){
+            $locais = DB::table('local')
+                        ->leftJoin('credenciais', 'local.fk_credencial_autor', '=', 'credenciais.codCredencial')
+                        ->leftJoin('administrador', 'credenciais.codCredencial', '=', 'administrador.fk_credencial_codCredencial')
+                        ->select(
+                            'local.*',
+                            'credenciais.tipo as tipo_autor',
+                            'administrador.codAdmin',
+                            'administrador.nome as admin_nome',
+                            'administrador.cpf as admin_cpf',
+                            'administrador.dataNascimento as admin_data_nascimento'
+                        )->get();
 
-        $locaisDados = [];
-        foreach ($locais as $local) {
-            $imagem = ImagemDestinatario::where('id_destinatario', $local->codLocal)
-                ->where('tipo_destinatario', 'local')
-                ->first();
-            
-            $imagemNome = null;
-            
-            if ($imagem) {
-                $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
-                $imagemNome = $imagemData ? $imagemData->nome : null;
+            return response()->json([
+                'success' => true,
+                'data' => $locais,
+            ]);
+        } else {
+            $locais = Local::where('fk_credencial_autor', $credencialUsuario)->get();
+    
+            $locaisDados = [];
+            foreach ($locais as $local) {
+                $imagem = ImagemDestinatario::where('id_destinatario', $local->codLocal)
+                    ->where('tipo_destinatario', 'local')
+                    ->first();
+                
+                $imagemNome = null;
+                
+                if ($imagem) {
+                    $imagemData = Imagens::find($imagem->fk_imagem_codImagem);
+                    $imagemNome = $imagemData ? $imagemData->nome : null;
+                }
+    
+                $locaisDados[] = [
+                    'local' => $local,
+                    'imagem' => $imagemNome
+                ];
             }
-
-            $locaisDados[] = [
-                'local' => $local,
-                'imagem' => $imagemNome
-            ];
+    
+            return response()->json([
+                'success' => true,
+                'data' => $locaisDados,
+                'total' => count($locaisDados)
+            ]);
         }
 
-        return response()->json([
-            'success' => true,
-            'data' => $locaisDados,
-            'total' => count($locaisDados)
-        ]);
+    }
+
+    public function verificarLocal(Request $request){
+        $localCod = $request->input('localCod');
+        $status = $request->input('status');
+
+        Local::where('codLocal', $localCod)->update(['status' => $status,'verificado' => true]);
     }
 }

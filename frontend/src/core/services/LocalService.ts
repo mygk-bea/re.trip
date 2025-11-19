@@ -68,7 +68,20 @@ class LocalService {
       return response.data;
     } catch(error){
       console.error('Erro ao buscar locais do usuário:', error);
-      return { success: false, message: 'Erro ao buscar locais' };
+      return { success: false, message: 'Erro ao buscar locais'};
+    }
+  }
+
+  async verificacaoLocais(local: Local): Promise<any>{
+    try{
+      const response = await api.post<LocalResponse>('/verificacao-local', {
+        localCod: local.id,
+        status: local.status
+      });
+      return response.data;
+    } catch(error){
+      console.error('Erro ao verificar local:', error);
+      return { success: false, message: 'Erro ao verificar local'};
     }
   }
 }

@@ -9,10 +9,13 @@ export interface Local {
     descricao: string;
     disponibilidade?: string;
     tags: string[];
-    avalicao?: number;
+    avaliacao?: number;
     cnpj: string;
     credencial_autor: number;
     cep: string;
+    status?: string;
+    verificado?: boolean;
+    id?: number;
 }
 
 export interface LocalResponse{
